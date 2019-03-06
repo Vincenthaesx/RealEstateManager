@@ -14,7 +14,5 @@ object PropertyManager : PropertyRepository {
                 .toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-
     }
-
 }

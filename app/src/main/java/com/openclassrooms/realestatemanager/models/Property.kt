@@ -16,10 +16,10 @@ data class Property(
         var surface: Int, // Surface (in square meters)
         var roomsCount: Int, // Rooms count
         var description: String, // Full description of the property
-        @TypeConverters(ListTypeConverter::class)
+        @TypeConverters(Converters::class)
         var picturesList: List<String>, // List of pictures urls
         var status: Boolean, // Status (True is available, False is sold)
-        @TypeConverters(DateTypeConverter::class)
+        @TypeConverters(Converters::class)
         var entryDate: Date, // Date of entry on the market
         var saleDate: Date? = null, // Date of sale, if sold
         var agent: String // Full name of the real estate agent in charge of this property

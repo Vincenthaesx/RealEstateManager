@@ -6,7 +6,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.openclassrooms.realestatemanager.RealEstateManagerApplication
 
 @Database(entities = [Property::class], version = 1, exportSchema = false)
-@TypeConverters(DateTypeConverter::class, ListTypeConverter::class)
+@TypeConverters(Converters::class)
 abstract class RealEstateDatabase : RoomDatabase() {
 
     abstract fun propertyDao(): PropertyDao
