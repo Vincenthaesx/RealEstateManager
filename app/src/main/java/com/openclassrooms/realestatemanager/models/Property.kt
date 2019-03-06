@@ -2,6 +2,7 @@ package com.openclassrooms.realestatemanager.models
 
 import androidx.room.*
 import io.reactivex.Observable
+import io.reactivex.Single
 import java.util.*
 
 @Entity
@@ -28,7 +29,7 @@ data class Property(
 interface PropertyDao {
 
     @Query("Select * FROM Property")
-    fun getAllProperty(): Observable<List<Property>>
+    fun getAllProperty(): Single<List<Property>>
 
     @Insert
     fun insertNewProperty(property: Property) : Long
