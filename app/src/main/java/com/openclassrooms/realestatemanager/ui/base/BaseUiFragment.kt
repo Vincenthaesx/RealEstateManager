@@ -10,7 +10,7 @@ import io.reactivex.subjects.PublishSubject
 abstract class BaseUiFragment<A, R, T : BaseTranslator<A, R>> : BaseFragment() {
 
     private val translator: T by lazy { translator() }
-    private val actions: PublishSubject<A> = PublishSubject.create()
+    protected val actions: PublishSubject<A> = PublishSubject.create()
     private val disposables = CompositeDisposable()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

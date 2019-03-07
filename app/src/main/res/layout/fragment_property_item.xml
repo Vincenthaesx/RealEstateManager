@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.PropertyFragment">
+
+    <ImageView
+        android:id="@+id/image_property"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/property_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Flat"
+        android:layout_marginStart="20dp"
+        android:textSize="25sp"
+        app:layout_constraintStart_toEndOf="@+id/image_property"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/property_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/image_property"
+        android:layout_marginStart="20dp"
+        android:text="Manhattan"
+        app:layout_constraintBottom_toTopOf="@+id/property_price"
+        app:layout_constraintTop_toBottomOf="@+id/property_type"/>
+
+
+    <EditText
+        android:id="@+id/property_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="$17,870,000"
+        android:textColor="@color/price"
+        app:layout_constraintStart_toEndOf="@+id/image_property"
+        app:layout_constraintBottom_toTopOf="@+id/view_property" />
+
+
+    <View
+        android:id="@+id/view_property"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_property" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
