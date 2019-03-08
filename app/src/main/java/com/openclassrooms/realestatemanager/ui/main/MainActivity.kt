@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.openclassrooms.realestatemanager.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             this.configurePropertyFragment()
         } else {
-            propertyFragment = supportFragmentManager.findFragmentById(R.id.activity_main_frame_layout) as PropertyFragment
+            propertyFragment = supportFragmentManager.findFragmentById(R.id.activity_main_frame_property) as PropertyFragment
         }
 
     }
@@ -36,8 +37,9 @@ class MainActivity : AppCompatActivity() {
 
         propertyFragment = PropertyFragment()
         supportFragmentManager.beginTransaction()
-                .add(R.id.activity_main_frame_layout, propertyFragment)
+                .add(R.id.activity_main_frame_property, propertyFragment)
                 .commit()
+
     }
 
 }

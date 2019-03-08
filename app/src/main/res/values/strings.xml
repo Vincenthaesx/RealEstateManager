@@ -7,6 +7,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="description">Une petite description pour essayer le detail fragment, et voir si tout fonctionne correctement sans poser de probléme, cette application servira a afficher une liste de maison a vendre.</string>
 
     <style name="api_key">AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM</style>
 
