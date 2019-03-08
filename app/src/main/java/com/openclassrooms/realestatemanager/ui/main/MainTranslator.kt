@@ -35,13 +35,13 @@ class  MainTranslator: BaseTranslator<Action, ActionUiModel>()  {
     private fun Observable<Action.GetAllProperty>.requestForGetAllProperty(): Observable<ActionUiModel> {
         return flatMap {
             propertyRepository.getPropertyList()
-                    .map {
-                        ActionUiModel.GetAllPropertyModel(it)
+                    .map<ActionUiModel> {action ->
+                        ActionUiModel.GetAllPropertyModel(action)
                     }
+                    .startWith(ActionUiModel.Loading(true))
+                    .concatWith(Observable.just(ActionUiModel.Loading(false)))
         }
     }
-
-
 
 
 }

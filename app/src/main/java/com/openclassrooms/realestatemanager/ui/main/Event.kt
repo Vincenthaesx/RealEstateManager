@@ -14,4 +14,6 @@ sealed class ActionUiModel {
     class GetAllPropertyModel(val listProperty: List<Property>): ActionUiModel()
 
     class Error(val message: String?) : ActionUiModel()
+
+    class Loading(val isLoading :Boolean) : ActionUiModel()
 }

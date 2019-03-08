@@ -3,25 +3,46 @@ package com.openclassrooms.realestatemanager.ui.main
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.models.Property
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
-import com.openclassrooms.realestatemanager.utils.safeCast
-import com.openclassrooms.realestatemanager.view.PropertyAdapter
+import com.openclassrooms.realestatemanager.utils.log
+import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_property.*
+import kotlinx.android.synthetic.main.fragment_property_item.*
 
-class PropertyFragment : PropertyAdapter.Listener, BaseUiFragment<Action, ActionUiModel, MainTranslator>(){
-
+class PropertyFragment : BaseUiFragment<Action, ActionUiModel, MainTranslator>(){
 
     override fun render(ui: ActionUiModel) {
         when(ui) {
             is ActionUiModel.GetAllPropertyModel -> {
-                updateUI(ui.listProperty)
+                fragment_property_recyclerView.adapter = GenericAdapter(R.layout.fragment_property_item, ui.listProperty) { property, _ ->
+
+                    property.let {
+                        for (i in it.pictureList) {
+                            Glide.with(itemView.context).load(i).into(image_property)
+                        }
+                    }
+
+                    property_type.text = property.type
+
+                    property_city.text = property.address
+
+                    property_price.text = property.price
+
+                   }
+                }
+            is ActionUiModel.Error -> {
+                ui.message?.log()
+                fragment_property_swipeRefresh.isRefreshing = false
+                }
+            is ActionUiModel.Loading -> {
+                fragment_property_swipeRefresh.isRefreshing = ui.isLoading
+                }
             }
         }
-    }
 
     override fun translator(): MainTranslator = requireActivity().getViewModel()
 
@@ -31,14 +52,12 @@ class PropertyFragment : PropertyAdapter.Listener, BaseUiFragment<Action, Action
         CompositeDisposable()
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        actions.onNext(Action.GetAllProperty())
-
         configureRecyclerView()
         configureSwipeRefreshLayout()
+
     }
 
     override fun onDestroy() {
@@ -52,30 +71,15 @@ class PropertyFragment : PropertyAdapter.Listener, BaseUiFragment<Action, Action
 
     private fun configureRecyclerView() {
         fragment_property_recyclerView.layoutManager = LinearLayoutManager(activity)
-        if(fragment_property_recyclerView.adapter  == null){
-            fragment_property_recyclerView.adapter = PropertyAdapter(mutableListOf())
-        }
+        actions.onNext(Action.GetAllProperty())
     }
 
     private fun configureSwipeRefreshLayout() {
         fragment_property_swipeRefresh.setOnRefreshListener { actions.onNext(Action.GetAllProperty()) }
     }
 
-
     private fun disposeWhenDestroy() {
         this.disposable.clear()
     }
 
-
-    // -------------------
-    // UPDATE UI
-    // -------------------
-
-    private fun updateUI(res: List<Property>) {
-
-        fragment_property_recyclerView.adapter?.safeCast<PropertyAdapter> {
-            it.updateData(res)
-        }
-        fragment_property_swipeRefresh.isRefreshing = false
-    }
 }

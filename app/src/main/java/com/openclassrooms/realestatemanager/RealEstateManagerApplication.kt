@@ -22,7 +22,6 @@ class RealEstateManagerApplication : Application(){
     }
 
     companion object {
-
         lateinit var repoComponent: RepositoryComponent
 
         private var instance: RealEstateManagerApplication? = null

@@ -4,10 +4,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.ui.base.BaseUiActivity
-import com.openclassrooms.realestatemanager.ui.base.getViewModel
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var propertyFragment: PropertyFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,8 +15,13 @@ class MainActivity : AppCompatActivity() {
 
         configureToolBar()
 
-    }
+        if (savedInstanceState == null) {
+            this.configurePropertyFragment()
+        } else {
+            propertyFragment = supportFragmentManager.findFragmentById(R.id.activity_main_frame_layout) as PropertyFragment
+        }
 
+    }
 
     // ---------------------
     // CONFIGURATION
@@ -25,6 +30,14 @@ class MainActivity : AppCompatActivity() {
     private fun configureToolBar() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
+    }
+
+    private fun configurePropertyFragment() {
+
+        propertyFragment = PropertyFragment()
+        supportFragmentManager.beginTransaction()
+                .add(R.id.activity_main_frame_layout, propertyFragment)
+                .commit()
     }
 
 }

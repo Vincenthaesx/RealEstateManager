@@ -3,6 +3,7 @@ package com.openclassrooms.realestatemanager.models
 import android.content.ContentValues
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.google.gson.Gson
 import com.openclassrooms.realestatemanager.RealEstateManagerApplication
 
 @Database(entities = [Property::class], version = 1, exportSchema = false)
@@ -16,7 +17,7 @@ abstract class RealEstateDatabase : RoomDatabase() {
             Room.databaseBuilder(
                     RealEstateManagerApplication.applicationContext(),
                     RealEstateDatabase::class.java,
-                    "Word_database"
+                    "World_database"
             )
                     .addCallback(prepopulateDatabase())
                     .build()
@@ -31,20 +32,37 @@ abstract class RealEstateDatabase : RoomDatabase() {
                     super.onCreate(db)
 
                     val contentValues = ContentValues()
+                    val contentValues1 = ContentValues()
+                    val list1 = listOf("https://v.seloger.com/s/crop/310x225/visuels/0/m/l/4/0ml42xbt1n3itaboek3qec5dtskdgw6nlscu7j69k.jpg")
+                    val list2 = listOf("https://t-ec.bstatic.com/images/hotel/max1024x768/112/112064745.jpg")
+                    val gson = Gson()
 
                     contentValues.put("type", "House")
                     contentValues.put("address", "7 Rue aux Moutons, 28270 Brezolles")
-                    contentValues.put("price", 235000)
+                    contentValues.put("price", "$256 976")
                     contentValues.put("surface", 107)
                     contentValues.put("roomsCount", 6)
                     contentValues.put("description", "A nice test house to see if everything works, thanks a lot")
-                    contentValues.put("pictureList", "https://v.seloger.com/s/crop/310x225/visuels/0/m/l/4/0ml42xbt1n3itaboek3qec5dtskdgw6nlscu7j69k.jpg")
+                    contentValues.put("pictureList",gson.toJson(list1))
                     contentValues.put("status", true)
-                    contentValues.put("entryDate", 2018-12-18)
+                    contentValues.put("entryDate", 2018-5-28)
                     contentValues.put("saleDate", "")
                     contentValues.put("agent", "Vincent")
+                    // -------------------
+                    contentValues1.put("type", "Palace")
+                    contentValues1.put("address", "12 Champs Elysee, 95000 Paris")
+                    contentValues1.put("price", "$552 000")
+                    contentValues1.put("surface", 185)
+                    contentValues1.put("roomsCount", 12)
+                    contentValues1.put("description", "A nice test palace to see if everything works, thanks a lot")
+                    contentValues1.put("pictureList",gson.toJson(list2))
+                    contentValues1.put("status", true)
+                    contentValues1.put("entryDate",  2018-5-28)
+                    contentValues1.put("saleDate", "")
+                    contentValues1.put("agent", "Vincent")
 
                     db.insert("property", OnConflictStrategy.REPLACE, contentValues)
+                    db.insert("property", OnConflictStrategy.REPLACE, contentValues1)
                 }
             }
         }

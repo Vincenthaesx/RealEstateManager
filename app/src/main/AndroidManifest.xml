@@ -17,6 +17,11 @@
         <activity android:name="com.openclassrooms.realestatemanager.ui.main.MainActivity"
             android:label="Real Estate Manager">
             <intent-filter>
+                <action android:name="com.google.codelabs.appauth.HANDLE_AUTHORIZATION_RESPONSE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
