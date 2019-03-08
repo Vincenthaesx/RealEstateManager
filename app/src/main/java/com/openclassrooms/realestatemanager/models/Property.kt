@@ -14,7 +14,8 @@ data class Property(
         var price: String,                       // Price (in US Dollars)
         var surface: Int,                     // Surface (in square meters)
         var roomsCount: Int,                  // Rooms count
-        var bathroomsCount: Int,
+        var bathroomsCount: Int,              // Bathrooms count
+        var bedroomsCount: Int,               // Bedrooms count
         var description: String,              // Full description of the property
         var pictureList: List<String>,        // List of pictures urls
         var status: Boolean,                  // Status (True is available, False is sold)

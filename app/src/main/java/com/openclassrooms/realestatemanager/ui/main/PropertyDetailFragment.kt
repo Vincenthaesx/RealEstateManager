@@ -3,7 +3,6 @@ package com.openclassrooms.realestatemanager.ui.main
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
@@ -11,7 +10,6 @@ import com.openclassrooms.realestatemanager.utils.log
 import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_property_detail.*
-import kotlinx.android.synthetic.main.fragment_property_item.*
 
 class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTranslator>(){
 
@@ -19,18 +17,6 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTransla
         when(ui) {
             is ActionUiModel.GetAllPropertyModel -> {
                 fragment_property_detail_recyclerView.adapter = GenericAdapter(R.layout.fragment_property_detail_item, ui.listProperty) { property, _ ->
-
-                    property.let {
-                        for (i in it.pictureList) {
-                            Glide.with(itemView.context).load(i).into(image_property)
-                        }
-                    }
-
-                    property_type.text = property.type
-
-                    property_city.text = property.address
-
-                    property_price.text = property.price
 
                 }
             }
