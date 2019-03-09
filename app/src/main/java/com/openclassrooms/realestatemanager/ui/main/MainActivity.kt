@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var propertyFragment: PropertyFragment
+    private var detailPropertyFragment: PropertyDetailFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         } else {
             propertyFragment = supportFragmentManager.findFragmentById(R.id.activity_main_frame_property) as PropertyFragment
         }
-
     }
 
     // ---------------------
@@ -34,6 +34,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun configurePropertyFragment() {
+
+        detailPropertyFragment = supportFragmentManager.findFragmentById(R.id.activity_main_frame_propertyDetail) as PropertyDetailFragment?
+
+        //A - We only add DetailFragment in Tablet mode (If found frame_layout_detail)
+        if (detailPropertyFragment == null && activity_main_frame_propertyDetail != null) {
+            detailPropertyFragment = PropertyDetailFragment()
+            supportFragmentManager.beginTransaction()
+                    .add(R.id.activity_main_frame_propertyDetail, detailPropertyFragment!!)
+                    .commit()
+        }
 
         propertyFragment = PropertyFragment()
         supportFragmentManager.beginTransaction()

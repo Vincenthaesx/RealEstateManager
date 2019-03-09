@@ -17,7 +17,6 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, MainTranslator>()
 
     private lateinit var propertyDetailFragment: PropertyDetailFragment
 
-
     override fun render(ui: ActionUiModel) {
         when(ui) {
             is ActionUiModel.GetAllPropertyModel -> {
@@ -39,6 +38,7 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, MainTranslator>()
                         propertyDetailFragment = PropertyDetailFragment()
                         fragmentManager?.beginTransaction()
                                 ?.add(R.id.activity_main_frame_property, propertyDetailFragment)
+                                ?.addToBackStack(null)
                                 ?.commit()
                     }
 
