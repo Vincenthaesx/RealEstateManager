@@ -8,6 +8,16 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="description">Une petite description pour essayer le detail fragment, et voir si tout fonctionne correctement sans poser de probléme, cette application servira a afficher une liste de maison a vendre.</string>
+    <string name="surface">Surface</string>
+    <string name="_750_sq_m">750 sq m</string>
+    <string name="number_of_rooms">Number of rooms</string>
+    <string name="_8">8</string>
+    <string name="number_of_bathrooms">Number of bathrooms</string>
+    <string name="_2">2</string>
+    <string name="number_of_bedrooms">Number of bedrooms</string>
+    <string name="_4">4</string>
+    <string name="location">Location</string>
+    <string name="locationTest">740 Park avenue Apt 6/7A New York NY 10021 United States</string>
 
     <style name="api_key">AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM</style>
 
