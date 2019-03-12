@@ -4,7 +4,6 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.openclassrooms.realestatemanager.R

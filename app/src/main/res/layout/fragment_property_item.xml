@@ -10,6 +10,7 @@
         android:id="@+id/image_property"
         android:layout_width="125dp"
         android:layout_height="125dp"
+        android:scaleType="fitXY"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

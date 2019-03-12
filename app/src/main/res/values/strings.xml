@@ -21,6 +21,8 @@
     <string name="manhattan">Manhattan</string>
     <string name="flat">Flat</string>
     <string name="_17_870_000">$17,870,000</string>
+    <string name="media">Media</string>
+    <string name="descriptionTitle">Description</string>
 
     <style name="api_key">AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM</style>
 

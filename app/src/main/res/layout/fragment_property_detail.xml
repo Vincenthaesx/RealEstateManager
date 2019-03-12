@@ -14,7 +14,7 @@
         android:id="@+id/MediaTitle_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Media"
+        android:text="@string/media"
         android:textSize="30sp"
         android:layout_margin="15dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/MediaTitle_detail">
@@ -35,7 +36,7 @@
         android:id="@+id/DescriptionTitle_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Description"
+        android:text="@string/descriptionTitle"
         android:textSize="30sp"
         android:layout_margin="15dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -168,7 +169,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginStart="10dp"
         app:layout_constraintStart_toEndOf="@+id/imageBedrooms"
-        app:layout_constraintTop_toBottomOf="@+id/imageBathrooms"/>
+        app:layout_constraintTop_toBottomOf="@+id/imageBathrooms" />
 
     <TextView
         android:id="@+id/numberOfBedrooms"
@@ -178,7 +179,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="2dp"
         app:layout_constraintStart_toEndOf="@+id/imageBedrooms"
-        app:layout_constraintTop_toBottomOf="@+id/bedroomsTitle"/>
+        app:layout_constraintTop_toBottomOf="@+id/bedroomsTitle" />
 
 
     <ImageView

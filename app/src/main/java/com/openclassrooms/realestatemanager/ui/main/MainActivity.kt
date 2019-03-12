@@ -8,7 +8,6 @@ import com.openclassrooms.realestatemanager.R
 class MainActivity : AppCompatActivity() {
 
     private lateinit var propertyFragment: PropertyFragment
-    private lateinit var propertyDetailFragment: PropertyDetailFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

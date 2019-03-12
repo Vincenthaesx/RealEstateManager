@@ -2,7 +2,6 @@ package com.openclassrooms.realestatemanager.ui.main
 
 import android.os.Bundle
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
@@ -66,7 +65,6 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTransla
     // -----------------
     // CONFIGURATION
     // -----------------
-
 
     private fun disposeWhenDestroy() {
         this.disposable.clear()
