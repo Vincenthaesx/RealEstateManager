@@ -44,7 +44,7 @@ abstract class RealEstateDatabase : RoomDatabase() {
                     contentValues.put("roomsCount", 6)
                     contentValues.put("bathroomsCount", 1)
                     contentValues.put("bedroomsCount", 2)
-                    contentValues.put("description", "A nice test house to see if everything works, thanks a lot")
+                    contentValues.put("description", "A nice test house to see if everything works, la description de la maison dois normalement s'afficher correctement sans poser de soucis ni en portrait ni en paysage, ce qui permettra a l'utilisateur de profiter un maximum de l'application.")
                     contentValues.put("pictureList",gson.toJson(list1))
                     contentValues.put("status", true)
                     contentValues.put("entryDate", 2018-5-28)

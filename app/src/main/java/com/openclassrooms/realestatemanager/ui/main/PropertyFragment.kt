@@ -1,7 +1,10 @@
 package com.openclassrooms.realestatemanager.ui.main
 
+import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.openclassrooms.realestatemanager.R
@@ -34,16 +37,30 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, MainTranslator>()
 
                     property_price.text = property.price
 
-                    itemView.setOnClickListener {
-                        propertyDetailFragment = PropertyDetailFragment()
-                        val bundle = Bundle()
-                        bundle.putInt("id", property.pid)
+                    when {
+                        resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT -> itemView.setOnClickListener {
+                            propertyDetailFragment = PropertyDetailFragment()
+                            val bundle = Bundle()
+                            bundle.putInt("id", property.pid)
 
-                        propertyDetailFragment.arguments = bundle
-                        fragmentManager?.beginTransaction()
-                                ?.add(R.id.activity_main_frame_property, propertyDetailFragment)
-                                ?.addToBackStack(null)
-                                ?.commit()
+                            propertyDetailFragment.arguments = bundle
+                            fragmentManager?.beginTransaction()
+                                    ?.add(R.id.activity_main_frame_property, propertyDetailFragment)
+                                    ?.addToBackStack(null)
+                                    ?.commit()
+                        }
+                        resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE -> itemView.setOnClickListener {
+                            propertyDetailFragment = PropertyDetailFragment()
+                            val bundle = Bundle()
+                            bundle.putInt("id", property.pid)
+
+                            propertyDetailFragment.arguments = bundle
+                            fragmentManager?.beginTransaction()
+                                    ?.add(R.id.activity_main_frame_propertyDetail, propertyDetailFragment)
+                                    ?.addToBackStack(null)
+                                    ?.commit()
+                        }
+                        else -> Log.e("TAG", "Error")
                     }
                    }
                 }

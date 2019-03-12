@@ -18,6 +18,9 @@
     <string name="_4">4</string>
     <string name="location">Location</string>
     <string name="locationTest">740 Park avenue Apt 6/7A New York NY 10021 United States</string>
+    <string name="manhattan">Manhattan</string>
+    <string name="flat">Flat</string>
+    <string name="_17_870_000">$17,870,000</string>
 
     <style name="api_key">AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM</style>
 
