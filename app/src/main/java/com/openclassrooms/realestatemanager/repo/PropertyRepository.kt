@@ -7,4 +7,6 @@ interface PropertyRepository {
 
     fun getPropertyList(): Observable<List<Property>>
 
+    fun getProperty(id: Int): Observable<Property>
+
 }

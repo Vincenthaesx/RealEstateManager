@@ -10,13 +10,28 @@ import com.openclassrooms.realestatemanager.utils.log
 import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_property_detail.*
+import kotlinx.android.synthetic.main.fragment_property_detail_item.*
 
 class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTranslator>(){
 
+    private var idProperty: Int = 0
+
     override fun render(ui: ActionUiModel) {
         when(ui) {
-            is ActionUiModel.GetAllPropertyModel -> {
-                fragment_property_detail_recyclerView.adapter = GenericAdapter(R.layout.fragment_property_detail_item, ui.listProperty) { property, _ ->
+            is ActionUiModel.GetPropertyModel -> {
+                fragment_property_detail_recyclerView.adapter = GenericAdapter(R.layout.fragment_property_detail_item, listOf(ui.property)) { property, _ ->
+
+                    descriptionDetail.text = property.description
+
+                    surface.text = property.surface.toString()
+
+                    numberOfRoom.text = property.roomsCount.toString()
+
+                    numberOfBathrooms.text = property.bathroomsCount.toString()
+
+                    numberOfBedrooms.text = property.bedroomsCount.toString()
+
+                    location.text = property.address
 
                 }
             }
@@ -41,6 +56,12 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTransla
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val bundle = this.arguments
+
+        if (bundle != null) {
+            idProperty = bundle.getInt("id", idProperty)
+        }
+
         configureRecyclerView()
         configureSwipeRefreshLayout()
 
@@ -57,7 +78,7 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTransla
 
     private fun configureRecyclerView() {
         fragment_property_detail_recyclerView.layoutManager = LinearLayoutManager(activity)
-        actions.onNext(Action.GetAllProperty())
+        actions.onNext(Action.GetProperty(idProperty))
     }
 
     private fun configureSwipeRefreshLayout() {

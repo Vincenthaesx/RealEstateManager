@@ -7,7 +7,7 @@ import java.util.*
 @Entity
 data class Property(
         @PrimaryKey (autoGenerate = true)
-        var pid: Int? = null,                 // Property ID generated randomly
+        var pid: Int,                         // Property ID generated randomly
 
         var type: String,                     // Type (apartment, loft, mansion, etc...)
         var address: String,                  // Full address of the property
@@ -29,6 +29,9 @@ interface PropertyDao {
 
     @Query("Select * FROM Property")
     fun getAllProperty(): Single<List<Property>>
+
+    @Query("Select * FROM Property WHERE pid == :id")
+    fun getProperty(id: Int): Single<Property>
 
     @Insert
     fun insertNewProperty(property: Property) : Long

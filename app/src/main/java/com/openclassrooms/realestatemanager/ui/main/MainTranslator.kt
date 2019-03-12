@@ -21,7 +21,8 @@ class  MainTranslator: BaseTranslator<Action, ActionUiModel>()  {
 
         return Observable.mergeArray(
 
-                ofType<Action.GetAllProperty>().requestForGetAllProperty()
+                ofType<Action.GetAllProperty>().requestForGetAllProperty(),
+                ofType<Action.GetProperty>().requestForGetProperty()
 
                         .onErrorReturn {
                             it.log()
@@ -43,5 +44,14 @@ class  MainTranslator: BaseTranslator<Action, ActionUiModel>()  {
         }
     }
 
-
+    private fun Observable<Action.GetProperty>.requestForGetProperty(): Observable<ActionUiModel> {
+        return flatMap { action ->
+            propertyRepository.getProperty(action.id)
+                    .map<ActionUiModel> {
+                        ActionUiModel.GetPropertyModel(it)
+                    }
+                    .startWith(ActionUiModel.Loading(true))
+                    .concatWith(Observable.just(ActionUiModel.Loading(false)))
+        }
+    }
 }

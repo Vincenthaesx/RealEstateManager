@@ -36,12 +36,15 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, MainTranslator>()
 
                     itemView.setOnClickListener {
                         propertyDetailFragment = PropertyDetailFragment()
+                        val bundle = Bundle()
+                        bundle.putInt("id", property.pid)
+
+                        propertyDetailFragment.arguments = bundle
                         fragmentManager?.beginTransaction()
                                 ?.add(R.id.activity_main_frame_property, propertyDetailFragment)
                                 ?.addToBackStack(null)
                                 ?.commit()
                     }
-
                    }
                 }
             is ActionUiModel.Error -> {
