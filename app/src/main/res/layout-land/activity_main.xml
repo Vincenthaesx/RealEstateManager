@@ -37,23 +37,22 @@
         app:layout_constraintStart_toEndOf="@+id/activity_main_frame_property"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    <!-- FrameLayout for map -->
-    <FrameLayout
-        android:id="@+id/mapFrameLayout"
-        android:layout_width="125dp"
-        android:layout_height="125dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="50dp"
-        android:background="@color/toolbar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.33" />
+
+    <View
+        android:id="@+id/view_property"
+        android:layout_width="1px"
+        android:layout_height="wrap_content"
+        android:background="@color/view"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

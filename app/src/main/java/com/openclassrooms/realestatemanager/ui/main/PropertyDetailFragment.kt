@@ -2,12 +2,17 @@ package com.openclassrooms.realestatemanager.ui.main
 
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
 import com.openclassrooms.realestatemanager.utils.log
+import com.squareup.picasso.Picasso
+import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_property_detail.*
+import kotlinx.android.synthetic.main.fragment_property_detail_item.*
+import kotlinx.android.synthetic.main.row_image_detail.*
 
 class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTranslator>(){
 
@@ -17,17 +22,25 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTransla
         when(ui) {
             is ActionUiModel.GetPropertyModel -> {
 
-                    descriptionDetail.text = ui.property.description
+                recyclerView_detailImage.adapter = GenericAdapter(R.layout.row_image_detail, ui.property.pictureList) { image, _ ->
+                    Picasso.get()
+                            .load(image)
+                            .fit()
+                            .into(imageRecyclerView)
+                }
 
-                    surface.text = ui.property.surface.toString()
 
-                    numberOfRoom.text = ui.property.roomsCount.toString()
+                descriptionDetail.text = ui.property.description
 
-                    numberOfBathrooms.text = ui.property.bathroomsCount.toString()
+                surface.text = ui.property.surface.toString()
 
-                    numberOfBedrooms.text = ui.property.bedroomsCount.toString()
+                numberOfRoom.text = ui.property.roomsCount.toString()
 
-                    location.text = ui.property.address
+                numberOfBathrooms.text = ui.property.bathroomsCount.toString()
+
+                numberOfBedrooms.text = ui.property.bedroomsCount.toString()
+
+                location.text = ui.property.address
 
             }
             is ActionUiModel.Error -> {
@@ -53,7 +66,8 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTransla
             idProperty = bundle.getInt("id", idProperty)
         }
 
-        actions.onNext(Action.GetProperty(idProperty))
+        configureRecyclerView()
+
 
     }
 
@@ -65,6 +79,11 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTransla
     // -----------------
     // CONFIGURATION
     // -----------------
+
+    private fun configureRecyclerView() {
+        recyclerView_detailImage.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        actions.onNext(Action.GetProperty(idProperty))
+    }
 
     private fun disposeWhenDestroy() {
         this.disposable.clear()

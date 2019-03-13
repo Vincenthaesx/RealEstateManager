@@ -33,7 +33,7 @@ abstract class RealEstateDatabase : RoomDatabase() {
 
                     val contentValues = ContentValues()
                     val contentValues1 = ContentValues()
-                    val list1 = listOf("https://v.seloger.com/s/crop/310x225/visuels/0/m/l/4/0ml42xbt1n3itaboek3qec5dtskdgw6nlscu7j69k.jpg")
+                    val list1 = listOf("https://v.seloger.com/s/crop/310x225/visuels/0/m/l/4/0ml42xbt1n3itaboek3qec5dtskdgw6nlscu7j69k.jpg", "https://t-ec.bstatic.com/images/hotel/max1024x768/112/112064745.jpg", "https://v.seloger.com/s/crop/310x225/visuels/0/m/l/4/0ml42xbt1n3itaboek3qec5dtskdgw6nlscu7j69k.jpg", "https://v.seloger.com/s/crop/310x225/visuels/0/m/l/4/0ml42xbt1n3itaboek3qec5dtskdgw6nlscu7j69k.jpg", "https://v.seloger.com/s/crop/310x225/visuels/0/m/l/4/0ml42xbt1n3itaboek3qec5dtskdgw6nlscu7j69k.jpg")
                     val list2 = listOf("https://t-ec.bstatic.com/images/hotel/max1024x768/112/112064745.jpg")
                     val gson = Gson()
 

@@ -10,6 +10,7 @@ import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
 import com.openclassrooms.realestatemanager.utils.log
+import com.squareup.picasso.Picasso
 import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_property.*
@@ -24,11 +25,10 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, MainTranslator>()
             is ActionUiModel.GetAllPropertyModel -> {
                 fragment_property_recyclerView.adapter = GenericAdapter(R.layout.fragment_property_item, ui.listProperty) { property, _ ->
 
-                    property.let {
-                        for (i in it.pictureList) {
-                            Glide.with(itemView.context).load(i).into(image_property)
-                        }
-                    }
+                    Picasso.get()
+                            .load(property.pictureList.first())
+                            .fit()
+                            .into(image_property)
 
                     property_type.text = property.type
 
