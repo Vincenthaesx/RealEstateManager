@@ -24,7 +24,7 @@
         android:id="@+id/recyclerView_detailImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
@@ -214,16 +214,15 @@
         app:layout_constraintTop_toBottomOf="@+id/locationTitle"/>
 
 
-    <FrameLayout
+    <ImageView
+        android:id="@+id/image_map"
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
-        android:background="@color/toolbar"
+        android:src="@drawable/ic_launcher_background"
         app:layout_constraintTop_toBottomOf="@+id/location"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-    </FrameLayout>
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

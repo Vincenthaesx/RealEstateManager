@@ -10,8 +10,8 @@ import com.openclassrooms.realestatemanager.utils.log
 import com.squareup.picasso.Picasso
 import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.fragment_property_detail.*
 import kotlinx.android.synthetic.main.fragment_property_detail_item.*
+import kotlinx.android.synthetic.main.fragment_property_detail_item.view.*
 import kotlinx.android.synthetic.main.row_image_detail.*
 
 class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTranslator>(){
@@ -29,6 +29,10 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTransla
                             .into(imageRecyclerView)
                 }
 
+                Picasso.get()
+                        .load(ui.property.pictureList.first())
+                        .fit()
+                        .into(image_map)
 
                 descriptionDetail.text = ui.property.description
 
