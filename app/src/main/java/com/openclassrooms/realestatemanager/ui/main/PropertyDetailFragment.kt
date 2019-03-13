@@ -30,7 +30,7 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTransla
                 }
 
                 Picasso.get()
-                        .load(ui.property.pictureList.first())
+                        .load(START_URL+ui.property.address+ END_URL)
                         .fit()
                         .into(image_map)
 
@@ -71,8 +71,6 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTransla
         }
 
         configureRecyclerView()
-
-
     }
 
     override fun onDestroy() {
@@ -93,4 +91,8 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTransla
         this.disposable.clear()
     }
 
+    companion object {
+        private const val START_URL = "https://maps.googleapis.com/maps/api/staticmap?center="
+        private const val END_URL = "&zoom=18&size=600x400&maptype=roadmap&key=AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM"
+    }
 }

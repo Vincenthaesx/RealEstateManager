@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun configurePropertyFragment() {
-
         propertyFragment = PropertyFragment()
         supportFragmentManager.beginTransaction()
                 .add(R.id.activity_main_frame_property, propertyFragment)
