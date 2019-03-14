@@ -1,4 +1,4 @@
-package com.openclassrooms.realestatemanager.ui.main
+package com.openclassrooms.realestatemanager.ui.property
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -15,7 +15,7 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_property.*
 import kotlinx.android.synthetic.main.fragment_property_item.*
 
-class PropertyFragment : BaseUiFragment<Action, ActionUiModel, MainTranslator>() {
+class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>() {
 
     private lateinit var propertyDetailFragment: PropertyDetailFragment
 
@@ -73,7 +73,7 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, MainTranslator>()
             }
         }
 
-    override fun translator(): MainTranslator = requireActivity().getViewModel()
+    override fun translator(): PropertyTranslator = requireActivity().getViewModel()
 
     override fun getLayout() = R.layout.fragment_property
 

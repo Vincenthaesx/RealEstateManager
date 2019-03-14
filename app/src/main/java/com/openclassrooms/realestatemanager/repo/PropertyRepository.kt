@@ -9,4 +9,6 @@ interface PropertyRepository {
 
     fun getProperty(id: Int): Observable<Property>
 
+    fun addNewProperty(property: Property): Observable<Long>
+
 }

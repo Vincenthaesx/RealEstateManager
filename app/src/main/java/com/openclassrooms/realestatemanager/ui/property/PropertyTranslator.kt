@@ -1,4 +1,4 @@
-package com.openclassrooms.realestatemanager.ui.main
+package com.openclassrooms.realestatemanager.ui.property
 
 import com.openclassrooms.realestatemanager.di.RepositoryComponent
 import com.openclassrooms.realestatemanager.repo.PropertyRepository
@@ -8,7 +8,7 @@ import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import javax.inject.Inject
 
-class  MainTranslator: BaseTranslator<Action, ActionUiModel>()  {
+class  PropertyTranslator: BaseTranslator<Action, ActionUiModel>()  {
 
     @Inject
     lateinit var propertyRepository: PropertyRepository
@@ -22,7 +22,8 @@ class  MainTranslator: BaseTranslator<Action, ActionUiModel>()  {
         return Observable.mergeArray(
 
                 ofType<Action.GetAllProperty>().requestForGetAllProperty(),
-                ofType<Action.GetProperty>().requestForGetProperty()
+                ofType<Action.GetProperty>().requestForGetProperty(),
+                ofType<Action.AddNewProperty>().requestForAddNewProperty()
 
                         .onErrorReturn {
                             it.log()
@@ -54,4 +55,14 @@ class  MainTranslator: BaseTranslator<Action, ActionUiModel>()  {
                     .concatWith(Observable.just(ActionUiModel.Loading(false)))
         }
     }
+
+    private fun Observable<Action.AddNewProperty>.requestForAddNewProperty(): Observable<ActionUiModel> {
+        return flatMap { action ->
+            propertyRepository.addNewProperty(action.newProperty)
+                    .map {
+                        ActionUiModel.AddNewPropertyModel(it)
+                    }
+        }
+    }
+
 }

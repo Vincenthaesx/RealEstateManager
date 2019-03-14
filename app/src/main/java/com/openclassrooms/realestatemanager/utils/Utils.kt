@@ -7,9 +7,9 @@ import java.util.*
 
 object Utils {
 
-    val dateFormat = "dd/MM/yyyy"
+    private const val dateFormat = "dd/MM/yyyy"
 
-    val API_KEY =  "AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM"
+    const val API_KEY =  "key=AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM"
 
     /**
      * Conversion de la date d'aujourd'hui en un format plus approprié

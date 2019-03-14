@@ -1,4 +1,4 @@
-package com.openclassrooms.realestatemanager.ui.main
+package com.openclassrooms.realestatemanager.ui.property
 
 import com.openclassrooms.realestatemanager.models.Property
 
@@ -8,6 +8,7 @@ sealed class Action {
 
     class GetProperty(val id: Int): Action()
 
+    class AddNewProperty(val newProperty: Property): Action()
 }
 
 sealed class ActionUiModel {
@@ -19,4 +20,6 @@ sealed class ActionUiModel {
     class Loading(val isLoading :Boolean) : ActionUiModel()
 
     class GetPropertyModel(val property: Property): ActionUiModel()
+
+    class AddNewPropertyModel(val success: Long): ActionUiModel()
 }

@@ -1,6 +1,6 @@
 package com.openclassrooms.realestatemanager.di
 
-import com.openclassrooms.realestatemanager.ui.main.MainTranslator
+import com.openclassrooms.realestatemanager.ui.property.PropertyTranslator
 import dagger.Component
 
 @Component(modules = [RepositoryModule::class])
@@ -10,6 +10,6 @@ interface RepositoryComponent {
     fun inject(component: RepositoryComponent)
     }
 
-    fun inject(mainTranslator: MainTranslator)
+    fun inject(mainTranslator: PropertyTranslator)
 
 }

@@ -1,23 +1,24 @@
-package com.openclassrooms.realestatemanager.ui.main
+package com.openclassrooms.realestatemanager.ui.property
 
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.request.target.Target
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
 import com.openclassrooms.realestatemanager.utils.GlideApp
+import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.utils.log
 import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.fragment_property.*
+import kotlinx.android.synthetic.main.fragment_property_detail.*
 import kotlinx.android.synthetic.main.fragment_property_detail_item.*
-import kotlinx.android.synthetic.main.fragment_property_detail_item.view.*
 import kotlinx.android.synthetic.main.row_image_detail.*
 
-class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTranslator>(){
+class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>(){
 
     private var idProperty: Int = 0
 
@@ -67,7 +68,7 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTransla
         }
     }
 
-    override fun translator(): MainTranslator = requireActivity().getViewModel()
+    override fun translator(): PropertyTranslator = requireActivity().getViewModel()
 
     override fun getLayout() = R.layout.fragment_property_detail
 
@@ -85,6 +86,7 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTransla
         }
 
         configureRecyclerView()
+        configureSwipeRefreshLayout()
     }
 
     override fun onDestroy() {
@@ -101,12 +103,16 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTransla
         actions.onNext(Action.GetProperty(idProperty))
     }
 
+    private fun configureSwipeRefreshLayout() {
+        fragment_property_detail_refresh.setOnRefreshListener { actions.onNext(Action.GetProperty(idProperty)) }
+    }
+
     private fun disposeWhenDestroy() {
         this.disposable.clear()
     }
 
     companion object {
         private const val START_URL = "https://maps.googleapis.com/maps/api/staticmap?center="
-        private const val END_URL = "&zoom=19&size=600x400&maptype=roadmap&key=AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM"
+        private const val END_URL = "&zoom=19&size=600x400&maptype=roadmap&${Utils.API_KEY}"
     }
 }

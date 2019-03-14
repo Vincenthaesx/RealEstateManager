@@ -8,7 +8,10 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.ui.property.NewProperty
+import com.openclassrooms.realestatemanager.ui.property.PropertyFragment
 import com.openclassrooms.realestatemanager.utils.addFragment
+import com.openclassrooms.realestatemanager.utils.openActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -48,7 +51,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.buttonAdd -> {
-
+               openActivity<NewProperty>()
             }
             R.id.buttonEdit -> {
 
