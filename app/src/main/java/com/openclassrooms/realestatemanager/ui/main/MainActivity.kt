@@ -47,14 +47,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_search -> {
+            R.id.buttonAdd -> {
 
             }
-            R.id.menu_bitrise -> {
+            R.id.buttonEdit -> {
+
+            }
+            R.id.buttonSearch -> {
 
             }
         }
         return true
     }
-
 }

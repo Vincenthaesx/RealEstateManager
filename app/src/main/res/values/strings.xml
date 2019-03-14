@@ -23,6 +23,9 @@
     <string name="_17_870_000">$17,870,000</string>
     <string name="media">Media</string>
     <string name="descriptionTitle">Description</string>
+    <string name="addnewproperty">addNewProperty</string>
+    <string name="editproperty">editProperty</string>
+    <string name="searchproperty">searchProperty</string>
 
     <style name="api_key">AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM</style>
 
