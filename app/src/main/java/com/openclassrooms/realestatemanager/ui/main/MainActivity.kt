@@ -1,9 +1,14 @@
 package com.openclassrooms.realestatemanager.ui.main
 
+import android.os.Build
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.utils.addFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,8 +19,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         configureToolBar()
-        configurePropertyFragment()
 
+        propertyFragment = PropertyFragment()
+        addFragment(propertyFragment, R.id.activity_main_frame_property)
     }
 
     // ---------------------
@@ -27,11 +33,28 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
     }
 
-    private fun configurePropertyFragment() {
-        propertyFragment = PropertyFragment()
-        supportFragmentManager.beginTransaction()
-                .add(R.id.activity_main_frame_property, propertyFragment)
-                .commit()
+    // -------------
+    // TOOLBAR
+    // -------------
+
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        menu?.clear()
+        inflater.inflate(R.menu.activity_main_menu_toolbar, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_search -> {
+
+            }
+            R.id.menu_bitrise -> {
+
+            }
+        }
+        return true
     }
 
 }

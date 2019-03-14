@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.request.target.Target
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
@@ -16,7 +15,7 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_property.*
 import kotlinx.android.synthetic.main.fragment_property_item.*
 
-class PropertyFragment : BaseUiFragment<Action, ActionUiModel, MainTranslator>(){
+class PropertyFragment : BaseUiFragment<Action, ActionUiModel, MainTranslator>() {
 
     private lateinit var propertyDetailFragment: PropertyDetailFragment
 
@@ -42,8 +41,8 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, MainTranslator>()
                             propertyDetailFragment = PropertyDetailFragment()
                             val bundle = Bundle()
                             bundle.putInt("id", property.pid)
-
                             propertyDetailFragment.arguments = bundle
+
                             fragmentManager?.beginTransaction()
                                     ?.add(R.id.activity_main_frame_property, propertyDetailFragment)
                                     ?.addToBackStack(null)
