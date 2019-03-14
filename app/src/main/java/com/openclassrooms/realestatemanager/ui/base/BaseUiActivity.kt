@@ -1,6 +1,7 @@
 package com.openclassrooms.realestatemanager.ui.base
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

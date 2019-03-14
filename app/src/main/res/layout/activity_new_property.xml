@@ -16,6 +16,18 @@
         app:theme="@style/ToolBarStyle"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
+    <ImageButton
+        android:id="@+id/button_add_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"/>
+
+    <ImageView
+        android:id="@+id/testImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher_background"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

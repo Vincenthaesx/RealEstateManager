@@ -1,7 +1,12 @@
 package com.openclassrooms.realestatemanager.utils
 
+import android.content.ContentValues.TAG
 import android.content.Context
+import android.net.Uri
 import android.net.wifi.WifiManager
+import android.os.Environment
+import android.provider.MediaStore
+import android.util.Log
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -37,14 +42,4 @@ object Utils {
         return Math.round(dollars * 0.812).toInt()
     }
 
-    /**
-     * Vérification de la connexion réseau
-     * NOTE : NE PAS SUPPRIMER, A MONTRER DURANT LA SOUTENANCE
-     * @param context
-     * @return
-     */
-    fun isInternetAvailable(context: Context): Boolean {
-        val wifi = context.getSystemService(Context.WIFI_SERVICE) as WifiManager
-        return wifi.isWifiEnabled
-    }
 }
