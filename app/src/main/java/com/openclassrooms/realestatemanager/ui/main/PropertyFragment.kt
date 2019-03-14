@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.Target
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
+import com.openclassrooms.realestatemanager.utils.GlideApp
 import com.openclassrooms.realestatemanager.utils.log
-import com.squareup.picasso.Picasso
 import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_property.*
@@ -25,9 +25,10 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, MainTranslator>()
             is ActionUiModel.GetAllPropertyModel -> {
                 fragment_property_recyclerView.adapter = GenericAdapter(R.layout.fragment_property_item, ui.listProperty) { property, _ ->
 
-                    Picasso.get()
+                    GlideApp.with(this@PropertyFragment)
                             .load(property.pictureList.first())
-                            .fit()
+                            .fitCenter()
+                            .override ( 300 , 300 )
                             .into(image_property)
 
                     property_type.text = property.type

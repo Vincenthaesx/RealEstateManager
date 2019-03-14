@@ -2,9 +2,11 @@ package com.openclassrooms.realestatemanager
 
 import android.app.Application
 import android.content.Context
+import com.bumptech.glide.annotation.GlideModule
 import com.openclassrooms.realestatemanager.di.DaggerRepositoryComponent
 import com.openclassrooms.realestatemanager.di.RepositoryComponent
 import com.openclassrooms.realestatemanager.di.RepositoryModule
+import com.bumptech.glide.module.AppGlideModule
 
 class RealEstateManagerApplication : Application(){
 

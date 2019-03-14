@@ -1,13 +1,16 @@
 package com.openclassrooms.realestatemanager.ui.main
 
+import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.request.target.Target
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
+import com.openclassrooms.realestatemanager.utils.GlideApp
 import com.openclassrooms.realestatemanager.utils.log
-import com.squareup.picasso.Picasso
 import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_property_detail_item.*
@@ -23,16 +26,27 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTransla
             is ActionUiModel.GetPropertyModel -> {
 
                 recyclerView_detailImage.adapter = GenericAdapter(R.layout.row_image_detail, ui.property.pictureList) { image, _ ->
-                    Picasso.get()
+
+                    GlideApp.with(this@PropertyDetailFragment)
                             .load(image)
-                            .fit()
+                            .fitCenter()
+                            .override ( 300 , 300 )
                             .into(imageRecyclerView)
                 }
 
-                Picasso.get()
-                        .load(START_URL+ui.property.address+ END_URL)
-                        .fit()
-                        .into(image_map)
+                when {
+                    resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT -> {
+
+                    }
+                    resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE -> {
+                        GlideApp.with(this)
+                                .load(START_URL+ui.property.address+ END_URL)
+                                .fitCenter()
+                                .override ( 300 , 300 )
+                                .into(image_map)
+                    }
+                    else -> Log.e("TAG", "Error")
+                }
 
                 descriptionDetail.text = ui.property.description
 
@@ -93,6 +107,6 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, MainTransla
 
     companion object {
         private const val START_URL = "https://maps.googleapis.com/maps/api/staticmap?center="
-        private const val END_URL = "&zoom=18&size=600x400&maptype=roadmap&key=AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM"
+        private const val END_URL = "&zoom=19&size=600x400&maptype=roadmap&key=AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM"
     }
 }
