@@ -12,8 +12,13 @@ import com.openclassrooms.realestatemanager.ui.property.NewProperty
 import com.openclassrooms.realestatemanager.ui.property.PropertyFragment
 import com.openclassrooms.realestatemanager.utils.addFragment
 import com.openclassrooms.realestatemanager.utils.openActivity
+import io.reactivex.disposables.CompositeDisposable
 
 class MainActivity : AppCompatActivity() {
+
+    private val disposable : CompositeDisposable by lazy {
+        CompositeDisposable()
+    }
 
     private lateinit var propertyFragment: PropertyFragment
 
@@ -25,6 +30,11 @@ class MainActivity : AppCompatActivity() {
 
         propertyFragment = PropertyFragment()
         addFragment(propertyFragment, R.id.activity_main_frame_property)
+    }
+
+    override fun onDestroy() {
+        disposeWhenDestroy()
+        super.onDestroy()
     }
 
     // ---------------------
@@ -62,4 +72,9 @@ class MainActivity : AppCompatActivity() {
         }
         return true
     }
+
+    private fun disposeWhenDestroy() {
+        this.disposable.clear()
+    }
+
 }

@@ -9,11 +9,21 @@ import kotlinx.android.synthetic.main.activity_new_property.*
 import android.content.Intent
 import android.graphics.Bitmap
 import android.provider.MediaStore
+import android.widget.Toast
+import io.reactivex.disposables.CompositeDisposable
 
 class NewProperty : BaseUiActivity<Action, ActionUiModel, PropertyTranslator>() {
 
+    private val disposable : CompositeDisposable by lazy {
+        CompositeDisposable()
+    }
+
     override fun render(ui: ActionUiModel) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        when(ui){
+            is ActionUiModel.AddNewPropertyModel -> {
+                Toast.makeText(this, "success with id = ${ui.success}", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     override fun translator(): PropertyTranslator = getViewModel()
@@ -22,11 +32,23 @@ class NewProperty : BaseUiActivity<Action, ActionUiModel, PropertyTranslator>() 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_property)
 
-        button_add_picture.setOnClickListener {
-            dispatchTakePictureIntent()
+        buttonAddNewProperty.setOnClickListener {
+            retrieveParameterForProperty()
         }
 
         configureToolBar()
+    }
+
+    override fun onDestroy() {
+        disposeWhenDestroy()
+        super.onDestroy()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            val imageBitmap = data?.extras?.get("data") as Bitmap
+            testImageView.setImageBitmap(imageBitmap)
+        }
     }
 
     // ---------------------
@@ -38,7 +60,6 @@ class NewProperty : BaseUiActivity<Action, ActionUiModel, PropertyTranslator>() 
         setSupportActionBar(toolbar)
     }
 
-
     private fun dispatchTakePictureIntent() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             takePictureIntent.resolveActivity(packageManager)?.also {
@@ -47,12 +68,20 @@ class NewProperty : BaseUiActivity<Action, ActionUiModel, PropertyTranslator>() 
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
-            testImageView.setImageBitmap(imageBitmap)
+    private fun retrieveParameterForProperty() {
+        button_add_picture.setOnClickListener {
+            dispatchTakePictureIntent()
         }
     }
+
+    // ----------
+
+    private fun disposeWhenDestroy() {
+        this.disposable.clear()
+    }
+
+
+
 
     companion object {
         private const val REQUEST_IMAGE_CAPTURE = 0
