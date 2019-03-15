@@ -32,7 +32,7 @@ class NewProperty : BaseUiActivity<Action, ActionUiModel, PropertyTranslator>() 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_property)
 
-        buttonAddNewProperty.setOnClickListener {
+        txtAddress.setOnClickListener {
             retrieveParameterForProperty()
         }
 
@@ -47,7 +47,7 @@ class NewProperty : BaseUiActivity<Action, ActionUiModel, PropertyTranslator>() 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
-            testImageView.setImageBitmap(imageBitmap)
+//            testImageView.setImageBitmap(imageBitmap)
         }
     }
 
@@ -69,7 +69,7 @@ class NewProperty : BaseUiActivity<Action, ActionUiModel, PropertyTranslator>() 
     }
 
     private fun retrieveParameterForProperty() {
-        button_add_picture.setOnClickListener {
+        txtAddress.setOnClickListener {
             dispatchTakePictureIntent()
         }
     }

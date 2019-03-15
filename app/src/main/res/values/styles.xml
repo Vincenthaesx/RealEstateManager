@@ -14,5 +14,10 @@
         <item name="colorControlNormal">@android:color/white</item>
     </style>
 
+    <style name="SwitchCompatTheme" >
+        <item name="colorControlActivated">@color/red</item>
+        <item name="android:colorControlNormal">@color/toolbar</item>
+    </style>
+
 
 </resources>
