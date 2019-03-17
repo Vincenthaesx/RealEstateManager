@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/txtType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/type_of_property"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/edtType"
+        app:layout_constraintTop_toTopOf="@id/edtType"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/edtType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:hint="@string/choose_a_property_type"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/txtType"
+        app:layout_constraintTop_toBottomOf="@id/newPropertyToolbar" />
+
+    <TextView
+        android:id="@+id/txtAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/address_of_the_property"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edtAddress"
+        app:layout_constraintBottom_toBottomOf="@id/edtAddress"/>
+
+    <EditText
+        android:id="@+id/edtAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:hint="@string/choose_a_property_address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/txtAddress"
+        app:layout_constraintTop_toBottomOf="@+id/edtType"
+        app:layout_constraintBottom_toTopOf="@id/edtPrice"/>
+
+    <TextView
+        android:id="@+id/txtPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/price_of_property"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edtPrice"
+        app:layout_constraintBottom_toBottomOf="@id/edtPrice"/>
+
+    <EditText
+        android:id="@+id/edtPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:hint="@string/choose_price_for_property"
+        app:layout_constraintBottom_toTopOf="@+id/edtSurface"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/txtPrice"
+        app:layout_constraintTop_toBottomOf="@+id/edtAddress" />
+
+    <TextView
+        android:id="@+id/txtSurface"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/surface_of_property"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edtSurface"
+        app:layout_constraintBottom_toBottomOf="@id/edtSurface"/>
+
+    <EditText
+        android:id="@+id/edtSurface"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:hint="@string/choose_surface_of_property"
+        app:layout_constraintBottom_toTopOf="@+id/edtRoomCount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/txtSurface"
+        app:layout_constraintTop_toBottomOf="@+id/edtPrice" />
+
+    <TextView
+        android:id="@+id/txtRoomCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/numberOfRooms"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edtRoomCount"
+        app:layout_constraintBottom_toBottomOf="@id/edtRoomCount"/>
+
+    <EditText
+        android:id="@+id/edtRoomCount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:hint="@string/choose_number_of_rooms"
+        app:layout_constraintBottom_toTopOf="@+id/edtBathroomsCount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/txtRoomCount"
+        app:layout_constraintTop_toBottomOf="@+id/edtSurface" />
+
+    <TextView
+        android:id="@+id/txtBathroomsCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/numberOfBathrooms"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edtBathroomsCount"
+        app:layout_constraintBottom_toBottomOf="@id/edtBathroomsCount"/>
+
+    <EditText
+        android:id="@+id/edtBathroomsCount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:hint="@string/choose_number_of_bathrooms"
+        app:layout_constraintBottom_toTopOf="@+id/edtBedroomsCount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/txtBathroomsCount"
+        app:layout_constraintTop_toBottomOf="@+id/edtRoomCount" />
+
+
+    <TextView
+        android:id="@+id/txtBedroomsCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/NumberOfBedrooms"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edtBedroomsCount"
+        app:layout_constraintBottom_toBottomOf="@id/edtBedroomsCount"/>
+
+    <EditText
+        android:id="@+id/edtBedroomsCount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:hint="@string/choose_number_of_bedrooms"
+        app:layout_constraintBottom_toTopOf="@+id/edtDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/txtBedroomsCount"
+        app:layout_constraintTop_toBottomOf="@+id/edtBathroomsCount" />
+
+
+    <TextView
+        android:id="@+id/txtDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/Description"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edtDescription"
+        app:layout_constraintBottom_toBottomOf="@id/edtDescription"/>
+
+    <EditText
+        android:id="@+id/edtDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:hint="@string/describe_the_property"
+        app:layout_constraintBottom_toTopOf="@+id/edtAgent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/txtDescription"
+        app:layout_constraintTop_toBottomOf="@+id/edtBedroomsCount" />
+
+
+    <TextView
+        android:id="@+id/txtImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/select_a_picture_for_property"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtAgent"
+        app:layout_constraintBottom_toTopOf="@id/txtEntryDate"/>
+
+    <ImageButton
+        android:id="@+id/imgButtonSelect"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/design_default_color_background"
+        android:src="@drawable/select_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txtImage"
+        app:layout_constraintBottom_toBottomOf="@id/txtImage"/>
+
+    <TextView
+        android:id="@+id/txtEntryDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/entry_date"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtImage"
+        app:layout_constraintBottom_toTopOf="@id/validateNewProperty"/>
+
+    <Button
+        android:id="@+id/btnCalendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txtEntryDate"
+        app:layout_constraintBottom_toBottomOf="@id/txtEntryDate"/>
+
+    <EditText
+        android:id="@+id/edtEntryDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:hint="JJ/MM/YYYY"
+        app:layout_constraintTop_toBottomOf="@id/txtImage"
+        app:layout_constraintStart_toEndOf="@id/txtEntryDate"
+        app:layout_constraintBottom_toTopOf="@id/validateNewProperty" />
+
+    <TextView
+        android:id="@+id/txtAgent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/agent"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edtAgent"
+        app:layout_constraintBottom_toBottomOf="@id/edtAgent"/>
+
+    <EditText
+        android:id="@+id/edtAgent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:hint="@string/enter_your_name"
+        app:layout_constraintBottom_toTopOf="@+id/txtImage"
+        app:layout_constraintStart_toEndOf="@id/txtAgent"
+        app:layout_constraintTop_toBottomOf="@+id/edtDescription" />
+
+    <TextView
+        android:id="@+id/validateNewProperty"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="@color/validate"
+        android:gravity="center"
+        android:text="VALIDATE"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

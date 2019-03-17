@@ -18,9 +18,9 @@ data class Property(
         var bedroomsCount: Int,               // Bedrooms count
         var description: String,              // Full description of the property
         var pictureList: List<String>,        // List of pictures urls
-        var status: Boolean,                  // Status (True is available, False is sold)
+        var status: Boolean = true,           // Status (True is available, False is sold)
         var entryDate : Date,                 // Date of entry on the market
-        var saleDate: Date,                   // Date of sale, if sold
+        var saleDate: Date? = null,           // Date of sale, if sold
         var agent: String                     // Full name of the real estate agent in charge of this property
 )
 

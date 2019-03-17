@@ -63,9 +63,6 @@ class MainActivity : AppCompatActivity() {
             R.id.buttonAdd -> {
                openActivity<NewProperty>()
             }
-            R.id.buttonEdit -> {
-
-            }
             R.id.buttonSearch -> {
 
             }
