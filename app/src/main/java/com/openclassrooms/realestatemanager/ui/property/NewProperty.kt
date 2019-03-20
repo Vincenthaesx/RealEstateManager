@@ -16,7 +16,6 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.openclassrooms.realestatemanager.models.Property
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_new_property.*
 import kotlinx.android.synthetic.main.row_new_property.*
 import java.io.File
 import java.io.FileOutputStream
@@ -35,7 +34,7 @@ class NewProperty : BaseUiActivity<Action, ActionUiModel, PropertyTranslator>() 
     override fun render(ui: ActionUiModel) {
         when(ui){
             is ActionUiModel.AddNewPropertyModel -> {
-                Toast.makeText(this, "success with id = ${ui.success}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "New property with id : ${ui.success}", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -53,6 +52,7 @@ class NewProperty : BaseUiActivity<Action, ActionUiModel, PropertyTranslator>() 
         configureButton()
         configureToolBar()
     }
+
 
     override fun onDestroy() {
         disposeWhenDestroy()
@@ -100,10 +100,10 @@ class NewProperty : BaseUiActivity<Action, ActionUiModel, PropertyTranslator>() 
     private fun saveToInternalStorage(bitmapImage: Bitmap): String {
         val rootPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
         val time = System.currentTimeMillis()
-        val mypath = File(rootPath, "$time.jpg")
+        val myPath = File(rootPath, "$time.jpg")
         var fos: FileOutputStream? = null
         try {
-            fos = FileOutputStream(mypath)
+            fos = FileOutputStream(myPath)
             // Use the compress method on the BitMap object to write image to the OutputStream
             bitmapImage.compress(Bitmap.CompressFormat.JPEG, 100, fos)
         } catch (e: Exception) {
@@ -111,7 +111,7 @@ class NewProperty : BaseUiActivity<Action, ActionUiModel, PropertyTranslator>() 
         } finally {
             fos?.close()
         }
-        return mypath.absolutePath
+        return myPath.absolutePath
     }
 
 
@@ -119,8 +119,8 @@ class NewProperty : BaseUiActivity<Action, ActionUiModel, PropertyTranslator>() 
 
         val type = edtType.text.toString()
         val address = edtAddress.text.toString()
-        val price = edtAddress.text.toString()
-        val surface = edtSurface.text.toString().toInt()
+        val price = edtPrice.text.toString()
+        val surface = edtSurface.text.toString()
         val roomsCount = edtRoomCount.text.toString().toInt()
         val bedroomsCount = edtBedroomsCount.text.toString().toInt()
         val bathroomsCount = edtBathroomsCount.text.toString().toInt()
@@ -131,8 +131,8 @@ class NewProperty : BaseUiActivity<Action, ActionUiModel, PropertyTranslator>() 
 
         val property = Property(0, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pictureList, status, entryDate, saleDate, agent   )
 
-        if (type.isNotEmpty() && address.isNotEmpty() && price.isNotEmpty() && surface != 0 && roomsCount != 0 && bathroomsCount != 0 && bedroomsCount != 0 && description.isNotEmpty() && pictureList.isNotEmpty() && agent.isNotEmpty()  ) {
-          actions.onNext(Action.AddNewProperty(property))
+        if (type.isNotEmpty() && address.isNotEmpty() && price.isNotEmpty() && surface.isNotEmpty() && roomsCount != 0 && bathroomsCount != 0 && bedroomsCount != 0 && description.isNotEmpty() && pictureList.isNotEmpty() && agent.isNotEmpty()) {
+            actions.onNext(Action.AddNewProperty(property))
         }
         else {
             Toast.makeText(this, "Please enter all the input fields", Toast.LENGTH_LONG).show()
@@ -162,7 +162,7 @@ class NewProperty : BaseUiActivity<Action, ActionUiModel, PropertyTranslator>() 
 
             val cal = Calendar.getInstance()
 
-            val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
