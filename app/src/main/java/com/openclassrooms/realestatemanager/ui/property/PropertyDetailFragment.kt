@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager.ui.property
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
@@ -50,7 +51,7 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
 
                 descriptionDetail.text = ui.property.description
 
-                surface.text = ui.property.surface.toString()
+                surface.text = ui.property.surface
 
                 numberOfRoom.text = ui.property.roomsCount.toString()
 
@@ -84,6 +85,12 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
             idProperty = bundle.getInt("id", idProperty)
         }
 
+        imgButtonEdit.setOnClickListener {
+            val intent = Intent(activity, UpdateProperty::class.java)
+            intent.putExtra(ID_PROPERTY, idProperty )
+            startActivity(intent)
+        }
+
         configureRecyclerView()
         configureSwipeRefreshLayout()
     }
@@ -111,6 +118,7 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
     }
 
     companion object {
+        private const val ID_PROPERTY = "idProperty"
         private const val START_URL = "https://maps.googleapis.com/maps/api/staticmap?center="
         private const val END_URL = "&zoom=19&size=600x400&maptype=roadmap&${Utils.API_KEY}"
     }

@@ -11,4 +11,6 @@ interface PropertyRepository {
 
     fun addNewProperty(property: Property): Observable<Long>
 
+    fun updateProperty(updateProperty: Property): Observable<Int>
+
 }

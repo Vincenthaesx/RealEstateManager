@@ -36,6 +36,9 @@ interface PropertyDao {
     @Insert
     fun insertNewProperty(property: Property) : Long
 
+    @Update
+    fun updateProperty(property: Property): Int
+
     @Delete
     fun deleteProperty(deleteProperty: Property) : Int
 

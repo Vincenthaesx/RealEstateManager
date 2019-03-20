@@ -24,9 +24,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.property.NewProperty"
-            android:label="Add a new property">
-        </activity>
+        <activity android:name=".ui.property.UpdateProperty"></activity>
+        <activity
+            android:name=".ui.property.NewProperty"
+            android:label="Add a new property"></activity>
         <activity
             android:name=".ui.main.MainActivity"
             android:label="Real Estate Manager">
@@ -41,7 +42,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
