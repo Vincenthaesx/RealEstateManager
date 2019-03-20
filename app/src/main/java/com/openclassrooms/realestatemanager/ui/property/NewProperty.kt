@@ -7,13 +7,16 @@ import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiActivity
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Environment
 import android.provider.MediaStore
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.openclassrooms.realestatemanager.models.Property
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.activity_new_property.*
 import kotlinx.android.synthetic.main.row_new_property.*
 import java.io.File
 import java.io.FileOutputStream
@@ -22,20 +25,8 @@ import java.util.*
 
 class NewProperty : BaseUiActivity<Action, ActionUiModel, PropertyTranslator>() {
 
-    private var type: String = ""
-    private var address: String = ""
-    private var price: String = ""
-    private var surface: Int = 0
-    private var roomsCount: Int = 0
-    private var bathroomsCount: Int = 0
-    private var bedroomsCount: Int = 0
-    private var description: String = ""
     private lateinit var pictureList: List<String>
-    private var status: Boolean = true
     private lateinit var entryDate : Date
-    private var saleDate: Date? = null
-    private var agent: String = ""
-
 
     private val disposable : CompositeDisposable by lazy {
         CompositeDisposable()
@@ -87,12 +78,24 @@ class NewProperty : BaseUiActivity<Action, ActionUiModel, PropertyTranslator>() 
     }
 
     private fun dispatchTakePictureIntent() {
+
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             takePictureIntent.resolveActivity(packageManager)?.also {
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
             }
         }
     }
+
+    private fun checkPermissions(): Boolean {
+        return (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) ==
+                PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+    }
+
+    // --------------------
+    // SAVE SOME PROPERTY
+    // --------------------
 
     private fun saveToInternalStorage(bitmapImage: Bitmap): String {
         val rootPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
@@ -114,48 +117,41 @@ class NewProperty : BaseUiActivity<Action, ActionUiModel, PropertyTranslator>() 
 
     private fun retrieveParameterForProperty() {
 
-        type = edtType.text.toString()
-
-        address = edtAddress.text.toString()
-
-        price = edtAddress.text.toString()
-
-        surface = edtSurface.text.length
-
-        roomsCount = edtRoomCount.text.length
-
-        description = edtDescription.text.toString()
-
-        bedroomsCount = edtBedroomsCount.text.length
-
-        bathroomsCount = edtBathroomsCount.text.length
-
-        status = true
-
-        saleDate = null
-
-        agent = edtAgent.text.toString()
+        val type = edtType.text.toString()
+        val address = edtAddress.text.toString()
+        val price = edtAddress.text.toString()
+        val surface = edtSurface.text.toString().toInt()
+        val roomsCount = edtRoomCount.text.toString().toInt()
+        val bedroomsCount = edtBedroomsCount.text.toString().toInt()
+        val bathroomsCount = edtBathroomsCount.text.toString().toInt()
+        val description = edtDescription.text.toString()
+        val status = true
+        val saleDate = null
+        val agent = edtAgent.text.toString()
 
         val property = Property(0, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pictureList, status, entryDate, saleDate, agent   )
 
-        Toast.makeText(this, "pictureList: $pictureList", Toast.LENGTH_LONG).show()
-
         if (type.isNotEmpty() && address.isNotEmpty() && price.isNotEmpty() && surface != 0 && roomsCount != 0 && bathroomsCount != 0 && bedroomsCount != 0 && description.isNotEmpty() && pictureList.isNotEmpty() && agent.isNotEmpty()  ) {
-        actions.onNext(Action.AddNewProperty(property))
+          actions.onNext(Action.AddNewProperty(property))
         }
         else {
             Toast.makeText(this, "Please enter all the input fields", Toast.LENGTH_LONG).show()
         }
     }
 
-    // ----------
+    // ---------------
 
     private fun disposeWhenDestroy() {
         this.disposable.clear()
     }
 
+    // ---------------
+    // CONFIGURATION
+    // ---------------
+
     private fun configureButton() {
         imgButtonSelect.setOnClickListener {
+            checkPermissions()
             dispatchTakePictureIntent()
         }
 

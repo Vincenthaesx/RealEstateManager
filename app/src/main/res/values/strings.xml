@@ -49,6 +49,7 @@
     <string name="entry_date">Entry date :</string>
     <string name="agent">Agent :</string>
     <string name="enter_your_name">enter your name</string>
+    <string name="jj_mm_yyyy">JJ/MM/YYYY</string>
 
     <style name="api_key">AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM</style>
 
