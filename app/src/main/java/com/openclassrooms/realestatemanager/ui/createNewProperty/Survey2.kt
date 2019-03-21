@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager.ui.createNewProperty
 
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -14,11 +15,10 @@ import com.openclassrooms.realestatemanager.RealEstateManagerApplication
 import com.openclassrooms.realestatemanager.models.Property
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
+import com.openclassrooms.realestatemanager.ui.main.MainActivity
 import kotlinx.android.synthetic.main.row_new_property1.*
 import java.io.File
 import java.io.FileOutputStream
-import java.text.DateFormat
-import java.text.Format
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -65,12 +65,18 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
             entryDate = bundle.getString(DATE)
         }
 
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+        try {
+            date = dateFormat.parse(entryDate)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+
 
         validateNewProperty.setOnClickListener {
             retrieveParameterForProperty()
         }
     }
-
 
     private fun dispatchTakePictureIntent() {
 
@@ -120,6 +126,8 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
 
         if (roomsCount.toString().isNotEmpty() && bathroomsCount.toString().isNotEmpty() && bedroomsCount.toString().isNotEmpty() && pictureList.isNotEmpty()) {
             actions.onNext(Action.AddNewProperty(property))
+            val intent = Intent(activity, MainActivity::class.java)
+            startActivity(intent)
         }
         else {
             Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_LONG).show()

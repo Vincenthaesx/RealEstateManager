@@ -14,6 +14,7 @@ import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_property.*
 import kotlinx.android.synthetic.main.fragment_property_item.*
+import kotlinx.android.synthetic.main.row_new_property1.*
 
 class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>() {
 
@@ -44,7 +45,7 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
                             propertyDetailFragment.arguments = bundle
 
                             fragmentManager?.beginTransaction()
-                                    ?.add(R.id.activity_main_frame_property, propertyDetailFragment)
+                                    ?.replace(R.id.activity_main_frame_property, propertyDetailFragment)
                                     ?.addToBackStack(null)
                                     ?.commit()
                         }
@@ -55,7 +56,7 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
 
                             propertyDetailFragment.arguments = bundle
                             fragmentManager?.beginTransaction()
-                                    ?.add(R.id.activity_main_frame_propertyDetail, propertyDetailFragment)
+                                    ?.replace(R.id.activity_main_frame_propertyDetail, propertyDetailFragment)
                                     ?.addToBackStack(null)
                                     ?.commit()
                         }

@@ -2,8 +2,10 @@ package com.openclassrooms.realestatemanager.ui.main
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -13,6 +15,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.createNewProperty.NewProperty
+import com.openclassrooms.realestatemanager.ui.property.PropertyDetailFragment
 import com.openclassrooms.realestatemanager.ui.property.PropertyFragment
 import com.openclassrooms.realestatemanager.utils.addFragment
 import com.openclassrooms.realestatemanager.utils.openActivity

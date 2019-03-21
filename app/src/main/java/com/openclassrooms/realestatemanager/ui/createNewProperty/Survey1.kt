@@ -32,7 +32,7 @@ class Survey1 : Fragment() {
 
         nextProperty.setOnClickListener {
 
-            if (edtType.text.isNotEmpty() && edtAddress.text.isNotEmpty() && edtPrice.text.isNotEmpty() && edtSurface.text.isNotEmpty() && edtDescription.text.isNotEmpty() && edtAgent.text.isNotEmpty() && entryDate.time.toString().isNotEmpty()) {
+            if (edtType.text.isNotEmpty() && edtAddress.text.isNotEmpty() && edtPrice.text.isNotEmpty() && edtSurface.text.isNotEmpty() && edtDescription.text.isNotEmpty() && edtAgent.text.isNotEmpty() && entryDate.toString().isNotEmpty()) {
                 val type = edtType.text.toString()
                 val address = edtAddress.text.toString()
                 val price = edtPrice.text.toString()
@@ -48,7 +48,7 @@ class Survey1 : Fragment() {
                 bundle.putString(SURFACE, surface)
                 bundle.putString(DESCRIPTION, description)
                 bundle.putString(AGENT, agent)
-                bundle.putString(DATE, entryDate.time.toString())
+                bundle.putString(DATE, test)
 
                 survey2.arguments = bundle
 
@@ -67,6 +67,7 @@ class Survey1 : Fragment() {
     // ---------------------
     // CONFIGURATION
     // ---------------------
+    private var test: String = ""
 
     private fun configureButton() {
 
@@ -86,6 +87,8 @@ class Survey1 : Fragment() {
                 val sdf = SimpleDateFormat(myFormat, Locale.US)
                 textView.text = sdf.format(cal.time)
                 entryDate = cal.time
+
+                test = ((textView.text as String?).toString())
             }
 
             DatePickerDialog(activity, dateSetListener,
