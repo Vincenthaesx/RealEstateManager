@@ -9,6 +9,7 @@ sealed class Action {
     class GetProperty(val id: Int): Action()
 
     class AddNewProperty(val newProperty: Property): Action()
+
 }
 
 sealed class ActionUiModel {
@@ -22,4 +23,5 @@ sealed class ActionUiModel {
     class GetPropertyModel(val property: Property): ActionUiModel()
 
     class AddNewPropertyModel(val success: Long): ActionUiModel()
+
 }

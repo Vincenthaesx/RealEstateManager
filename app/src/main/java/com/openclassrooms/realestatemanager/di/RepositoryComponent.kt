@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager.di
 
+import com.openclassrooms.realestatemanager.ui.createNewProperty.NewPropertyTranslator
 import com.openclassrooms.realestatemanager.ui.property.PropertyTranslator
 import dagger.Component
 
@@ -11,5 +12,7 @@ interface RepositoryComponent {
     }
 
     fun inject(mainTranslator: PropertyTranslator)
+
+    fun inject(newProperty: NewPropertyTranslator)
 
 }

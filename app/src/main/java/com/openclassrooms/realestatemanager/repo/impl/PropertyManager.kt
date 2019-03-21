@@ -9,20 +9,6 @@ import io.reactivex.schedulers.Schedulers
 
 object PropertyManager : PropertyRepository {
 
-    override fun updateProperty(updateProperty: Property): Observable<Int> {
-        return Observable.fromCallable {
-            RealEstateDatabase.realEstateDatabase.propertyDao().updateProperty(updateProperty)
-        }
-                .subscribeOn(Schedulers.io())
-    }
-
-    override fun addNewProperty(property: Property): Observable<Long> {
-        return Observable.fromCallable {
-            RealEstateDatabase.realEstateDatabase.propertyDao().insertNewProperty(property)
-        }
-                .subscribeOn(Schedulers.io())
-    }
-
     override fun getProperty(id: Int): Observable<Property> {
         return RealEstateDatabase.realEstateDatabase.propertyDao().getProperty(id)
                 .toObservable()
