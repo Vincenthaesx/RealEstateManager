@@ -160,7 +160,7 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
                             .override ( 300 , 300 )
                             .into(imageRecyclerView)
                 }
-
+                pictureList = listOf(uri.toString())
             }
             else if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
 
@@ -175,7 +175,6 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
                             .override ( 300 , 300 )
                             .into(imageRecyclerView)
                 }
-
                 pictureList = listOf(storage)
 
             } else {
@@ -218,6 +217,7 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
         }
         return myPath.absolutePath
     }
+
     // -----------------
     // CONFIGURATION
     // -----------------
@@ -237,6 +237,5 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
         private const val DESCRIPTION = "description"
         private const val AGENT = "agent"
         private const val DATE = "date"
-
     }
 }
