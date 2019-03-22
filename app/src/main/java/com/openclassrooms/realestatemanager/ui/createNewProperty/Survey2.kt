@@ -147,10 +147,10 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
             if(requestCode == REQUEST_IMAGE && resultCode == AppCompatActivity.RESULT_OK) {
 
-                val uri: Uri? = intent?.data
+                val uri: Uri? = data?.data
 
                 recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, listOf(uri)) { image , _ ->
 
@@ -164,7 +164,7 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
             }
             else if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
 
-                val imageBitmap = intent?.extras?.get("intent") as Bitmap
+                val imageBitmap = data?.extras?.get("data") as Bitmap
                 val storage = saveToInternalStorage(imageBitmap)
 
                 recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, listOf(storage)) { image , _ ->

@@ -36,8 +36,16 @@ class MainActivity : AppCompatActivity() {
         requestPermission()
         configureToolBar()
 
-        propertyFragment = PropertyFragment()
-        addFragment(propertyFragment, R.id.activity_main_frame_property)
+        when {
+            resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT -> {
+                propertyFragment = PropertyFragment()
+                addFragment(propertyFragment, R.id.activity_main_frame_property)
+            }
+            resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE -> {
+
+            }
+            else -> Log.e("TAG", "Error")
+        }
     }
 
     override fun onDestroy() {

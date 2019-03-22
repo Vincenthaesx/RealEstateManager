@@ -39,6 +39,7 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
 
                     when {
                         resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT -> itemView.setOnClickListener {
+
                             propertyDetailFragment = PropertyDetailFragment()
                             val bundle = Bundle()
                             bundle.putInt("id", property.pid)

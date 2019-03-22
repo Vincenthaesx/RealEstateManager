@@ -25,12 +25,10 @@ class NewProperty : AppCompatActivity(){
         configureToolBar()
     }
 
-
     override fun onDestroy() {
         disposeWhenDestroy()
         super.onDestroy()
     }
-
 
     // ---------------------
     // CONFIGURATION
@@ -46,7 +44,5 @@ class NewProperty : AppCompatActivity(){
     private fun disposeWhenDestroy() {
         this.disposable.clear()
     }
-
-
 
 }
