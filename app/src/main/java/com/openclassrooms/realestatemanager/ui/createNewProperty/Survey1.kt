@@ -16,7 +16,7 @@ import java.util.*
 class Survey1 : Fragment() {
 
     private var entryDate: String = ""
-    private lateinit var survey2: Survey2
+    private var survey2: Survey2 = Survey2()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -40,7 +40,6 @@ class Survey1 : Fragment() {
                 val description = edtDescription.text.toString()
                 val agent = edtAgent.text.toString()
 
-                survey2 = Survey2()
                 val bundle = Bundle()
                 bundle.putString(TYPE, type)
                 bundle.putString(ADDRESS, address)

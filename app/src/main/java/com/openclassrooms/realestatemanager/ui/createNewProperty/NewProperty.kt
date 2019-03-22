@@ -13,13 +13,12 @@ class NewProperty : AppCompatActivity(){
         CompositeDisposable()
     }
 
-    private lateinit var survey1: Survey1
+    private var survey1: Survey1 = Survey1()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_property)
 
-        survey1 = Survey1()
         addFragment(survey1, R.id.frameLayout_newProperty)
 
         configureToolBar()

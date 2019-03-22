@@ -15,11 +15,11 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.createNewProperty.NewProperty
-import com.openclassrooms.realestatemanager.ui.property.PropertyDetailFragment
 import com.openclassrooms.realestatemanager.ui.property.PropertyFragment
 import com.openclassrooms.realestatemanager.utils.addFragment
 import com.openclassrooms.realestatemanager.utils.openActivity
 import io.reactivex.disposables.CompositeDisposable
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         CompositeDisposable()
     }
 
-    private lateinit var propertyFragment: PropertyFragment
+    private var propertyFragment: PropertyFragment = PropertyFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,11 +38,22 @@ class MainActivity : AppCompatActivity() {
 
         when {
             resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT -> {
-                propertyFragment = PropertyFragment()
-                addFragment(propertyFragment, R.id.activity_main_frame_property)
+                if (propertyFragment.isVisible) {
+                    addFragment(propertyFragment, R.id.activity_main_frame_property)
+                } else {
+                    supportFragmentManager.beginTransaction()
+                            .replace(R.id.activity_main_frame_property, propertyFragment)
+                            .commit()
+                }
             }
             resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE -> {
-
+                if (propertyFragment.isVisible) {
+                    addFragment(propertyFragment, R.id.activity_main_frame_property)
+                } else {
+                    supportFragmentManager.beginTransaction()
+                            .replace(R.id.activity_main_frame_property, propertyFragment)
+                            .commit()
+                }
             }
             else -> Log.e("TAG", "Error")
         }

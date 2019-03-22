@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.row_new_property1.*
 
 class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>() {
 
-    private lateinit var propertyDetailFragment: PropertyDetailFragment
+    private var propertyDetailFragment: PropertyDetailFragment = PropertyDetailFragment()
 
     override fun render(ui: ActionUiModel) {
         when(ui) {
@@ -40,7 +40,6 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
                     when {
                         resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT -> itemView.setOnClickListener {
 
-                            propertyDetailFragment = PropertyDetailFragment()
                             val bundle = Bundle()
                             bundle.putInt("id", property.pid)
                             propertyDetailFragment.arguments = bundle
@@ -51,7 +50,6 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
                                     ?.commit()
                         }
                         resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE -> itemView.setOnClickListener {
-                            propertyDetailFragment = PropertyDetailFragment()
                             val bundle = Bundle()
                             bundle.putInt("id", property.pid)
 
