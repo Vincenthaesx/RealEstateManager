@@ -15,7 +15,7 @@ import java.util.*
 
 class Survey1 : Fragment() {
 
-    private lateinit var entryDate : Date
+    private var entryDate: String = ""
     private lateinit var survey2: Survey2
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +32,7 @@ class Survey1 : Fragment() {
 
         nextProperty.setOnClickListener {
 
-            if (edtType.text.isNotEmpty() && edtAddress.text.isNotEmpty() && edtPrice.text.isNotEmpty() && edtSurface.text.isNotEmpty() && edtDescription.text.isNotEmpty() && edtAgent.text.isNotEmpty() && entryDate.toString().isNotEmpty()) {
+            if (edtType.text.isNotEmpty() && edtAddress.text.isNotEmpty() && edtPrice.text.isNotEmpty() && edtSurface.text.isNotEmpty() && edtDescription.text.isNotEmpty() && edtAgent.text.isNotEmpty() && entryDate.isNotEmpty()) {
                 val type = edtType.text.toString()
                 val address = edtAddress.text.toString()
                 val price = edtPrice.text.toString()
@@ -48,7 +48,7 @@ class Survey1 : Fragment() {
                 bundle.putString(SURFACE, surface)
                 bundle.putString(DESCRIPTION, description)
                 bundle.putString(AGENT, agent)
-                bundle.putString(DATE, test)
+                bundle.putString(DATE, entryDate)
 
                 survey2.arguments = bundle
 
@@ -67,7 +67,6 @@ class Survey1 : Fragment() {
     // ---------------------
     // CONFIGURATION
     // ---------------------
-    private var test: String = ""
 
     private fun configureButton() {
 
@@ -86,9 +85,9 @@ class Survey1 : Fragment() {
                 val myFormat = "dd-MM-yyyy" // mention the format you need
                 val sdf = SimpleDateFormat(myFormat, Locale.US)
                 textView.text = sdf.format(cal.time)
-                entryDate = cal.time
 
-                test = ((textView.text as String?).toString())
+                entryDate = sdf.format(cal.time)
+
             }
 
             DatePickerDialog(activity, dateSetListener,

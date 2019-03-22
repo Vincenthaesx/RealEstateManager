@@ -1,21 +1,29 @@
 package com.openclassrooms.realestatemanager.ui.createNewProperty
 
-import android.app.Activity
+import android.Manifest
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.openclassrooms.realestatemanager.RealEstateManagerApplication
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.models.Property
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
 import com.openclassrooms.realestatemanager.ui.main.MainActivity
+import com.openclassrooms.realestatemanager.utils.GlideApp
+import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
+import kotlinx.android.synthetic.main.row_image_detail.*
 import kotlinx.android.synthetic.main.row_new_property1.*
 import java.io.File
 import java.io.FileOutputStream
@@ -28,7 +36,7 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
     override fun render(ui: ActionUiModel) {
         when (ui){
             is ActionUiModel.AddNewPropertyModel -> {
-
+                Toast.makeText(activity, "New property added with id = ${ui.success}", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -52,6 +60,7 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
         super.onViewCreated(view, savedInstanceState)
 
         takePicture()
+        configureRecyclerView()
 
         val bundle = this.arguments
 
@@ -65,13 +74,12 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
             entryDate = bundle.getString(DATE)
         }
 
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val dateFormat = SimpleDateFormat("dd-MM-yyyy")
         try {
             date = dateFormat.parse(entryDate)
         } catch (e: ParseException) {
             e.printStackTrace()
         }
-
 
         validateNewProperty.setOnClickListener {
             retrieveParameterForProperty()
@@ -87,11 +95,9 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
         }
     }
 
-    private fun checkPermissions(): Boolean {
-        return (ContextCompat.checkSelfPermission(RealEstateManagerApplication.applicationContext(), android.Manifest.permission.CAMERA) ==
-                PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(RealEstateManagerApplication.applicationContext(),
-                android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(RealEstateManagerApplication.applicationContext(), android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+    private fun startImagePickIntent(){
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, REQUEST_IMAGE)
     }
 
     // --------------------
@@ -100,18 +106,81 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
 
     private fun takePicture() {
         imgButtonSelect.setOnClickListener {
-            checkPermissions()
-            dispatchTakePictureIntent()
+//            checkPermissions()
+            val builder = context?.let { it1 -> AlertDialog.Builder(it1) }
+            builder?.setTitle("Picture location")
+            builder?.setItems(arrayOf("On phone storage", "Take picture with camera"), (DialogInterface.OnClickListener { _, i ->
+                when(i){
+                    // Phone
+                    0 -> {
+                        if (context?.let { it1 -> ContextCompat.checkSelfPermission(it1, Manifest.permission.READ_EXTERNAL_STORAGE) }
+                                != PackageManager.PERMISSION_GRANTED) {
+                            // Permission is not granted
+                            if (ActivityCompat.shouldShowRequestPermissionRationale(activity!!,
+                                            Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                            } else {
+                                // No explanation needed; request the permission
+                                ActivityCompat.requestPermissions(activity!!,
+                                        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                                        REQUEST_READ_EXTERNAL_STORAGE)
+                            }
+                        } else {
+                            startImagePickIntent()
+                        }
+                    }
+                    // Camera
+                    1 -> {
+                        if (context?.let { it1 -> ContextCompat.checkSelfPermission(it1, Manifest.permission.WRITE_EXTERNAL_STORAGE) } != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(context!!, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                            activity?.let { it1 ->
+                                ActivityCompat.requestPermissions(it1,
+                                        arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA),
+                                        REQUEST_IMAGE_CAPTURE)
+                            }
+                        } else {
+                            dispatchTakePictureIntent()
+                        }
+                    }
+                }
+            }))
+
+            builder?.show()
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
-            val storage = saveToInternalStorage(imageBitmap)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
+            if(requestCode == REQUEST_IMAGE && resultCode == AppCompatActivity.RESULT_OK) {
 
-            pictureList = listOf(storage)
-        }
+                val uri: Uri? = intent?.data
+
+                recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, listOf(uri)) { image , _ ->
+
+                    GlideApp.with(this@Survey2)
+                            .load(image)
+                            .fitCenter()
+                            .override ( 300 , 300 )
+                            .into(imageRecyclerView)
+                }
+
+            }
+            else if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
+
+                val imageBitmap = intent?.extras?.get("intent") as Bitmap
+                val storage = saveToInternalStorage(imageBitmap)
+
+                recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, listOf(storage)) { image , _ ->
+
+                    GlideApp.with(this@Survey2)
+                            .load(image)
+                            .fitCenter()
+                            .override ( 300 , 300 )
+                            .into(imageRecyclerView)
+                }
+
+                pictureList = listOf(storage)
+
+            } else {
+                Toast.makeText(activity, "Echec request !", Toast.LENGTH_LONG).show()
+            }
     }
 
     private fun retrieveParameterForProperty() {
@@ -149,9 +218,18 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
         }
         return myPath.absolutePath
     }
+    // -----------------
+    // CONFIGURATION
+    // -----------------
+
+    private fun configureRecyclerView() {
+        recyclerViewNewProperty.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+    }
 
     companion object {
         private const val REQUEST_IMAGE_CAPTURE = 0
+        private const val REQUEST_READ_EXTERNAL_STORAGE = 7
+        private const val REQUEST_IMAGE = 9
         private const val TYPE = "type"
         private const val ADDRESS = "address"
         private const val PRICE = "price"
@@ -161,5 +239,4 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
         private const val DATE = "date"
 
     }
-
 }
