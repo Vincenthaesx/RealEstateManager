@@ -1,4 +1,4 @@
-package com.openclassrooms.realestatemanager.ui.createNewProperty
+package com.openclassrooms.realestatemanager.ui.newProperty
 
 import android.Manifest
 import android.content.DialogInterface
@@ -49,6 +49,7 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
     private var agent: String = ""
     private var entryDate: String = ""
     private lateinit var date: Date
+    private lateinit var listDescriptionImage: List<String>
 
     override fun translator(): NewPropertyTranslator = requireActivity().getViewModel()
 
@@ -190,7 +191,7 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
         val status = true
         val saleDate = null
 
-        val property = Property(0, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pictureList, status, date , saleDate, agent   )
+        val property = Property(0, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pictureList, listDescriptionImage, status, date , saleDate, agent   )
 
         if (roomsCount.toString().isNotEmpty() && bathroomsCount.toString().isNotEmpty() && bedroomsCount.toString().isNotEmpty() && pictureList.isNotEmpty()) {
             actions.onNext(Action.AddNewProperty(property))

@@ -1,6 +1,6 @@
 package com.openclassrooms.realestatemanager.di
 
-import com.openclassrooms.realestatemanager.ui.createNewProperty.NewPropertyTranslator
+import com.openclassrooms.realestatemanager.ui.newProperty.NewPropertyTranslator
 import com.openclassrooms.realestatemanager.ui.property.PropertyTranslator
 import dagger.Component
 

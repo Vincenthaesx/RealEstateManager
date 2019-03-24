@@ -1,4 +1,4 @@
-package com.openclassrooms.realestatemanager.ui.createNewProperty
+package com.openclassrooms.realestatemanager.ui.newProperty
 
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar

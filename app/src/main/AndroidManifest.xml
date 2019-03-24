@@ -26,7 +26,7 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".ui.property.UpdateProperty" />
         <activity
-            android:name=".ui.createNewProperty.NewProperty"
+            android:name=".ui.newProperty.NewProperty"
             android:label="Add a new property" />
         <activity
             android:name=".ui.main.MainActivity"

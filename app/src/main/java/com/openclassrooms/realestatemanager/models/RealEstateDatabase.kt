@@ -35,6 +35,9 @@ abstract class RealEstateDatabase : RoomDatabase() {
                     val contentValues1 = ContentValues()
                     val list1 = listOf("https://v.seloger.com/s/crop/310x225/visuels/0/m/l/4/0ml42xbt1n3itaboek3qec5dtskdgw6nlscu7j69k.jpg", "https://t-ec.bstatic.com/images/hotel/max1024x768/112/112064745.jpg", "https://v.seloger.com/s/crop/310x225/visuels/0/m/l/4/0ml42xbt1n3itaboek3qec5dtskdgw6nlscu7j69k.jpg", "https://v.seloger.com/s/crop/310x225/visuels/0/m/l/4/0ml42xbt1n3itaboek3qec5dtskdgw6nlscu7j69k.jpg", "https://v.seloger.com/s/crop/310x225/visuels/0/m/l/4/0ml42xbt1n3itaboek3qec5dtskdgw6nlscu7j69k.jpg")
                     val list2 = listOf("https://t-ec.bstatic.com/images/hotel/max1024x768/112/112064745.jpg")
+
+                    val list3 = listOf("home", "palace", "test", "test2", "test3")
+                    val list4 = listOf("palace")
                     val gson = Gson()
 
                     contentValues.put("type", "House")
@@ -46,6 +49,7 @@ abstract class RealEstateDatabase : RoomDatabase() {
                     contentValues.put("bedroomsCount", 2)
                     contentValues.put("description", "A nice background_property house to see if everything works, la description de la maison dois normalement s'afficher correctement sans poser de soucis ni en portrait ni en paysage, ce qui permettra a l'utilisateur de profiter un maximum de l'application.")
                     contentValues.put("pictureList",gson.toJson(list1))
+                    contentValues.put("descriptionPictureList", gson.toJson(list3))
                     contentValues.put("status", true)
                     contentValues.put("entryDate", 2018-5-28)
                     contentValues.put("saleDate", "")
@@ -60,6 +64,7 @@ abstract class RealEstateDatabase : RoomDatabase() {
                     contentValues1.put("bedroomsCount", 4)
                     contentValues1.put("description", "A nice background_property palace to see if everything works, thanks a lot")
                     contentValues1.put("pictureList",gson.toJson(list2))
+                    contentValues1.put("descriptionPictureList", gson.toJson(list4))
                     contentValues1.put("status", true)
                     contentValues1.put("entryDate",  2018-5-28)
                     contentValues1.put("saleDate", "")

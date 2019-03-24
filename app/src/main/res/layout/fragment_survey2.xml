@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.createNewProperty.NewProperty">
+    tools:context=".ui.newProperty.NewProperty">
 
    <include layout="@layout/row_new_property1"/>
 

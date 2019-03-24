@@ -2,6 +2,7 @@ package com.openclassrooms.realestatemanager.ui.property
 
 import android.content.Intent
 import android.content.res.Configuration
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -27,13 +28,18 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
         when(ui) {
             is ActionUiModel.GetPropertyModel -> {
 
-                recyclerView_detailImage.adapter = GenericAdapter(R.layout.row_image_detail, ui.property.pictureList) { image, _ ->
+                recyclerView_detailImage.adapter = GenericAdapter(R.layout.row_image_detail, ui.property.pictureList) { image, description ->
 
                     GlideApp.with(this@PropertyDetailFragment)
                             .load(image)
-                            .fitCenter()
+                            .centerCrop()
                             .override ( 300 , 300 )
                             .into(imageRecyclerView)
+
+                    if (image.isNotEmpty()) {
+                        txtImageRecyclerView.visibility = View.VISIBLE
+                        txtImageRecyclerView.text = ui.property.descriptionPictureList[description]
+                    }
                 }
 
                 when {

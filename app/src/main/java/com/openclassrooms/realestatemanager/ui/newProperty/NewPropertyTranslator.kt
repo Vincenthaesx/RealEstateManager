@@ -1,4 +1,4 @@
-package com.openclassrooms.realestatemanager.ui.createNewProperty
+package com.openclassrooms.realestatemanager.ui.newProperty
 
 import com.openclassrooms.realestatemanager.di.RepositoryComponent
 import com.openclassrooms.realestatemanager.repo.NewPropertyRepository
