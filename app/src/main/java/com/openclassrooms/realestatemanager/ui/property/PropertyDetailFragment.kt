@@ -2,7 +2,6 @@ package com.openclassrooms.realestatemanager.ui.property
 
 import android.content.Intent
 import android.content.res.Configuration
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -15,7 +14,6 @@ import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.utils.log
 import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.fragment_property.*
 import kotlinx.android.synthetic.main.fragment_property_detail.*
 import kotlinx.android.synthetic.main.fragment_property_detail_item.*
 import kotlinx.android.synthetic.main.row_image_detail.*
@@ -51,7 +49,7 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
                                 .load(START_URL+ui.property.address+ END_URL)
                                 .fitCenter()
                                 .override ( 300 , 300 )
-                                .into(image_map)
+                                .into(imgMap)
                     }
                     else -> Log.e("TAG", "Error")
                 }

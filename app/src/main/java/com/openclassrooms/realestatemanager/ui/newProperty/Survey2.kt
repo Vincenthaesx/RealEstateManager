@@ -157,10 +157,12 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
 
                     GlideApp.with(this@Survey2)
                             .load(image)
-                            .fitCenter()
+                            .circleCrop()
                             .override ( 300 , 300 )
                             .into(imageRecyclerView)
+
                 }
+
                 pictureList = listOf(uri.toString())
             }
             else if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
