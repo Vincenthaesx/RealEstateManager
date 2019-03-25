@@ -1,6 +1,5 @@
 package com.openclassrooms.realestatemanager.ui.newProperty
 
-import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,13 +9,32 @@ import android.widget.TextView
 import android.widget.Toast
 import com.openclassrooms.realestatemanager.R
 import kotlinx.android.synthetic.main.row_new_property.*
+import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog
 import java.text.SimpleDateFormat
 import java.util.*
 
-class Survey1 : Fragment() {
+class FragmentSurvey1 : Fragment() {
 
     private var entryDate: String = ""
-    private var survey2: Survey2 = Survey2()
+    private var survey2: FragmentSurvey2 = FragmentSurvey2()
+    private val datetimePicker: SingleDateAndTimePickerDialog by lazy {
+        SingleDateAndTimePickerDialog.Builder(context)
+                .bottomSheet()
+                .displayMinutes(false)
+                .displayHours(false)
+                .curved()
+                .minutesStep(1)
+                .listener { date ->
+                    val textView: TextView = txtNumberDate
+                    textView.text = SimpleDateFormat("dd.MM.yyyy").format(System.currentTimeMillis())
+                    val myFormat = "dd-MM-yyyy" // mention the format you need
+                    val sdf = SimpleDateFormat(myFormat, Locale.US)
+
+                    entryDate = sdf.format(date.time)
+                    textView.text = sdf.format(date.time)
+                }
+                .build()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -28,7 +46,12 @@ class Survey1 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        configureButton()
+        txtNumberDate.setOnClickListener {
+
+            if (!datetimePicker.isDisplaying) {
+                datetimePicker.display()
+            }
+        }
 
         nextProperty.setOnClickListener {
 
@@ -60,39 +83,6 @@ class Survey1 : Fragment() {
                 Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_LONG).show()
             }
 
-        }
-    }
-
-    // ---------------------
-    // CONFIGURATION
-    // ---------------------
-
-    private fun configureButton() {
-
-        txtNumberDate.setOnClickListener {
-
-            val textView: TextView = txtNumberDate
-            textView.text = SimpleDateFormat("dd.MM.yyyy").format(System.currentTimeMillis())
-
-            val cal = Calendar.getInstance()
-
-            val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
-                cal.set(Calendar.YEAR, year)
-                cal.set(Calendar.MONTH, monthOfYear)
-                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-
-                val myFormat = "dd-MM-yyyy" // mention the format you need
-                val sdf = SimpleDateFormat(myFormat, Locale.US)
-                textView.text = sdf.format(cal.time)
-
-                entryDate = sdf.format(cal.time)
-
-            }
-
-            DatePickerDialog(activity, dateSetListener,
-                    cal.get(Calendar.YEAR),
-                    cal.get(Calendar.MONTH),
-                    cal.get(Calendar.DAY_OF_MONTH)).show()
         }
     }
 

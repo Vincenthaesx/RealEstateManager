@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.models.Property
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
@@ -31,23 +32,26 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
+class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
 
     override fun render(ui: ActionUiModel) {
         when (ui){
             is ActionUiModel.AddNewPropertyModel -> {
-                Toast.makeText(activity, "New property added with id = ${ui.success}", Toast.LENGTH_LONG).show()
+                view?.let {
+                    Snackbar.make(it, "New property added with id = ${ui.success}", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show()
+                }
             }
         }
     }
 
-    private var type: String = ""
-    private var address: String = ""
-    private var price: String = ""
-    private var surface: String = ""
-    private var description: String = ""
-    private var agent: String = ""
-    private var entryDate: String = ""
+    private lateinit var type: String
+    private lateinit var address: String
+    private lateinit var price: String
+    private lateinit var surface: String
+    private lateinit var description: String
+    private lateinit var agent: String
+    private lateinit var entryDate: String
     private lateinit var date: Date
     private lateinit var listDescriptionImage: List<String>
 
@@ -55,7 +59,7 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
 
     override fun getLayout() = com.openclassrooms.realestatemanager.R.layout.fragment_survey2
 
-    private lateinit var pictureList: List<String>
+    private val pictureList: MutableList<String> = mutableListOf()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -152,33 +156,32 @@ class Survey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
             if(requestCode == REQUEST_IMAGE && resultCode == AppCompatActivity.RESULT_OK) {
 
                 val uri: Uri? = data?.data
+                pictureList.add(uri.toString())
 
-                recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, listOf(uri)) { image , _ ->
+                recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, pictureList) { image, _ ->
 
-                    GlideApp.with(this@Survey2)
+                    GlideApp.with(this@FragmentSurvey2)
                             .load(image)
                             .circleCrop()
                             .override ( 300 , 300 )
                             .into(imageRecyclerView)
-
                 }
 
-                pictureList = listOf(uri.toString())
             }
             else if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
 
                 val imageBitmap = data?.extras?.get("data") as Bitmap
                 val storage = saveToInternalStorage(imageBitmap)
+                pictureList.add(storage)
 
-                recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, listOf(storage)) { image , _ ->
+                recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, pictureList) { image, position ->
 
-                    GlideApp.with(this@Survey2)
+                    GlideApp.with(this@FragmentSurvey2)
                             .load(image)
                             .fitCenter()
                             .override ( 300 , 300 )
                             .into(imageRecyclerView)
                 }
-                pictureList = listOf(storage)
 
             } else {
                 Toast.makeText(activity, "Echec request !", Toast.LENGTH_LONG).show()

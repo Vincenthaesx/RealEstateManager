@@ -81,6 +81,9 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.14.1'
     kapt 'com.google.dagger:dagger-compiler:2.14.1'
 
+    // date picker
+    implementation 'com.github.florent37:singledateandtimepicker:2.1.3'
+
     implementation 'com.orhanobut:logger:2.2.0'
 
 }

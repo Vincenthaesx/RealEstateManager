@@ -13,7 +13,7 @@ class NewProperty : AppCompatActivity(){
         CompositeDisposable()
     }
 
-    private var survey1: Survey1 = Survey1()
+    private var survey1: FragmentSurvey1 = FragmentSurvey1()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
