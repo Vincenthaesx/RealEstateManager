@@ -53,7 +53,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
     private lateinit var agent: String
     private lateinit var entryDate: String
     private lateinit var date: Date
-    private lateinit var listDescriptionImage: List<String>
+    private var listDescriptionImage: MutableList<String> = mutableListOf()
 
     override fun translator(): NewPropertyTranslator = requireActivity().getViewModel()
 
@@ -162,11 +162,10 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
 
                     GlideApp.with(this@FragmentSurvey2)
                             .load(image)
-                            .circleCrop()
+                            .centerCrop()
                             .override ( 300 , 300 )
                             .into(imageRecyclerView)
                 }
-
             }
             else if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
 
@@ -174,15 +173,14 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
                 val storage = saveToInternalStorage(imageBitmap)
                 pictureList.add(storage)
 
-                recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, pictureList) { image, position ->
+                recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, pictureList) { image, _ ->
 
                     GlideApp.with(this@FragmentSurvey2)
                             .load(image)
-                            .fitCenter()
-                            .override ( 300 , 300 )
+                            .centerCrop()
+                            .override(300, 300)
                             .into(imageRecyclerView)
                 }
-
             } else {
                 Toast.makeText(activity, "Echec request !", Toast.LENGTH_LONG).show()
             }
@@ -196,9 +194,11 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
         val status = true
         val saleDate = null
 
+        listDescriptionImage.addAll(listOf(edtImageRecyclerView.text.toString()))
+
         val property = Property(0, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pictureList, listDescriptionImage, status, date , saleDate, agent   )
 
-        if (roomsCount.toString().isNotEmpty() && bathroomsCount.toString().isNotEmpty() && bedroomsCount.toString().isNotEmpty() && pictureList.isNotEmpty()) {
+        if (roomsCount != 0 && bathroomsCount != 0 && bedroomsCount != 0 && pictureList.isNotEmpty() && listDescriptionImage.isNotEmpty() && pictureList.size == listDescriptionImage.size) {
             actions.onNext(Action.AddNewProperty(property))
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
