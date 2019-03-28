@@ -168,11 +168,18 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
                         .into(imageRecyclerView)
 
                 imageRecyclerView.setOnClickListener {
-                    configureAlertDialog()
+                    configureAlertDialog(position)
                 }
 
+//                if (listDescriptionImage.isNotEmpty()) {
+//                    if (txtImageRecyclerView.visibility == View.GONE) {
+//                        txtImageRecyclerView.visibility = View.VISIBLE
+//                        txtImageRecyclerView.text = listDescriptionImage.toString()
+//                    } else {
+//                        txtImageRecyclerView.text = listDescriptionImage.toString()
+//                    }
+//                }
             }
-
         } else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
 
             val imageBitmap = data?.extras?.get("data") as Bitmap
@@ -188,8 +195,17 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
                         .into(imageRecyclerView)
 
                 imageRecyclerView.setOnClickListener {
-                    configureAlertDialog()
+                    configureAlertDialog(position)
                 }
+
+//                if (listDescriptionImage.isNotEmpty()) {
+//                    if (txtImageRecyclerView.visibility == View.GONE) {
+//                        txtImageRecyclerView.visibility = View.VISIBLE
+//                        txtImageRecyclerView.text = listDescriptionImage.toString()
+//                    } else {
+//                        txtImageRecyclerView.text = listDescriptionImage.toString()
+//                    }
+//                }
             }
 
         } else {
@@ -197,7 +213,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
         }
     }
 
-    private fun configureAlertDialog() {
+    private fun configureAlertDialog(position: Int) {
         val dialogBuilder = this.context?.let { AlertDialog.Builder(it) }
 
         val inflater = this.layoutInflater
@@ -207,7 +223,13 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
 
         dialogBuilder?.setPositiveButton("Yes") { _, _ ->
 
-            listDescriptionImage.add(dialogView.edtRecyclerViewImage.text.toString())
+            if (listDescriptionImage.isEmpty()) {
+                listDescriptionImage.add(position, dialogView.edtRecyclerViewImage.text.toString())
+            }
+            else {
+                listDescriptionImage.removeAt(position)
+                listDescriptionImage.add(position, dialogView.edtRecyclerViewImage.text.toString())
+            }
 
             if (txtImageRecyclerView.visibility == View.GONE) {
                 txtImageRecyclerView.visibility = View.VISIBLE
