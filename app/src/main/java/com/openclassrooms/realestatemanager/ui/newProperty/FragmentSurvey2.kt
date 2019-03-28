@@ -167,19 +167,17 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
                         .override(300, 300)
                         .into(imageRecyclerView)
 
+                if (listDescriptionImage.isNotEmpty()) {
+                    txtImageRecyclerView.visibility = View.VISIBLE
+                    txtImageRecyclerView.text = listDescriptionImage[position]
+                }
+
                 imageRecyclerView.setOnClickListener {
                     configureAlertDialog(position)
                 }
-
-//                if (listDescriptionImage.isNotEmpty()) {
-//                    if (txtImageRecyclerView.visibility == View.GONE) {
-//                        txtImageRecyclerView.visibility = View.VISIBLE
-//                        txtImageRecyclerView.text = listDescriptionImage.toString()
-//                    } else {
-//                        txtImageRecyclerView.text = listDescriptionImage.toString()
-//                    }
-//                }
             }
+
+
         } else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
 
             val imageBitmap = data?.extras?.get("data") as Bitmap
@@ -194,18 +192,14 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
                         .override(300, 300)
                         .into(imageRecyclerView)
 
+                if (listDescriptionImage.isNotEmpty()) {
+                    txtImageRecyclerView.visibility = View.VISIBLE
+                    txtImageRecyclerView.text = listDescriptionImage[position]
+                }
+
                 imageRecyclerView.setOnClickListener {
                     configureAlertDialog(position)
                 }
-
-//                if (listDescriptionImage.isNotEmpty()) {
-//                    if (txtImageRecyclerView.visibility == View.GONE) {
-//                        txtImageRecyclerView.visibility = View.VISIBLE
-//                        txtImageRecyclerView.text = listDescriptionImage.toString()
-//                    } else {
-//                        txtImageRecyclerView.text = listDescriptionImage.toString()
-//                    }
-//                }
             }
 
         } else {
@@ -233,9 +227,9 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
 
             if (txtImageRecyclerView.visibility == View.GONE) {
                 txtImageRecyclerView.visibility = View.VISIBLE
-                txtImageRecyclerView.text = listDescriptionImage.toString()
+                txtImageRecyclerView.text = listDescriptionImage[position]
             } else {
-                txtImageRecyclerView.text = listDescriptionImage.toString()
+                txtImageRecyclerView.text = listDescriptionImage[position]
             }
         }
 
