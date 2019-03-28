@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -24,7 +23,7 @@ import io.reactivex.disposables.CompositeDisposable
 
 class MainActivity : AppCompatActivity() {
 
-    private val disposable : CompositeDisposable by lazy {
+    private val disposable: CompositeDisposable by lazy {
         CompositeDisposable()
     }
 
@@ -89,7 +88,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.buttonAdd -> {
-               openActivity<NewProperty>()
+                openActivity<NewProperty>()
             }
             R.id.buttonSearch -> {
 
@@ -112,10 +111,10 @@ class MainActivity : AppCompatActivity() {
             PERMISSION_REQUEST_CODE -> {
 
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                        &&grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                        && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
 
                 } else {
-                    Toast.makeText(this,"Permission Denied", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
                 }
                 return
             }

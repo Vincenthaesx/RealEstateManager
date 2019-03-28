@@ -30,18 +30,4 @@
         app:layout_constraintEnd_toEndOf="@id/imageRecyclerView"
         app:layout_constraintBottom_toBottomOf="@id/imageRecyclerView"/>
 
-    <EditText
-        android:id="@+id/edtImageRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:visibility="gone"
-        tools:text="Palace"
-        android:background="#80000000"
-        android:textColor="@color/browser_actions_bg_grey"
-        android:gravity="center"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@id/imageRecyclerView"
-        app:layout_constraintEnd_toEndOf="@id/imageRecyclerView"
-        app:layout_constraintBottom_toBottomOf="@id/imageRecyclerView"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

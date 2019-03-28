@@ -8,7 +8,7 @@ import dagger.Component
 interface RepositoryComponent {
 
     interface Injectable {
-    fun inject(component: RepositoryComponent)
+        fun inject(component: RepositoryComponent)
     }
 
     fun inject(mainTranslator: PropertyTranslator)

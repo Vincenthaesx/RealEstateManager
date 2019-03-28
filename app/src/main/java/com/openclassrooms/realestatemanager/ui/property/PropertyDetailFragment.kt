@@ -18,12 +18,12 @@ import kotlinx.android.synthetic.main.fragment_property_detail.*
 import kotlinx.android.synthetic.main.fragment_property_detail_item.*
 import kotlinx.android.synthetic.main.row_image_detail.*
 
-class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>(){
+class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>() {
 
     private var idProperty: Int = 0
 
     override fun render(ui: ActionUiModel) {
-        when(ui) {
+        when (ui) {
             is ActionUiModel.GetPropertyModel -> {
 
                 recyclerView_detailImage.adapter = GenericAdapter(R.layout.row_image_detail, ui.property.pictureList) { image, description ->
@@ -31,7 +31,7 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
                     GlideApp.with(this@PropertyDetailFragment)
                             .load(image)
                             .centerCrop()
-                            .override ( 300 , 300 )
+                            .override(300, 300)
                             .into(imageRecyclerView)
 
                     if (image.isNotEmpty()) {
@@ -46,9 +46,9 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
                     }
                     resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE -> {
                         GlideApp.with(this)
-                                .load(START_URL+ui.property.address+ END_URL)
+                                .load(START_URL + ui.property.address + END_URL)
                                 .fitCenter()
-                                .override ( 300 , 300 )
+                                .override(300, 300)
                                 .into(imgMap)
                     }
                     else -> Log.e("TAG", "Error")
@@ -80,7 +80,7 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
 
     override fun getLayout() = R.layout.fragment_property_detail
 
-    private val disposable : CompositeDisposable by lazy {
+    private val disposable: CompositeDisposable by lazy {
         CompositeDisposable()
     }
 
@@ -95,7 +95,7 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
 
         imgButtonEdit.setOnClickListener {
             val intent = Intent(activity, UpdateProperty::class.java)
-            intent.putExtra(ID_PROPERTY, idProperty )
+            intent.putExtra(ID_PROPERTY, idProperty)
             startActivity(intent)
         }
 

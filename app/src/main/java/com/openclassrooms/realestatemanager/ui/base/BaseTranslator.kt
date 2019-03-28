@@ -1,9 +1,9 @@
 package com.openclassrooms.realestatemanager.ui.base
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.openclassrooms.realestatemanager.RealEstateManagerApplication
 import com.openclassrooms.realestatemanager.di.RepositoryComponent

@@ -10,19 +10,19 @@ import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import kotlinx.android.synthetic.main.activity_update_property.*
 import kotlinx.android.synthetic.main.row_image_detail.*
 
-class UpdateProperty  : BaseUiActivity<Action, ActionUiModel, PropertyTranslator>()  {
+class UpdateProperty : BaseUiActivity<Action, ActionUiModel, PropertyTranslator>() {
 
     private var id: Int = 0
 
     override fun render(ui: ActionUiModel) {
-        when(ui) {
+        when (ui) {
             is ActionUiModel.GetPropertyModel -> {
                 recyclerView_update_property_image.adapter = GenericAdapter(R.layout.row_image_detail, ui.property.pictureList) { image, _ ->
 
                     GlideApp.with(this@UpdateProperty)
                             .load(image)
                             .fitCenter()
-                            .override ( 300 , 300 )
+                            .override(300, 300)
                             .into(imageRecyclerView)
                 }
 

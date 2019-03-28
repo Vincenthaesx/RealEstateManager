@@ -14,21 +14,20 @@ import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_property.*
 import kotlinx.android.synthetic.main.fragment_property_item.*
-import kotlinx.android.synthetic.main.row_new_property1.*
 
 class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>() {
 
     private var propertyDetailFragment: PropertyDetailFragment = PropertyDetailFragment()
 
     override fun render(ui: ActionUiModel) {
-        when(ui) {
+        when (ui) {
             is ActionUiModel.GetAllPropertyModel -> {
                 fragment_property_recyclerView.adapter = GenericAdapter(R.layout.fragment_property_item, ui.listProperty) { property, _ ->
 
                     GlideApp.with(this@PropertyFragment)
                             .load(property.pictureList.first())
                             .fitCenter()
-                            .override ( 300 , 300 )
+                            .override(300, 300)
                             .into(image_property)
 
                     property_type.text = property.type
@@ -61,23 +60,23 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
                         }
                         else -> Log.e("TAG", "Error")
                     }
-                   }
                 }
+            }
             is ActionUiModel.Error -> {
                 ui.message?.log()
                 fragment_property_swipeRefresh.isRefreshing = false
-                }
+            }
             is ActionUiModel.Loading -> {
                 fragment_property_swipeRefresh.isRefreshing = ui.isLoading
-                }
             }
         }
+    }
 
     override fun translator(): PropertyTranslator = requireActivity().getViewModel()
 
     override fun getLayout() = R.layout.fragment_property
 
-    private val disposable : CompositeDisposable by lazy {
+    private val disposable: CompositeDisposable by lazy {
         CompositeDisposable()
     }
 

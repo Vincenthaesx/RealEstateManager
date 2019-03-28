@@ -1,15 +1,15 @@
 package com.openclassrooms.realestatemanager.ui.newProperty
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.openclassrooms.realestatemanager.R
-import androidx.appcompat.app.AppCompatActivity
 import com.openclassrooms.realestatemanager.utils.addFragment
 import io.reactivex.disposables.CompositeDisposable
 
-class NewProperty : AppCompatActivity(){
+class NewProperty : AppCompatActivity() {
 
-    private val disposable : CompositeDisposable by lazy {
+    private val disposable: CompositeDisposable by lazy {
         CompositeDisposable()
     }
 

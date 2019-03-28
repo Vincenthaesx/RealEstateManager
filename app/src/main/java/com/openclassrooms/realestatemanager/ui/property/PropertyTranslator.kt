@@ -8,7 +8,7 @@ import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import javax.inject.Inject
 
-class  PropertyTranslator: BaseTranslator<Action, ActionUiModel>()  {
+class PropertyTranslator : BaseTranslator<Action, ActionUiModel>() {
 
     @Inject
     lateinit var propertyRepository: PropertyRepository
@@ -36,7 +36,7 @@ class  PropertyTranslator: BaseTranslator<Action, ActionUiModel>()  {
     private fun Observable<Action.GetAllProperty>.requestForGetAllProperty(): Observable<ActionUiModel> {
         return flatMap {
             propertyRepository.getPropertyList()
-                    .map<ActionUiModel> {action ->
+                    .map<ActionUiModel> { action ->
                         ActionUiModel.GetAllPropertyModel(action)
                     }
                     .startWith(ActionUiModel.Loading(true))

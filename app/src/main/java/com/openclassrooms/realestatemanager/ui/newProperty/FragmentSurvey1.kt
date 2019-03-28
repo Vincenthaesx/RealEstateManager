@@ -1,15 +1,15 @@
 package com.openclassrooms.realestatemanager.ui.newProperty
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog
 import com.openclassrooms.realestatemanager.R
 import kotlinx.android.synthetic.main.row_new_property.*
-import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog
 import java.text.SimpleDateFormat
 import java.util.*
 

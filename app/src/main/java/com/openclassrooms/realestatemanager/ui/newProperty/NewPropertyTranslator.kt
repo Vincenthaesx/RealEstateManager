@@ -8,7 +8,7 @@ import io.reactivex.Observable
 import io.reactivex.rxkotlin.ofType
 import javax.inject.Inject
 
-class  NewPropertyTranslator: BaseTranslator<Action, ActionUiModel>()  {
+class NewPropertyTranslator : BaseTranslator<Action, ActionUiModel>() {
 
     @Inject
     lateinit var newPropertyRepository: NewPropertyRepository

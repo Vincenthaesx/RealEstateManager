@@ -23,7 +23,7 @@ abstract class RealEstateDatabase : RoomDatabase() {
                     .build()
         }
 
-        private fun  prepopulateDatabase(): RoomDatabase.Callback {
+        private fun prepopulateDatabase(): RoomDatabase.Callback {
 
             return object : RoomDatabase.Callback() {
 
@@ -48,10 +48,10 @@ abstract class RealEstateDatabase : RoomDatabase() {
                     contentValues.put("bathroomsCount", 1)
                     contentValues.put("bedroomsCount", 2)
                     contentValues.put("description", "A nice background_property house to see if everything works, la description de la maison dois normalement s'afficher correctement sans poser de soucis ni en portrait ni en paysage, ce qui permettra a l'utilisateur de profiter un maximum de l'application.")
-                    contentValues.put("pictureList",gson.toJson(list1))
+                    contentValues.put("pictureList", gson.toJson(list1))
                     contentValues.put("descriptionPictureList", gson.toJson(list3))
                     contentValues.put("status", true)
-                    contentValues.put("entryDate", 2018-5-28)
+                    contentValues.put("entryDate", 2018 - 5 - 28)
                     contentValues.put("saleDate", "")
                     contentValues.put("agent", "Vincent")
                     // -------------------
@@ -63,10 +63,10 @@ abstract class RealEstateDatabase : RoomDatabase() {
                     contentValues1.put("bathroomsCount", 2)
                     contentValues1.put("bedroomsCount", 4)
                     contentValues1.put("description", "A nice background_property palace to see if everything works, thanks a lot")
-                    contentValues1.put("pictureList",gson.toJson(list2))
+                    contentValues1.put("pictureList", gson.toJson(list2))
                     contentValues1.put("descriptionPictureList", gson.toJson(list4))
                     contentValues1.put("status", true)
-                    contentValues1.put("entryDate",  2018-5-28)
+                    contentValues1.put("entryDate", 2018 - 5 - 28)
                     contentValues1.put("saleDate", "")
                     contentValues1.put("agent", "Vincent")
 

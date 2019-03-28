@@ -24,6 +24,7 @@ import com.openclassrooms.realestatemanager.ui.base.getViewModel
 import com.openclassrooms.realestatemanager.ui.main.MainActivity
 import com.openclassrooms.realestatemanager.utils.GlideApp
 import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
+import kotlinx.android.synthetic.main.alert_label_edit_text.view.*
 import kotlinx.android.synthetic.main.row_image_detail.*
 import kotlinx.android.synthetic.main.row_new_property1.*
 import java.io.File
@@ -35,7 +36,7 @@ import java.util.*
 class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
 
     override fun render(ui: ActionUiModel) {
-        when (ui){
+        when (ui) {
             is ActionUiModel.AddNewPropertyModel -> {
                 view?.let {
                     Snackbar.make(it, "New property added with id = ${ui.success}", Snackbar.LENGTH_LONG)
@@ -53,13 +54,14 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
     private lateinit var agent: String
     private lateinit var entryDate: String
     private lateinit var date: Date
+
     private var listDescriptionImage: MutableList<String> = mutableListOf()
+    private val pictureList: MutableList<String> = mutableListOf()
 
     override fun translator(): NewPropertyTranslator = requireActivity().getViewModel()
 
     override fun getLayout() = com.openclassrooms.realestatemanager.R.layout.fragment_survey2
 
-    private val pictureList: MutableList<String> = mutableListOf()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -100,7 +102,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
         }
     }
 
-    private fun startImagePickIntent(){
+    private fun startImagePickIntent() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, REQUEST_IMAGE)
     }
@@ -111,11 +113,10 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
 
     private fun takePicture() {
         imgButtonSelect.setOnClickListener {
-//            checkPermissions()
             val builder = context?.let { it1 -> AlertDialog.Builder(it1) }
             builder?.setTitle("Picture location")
             builder?.setItems(arrayOf("On phone storage", "Take picture with camera"), (DialogInterface.OnClickListener { _, i ->
-                when(i){
+                when (i) {
                     // Phone
                     0 -> {
                         if (context?.let { it1 -> ContextCompat.checkSelfPermission(it1, Manifest.permission.READ_EXTERNAL_STORAGE) }
@@ -153,58 +154,111 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-            if(requestCode == REQUEST_IMAGE && resultCode == AppCompatActivity.RESULT_OK) {
+        if (requestCode == REQUEST_IMAGE && resultCode == AppCompatActivity.RESULT_OK) {
 
-                val uri: Uri? = data?.data
-                pictureList.add(uri.toString())
+            val uri: Uri? = data?.data
+            pictureList.add(uri.toString())
 
-                recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, pictureList) { image, _ ->
+            recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, pictureList) { image, position ->
 
-                    GlideApp.with(this@FragmentSurvey2)
-                            .load(image)
-                            .centerCrop()
-                            .override ( 300 , 300 )
-                            .into(imageRecyclerView)
+                GlideApp.with(this@FragmentSurvey2)
+                        .load(image)
+                        .centerCrop()
+                        .override(300, 300)
+                        .into(imageRecyclerView)
+
+                imageRecyclerView.setOnClickListener {
+                    configureAlertDialog()
+                }
+
+            }
+
+        } else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
+
+            val imageBitmap = data?.extras?.get("data") as Bitmap
+            val storage = saveToInternalStorage(imageBitmap)
+            pictureList.add(storage)
+
+            recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, pictureList) { image, position ->
+
+                GlideApp.with(this@FragmentSurvey2)
+                        .load(image)
+                        .centerCrop()
+                        .override(300, 300)
+                        .into(imageRecyclerView)
+
+                imageRecyclerView.setOnClickListener {
+                    configureAlertDialog()
                 }
             }
-            else if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
 
-                val imageBitmap = data?.extras?.get("data") as Bitmap
-                val storage = saveToInternalStorage(imageBitmap)
-                pictureList.add(storage)
+        } else {
+            Toast.makeText(activity, "Echec request !", Toast.LENGTH_LONG).show()
+        }
+    }
 
-                recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, pictureList) { image, _ ->
+    private fun configureAlertDialog() {
+        val dialogBuilder = this.context?.let { AlertDialog.Builder(it) }
 
-                    GlideApp.with(this@FragmentSurvey2)
-                            .load(image)
-                            .centerCrop()
-                            .override(300, 300)
-                            .into(imageRecyclerView)
-                }
+        val inflater = this.layoutInflater
+        val dialogView = inflater.inflate(R.layout.alert_label_edit_text, null)
+        dialogBuilder?.setView(dialogView)
+        dialogBuilder?.setTitle("Please enter the description of picture :")
+
+        dialogBuilder?.setPositiveButton("Yes") { _, _ ->
+
+            listDescriptionImage.add(dialogView.edtRecyclerViewImage.text.toString())
+
+            if (txtImageRecyclerView.visibility == View.GONE) {
+                txtImageRecyclerView.visibility = View.VISIBLE
+                txtImageRecyclerView.text = listDescriptionImage.toString()
             } else {
-                Toast.makeText(activity, "Echec request !", Toast.LENGTH_LONG).show()
+                txtImageRecyclerView.text = listDescriptionImage.toString()
             }
+        }
+
+        dialogBuilder?.setNegativeButton("No") { _, _ ->
+        }
+
+        val alertDialog = dialogBuilder?.create()
+        alertDialog?.show()
     }
 
     private fun retrieveParameterForProperty() {
 
-        val roomsCount = edtRoomCount.text.toString().toInt()
-        val bedroomsCount = edtBedroomsCount.text.toString().toInt()
-        val bathroomsCount = edtBathroomsCount.text.toString().toInt()
+        var roomsCount = 0
+        var bedroomsCount = 0
+        var bathroomsCount = 0
+
+        if (!edtRoomCount.text.isNullOrEmpty()) {
+            roomsCount = edtRoomCount.text.toString().toInt()
+        } else {
+            Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
+        }
+
+        if (!edtBedroomsCount.text.isNullOrEmpty()) {
+            bedroomsCount = edtBedroomsCount.text.toString().toInt()
+        } else {
+            Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
+        }
+
+        if (!edtBathroomsCount.text.isNullOrEmpty()) {
+            bathroomsCount = edtBathroomsCount.text.toString().toInt()
+        } else {
+            Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
+        }
+
         val status = true
         val saleDate = null
 
-        listDescriptionImage.addAll(listOf(edtImageRecyclerView.text.toString()))
+        val property = Property(0, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pictureList, listDescriptionImage, status, date, saleDate, agent)
 
-        val property = Property(0, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pictureList, listDescriptionImage, status, date , saleDate, agent   )
-
-        if (roomsCount != 0 && bathroomsCount != 0 && bedroomsCount != 0 && pictureList.isNotEmpty() && listDescriptionImage.isNotEmpty() && pictureList.size == listDescriptionImage.size) {
+        if (pictureList.isNotEmpty() && listDescriptionImage.isNotEmpty() && pictureList.size == listDescriptionImage.size) {
             actions.onNext(Action.AddNewProperty(property))
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
-        }
-        else {
-            Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
         }
     }
 
