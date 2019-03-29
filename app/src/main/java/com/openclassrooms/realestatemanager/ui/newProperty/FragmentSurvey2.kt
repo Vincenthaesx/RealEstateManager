@@ -24,6 +24,7 @@ import com.openclassrooms.realestatemanager.ui.base.getViewModel
 import com.openclassrooms.realestatemanager.ui.main.MainActivity
 import com.openclassrooms.realestatemanager.utils.GlideApp
 import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
+import kotlinx.android.synthetic.main.alert_label_edit_text.*
 import kotlinx.android.synthetic.main.alert_label_edit_text.view.*
 import kotlinx.android.synthetic.main.row_image_detail.*
 import kotlinx.android.synthetic.main.row_new_property1.*
@@ -167,11 +168,6 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
                         .override(300, 300)
                         .into(imageRecyclerView)
 
-                if (listDescriptionImage.isNotEmpty()) {
-                    txtImageRecyclerView.visibility = View.VISIBLE
-                    txtImageRecyclerView.text = listDescriptionImage[position]
-                }
-
                 imageRecyclerView.setOnClickListener {
                     configureAlertDialog(position)
                 }
@@ -191,11 +187,6 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
                         .centerCrop()
                         .override(300, 300)
                         .into(imageRecyclerView)
-
-                if (listDescriptionImage.isNotEmpty()) {
-                    txtImageRecyclerView.visibility = View.VISIBLE
-                    txtImageRecyclerView.text = listDescriptionImage[position]
-                }
 
                 imageRecyclerView.setOnClickListener {
                     configureAlertDialog(position)
@@ -218,11 +209,15 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
         dialogBuilder?.setPositiveButton("Yes") { _, _ ->
 
             if (listDescriptionImage.isEmpty()) {
-                listDescriptionImage.add(position, dialogView.edtRecyclerViewImage.text.toString())
+                listDescriptionImage.add(dialogView.edtRecyclerViewImage.text.toString())
             }
             else {
-                listDescriptionImage.removeAt(position)
-                listDescriptionImage.add(position, dialogView.edtRecyclerViewImage.text.toString())
+                if (listDescriptionImage.size <= position) {
+                    listDescriptionImage.add(position, dialogView.edtRecyclerViewImage.text.toString())
+                } else {
+//                    listDescriptionImage.removeAt(position)
+                    listDescriptionImage[position] = dialogView.edtRecyclerViewImage.text.toString()
+                }
             }
 
             if (txtImageRecyclerView.visibility == View.GONE) {
