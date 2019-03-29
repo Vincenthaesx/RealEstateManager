@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.models.Property
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
@@ -38,10 +37,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
     override fun render(ui: ActionUiModel) {
         when (ui) {
             is ActionUiModel.AddNewPropertyModel -> {
-                view?.let {
-                    Snackbar.make(it, "New property added with id = ${ui.success}", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show()
-                }
+                Toast.makeText(context, "New property added with id = ${ui.success}", Toast.LENGTH_LONG).show()
             }
         }
     }
