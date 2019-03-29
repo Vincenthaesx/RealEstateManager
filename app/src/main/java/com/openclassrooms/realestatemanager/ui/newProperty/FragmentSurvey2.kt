@@ -24,7 +24,6 @@ import com.openclassrooms.realestatemanager.ui.base.getViewModel
 import com.openclassrooms.realestatemanager.ui.main.MainActivity
 import com.openclassrooms.realestatemanager.utils.GlideApp
 import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
-import kotlinx.android.synthetic.main.alert_label_edit_text.*
 import kotlinx.android.synthetic.main.alert_label_edit_text.view.*
 import kotlinx.android.synthetic.main.row_image_detail.*
 import kotlinx.android.synthetic.main.row_new_property1.*
@@ -156,31 +155,27 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE && resultCode == AppCompatActivity.RESULT_OK) {
-
             val uri: Uri? = data?.data
             pictureList.add(uri.toString())
-
-            recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, pictureList) { image, position ->
-
-                GlideApp.with(this@FragmentSurvey2)
-                        .load(image)
-                        .centerCrop()
-                        .override(300, 300)
-                        .into(imageRecyclerView)
-
-                imageRecyclerView.setOnClickListener {
-                    configureAlertDialog(position)
-                }
-            }
-
-
+            setupAdapter()
         } else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
-
             val imageBitmap = data?.extras?.get("data") as Bitmap
             val storage = saveToInternalStorage(imageBitmap)
             pictureList.add(storage)
+            setupAdapter()
+        } else {
+            Toast.makeText(activity, "Echec request !", Toast.LENGTH_LONG).show()
+        }
+    }
 
-            recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, pictureList) { image, position ->
+    private fun setupAdapter() {
+        if (recyclerViewNewProperty.adapter != null) {
+            recyclerViewNewProperty.adapter?.notifyItemInserted(pictureList.size -1)
+        } else {
+            recyclerViewNewProperty.adapter = GenericAdapter(
+                    R.layout.row_image_detail,
+                    pictureList
+            ) { image, position ->
 
                 GlideApp.with(this@FragmentSurvey2)
                         .load(image)
@@ -191,10 +186,15 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
                 imageRecyclerView.setOnClickListener {
                     configureAlertDialog(position)
                 }
+                val s = listDescriptionImage.getOrNull(position)
+                if (s != null) {
+                    txtImageRecyclerView.text = s
+                    txtImageRecyclerView.visibility = View.VISIBLE
+                } else {
+                    txtImageRecyclerView.visibility = View.GONE
+                }
             }
 
-        } else {
-            Toast.makeText(activity, "Echec request !", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -215,19 +215,11 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
                 if (listDescriptionImage.size <= position) {
                     listDescriptionImage.add(position, dialogView.edtRecyclerViewImage.text.toString())
                 } else {
-//                    listDescriptionImage.removeAt(position)
                     listDescriptionImage[position] = dialogView.edtRecyclerViewImage.text.toString()
                 }
             }
-
-            if (txtImageRecyclerView.visibility == View.GONE) {
-                txtImageRecyclerView.visibility = View.VISIBLE
-                txtImageRecyclerView.text = listDescriptionImage[position]
-            } else {
-                txtImageRecyclerView.text = listDescriptionImage[position]
-            }
+            recyclerViewNewProperty.adapter?.notifyItemChanged(position)
         }
-
         dialogBuilder?.setNegativeButton("No") { _, _ ->
         }
 
