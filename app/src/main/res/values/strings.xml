@@ -52,6 +52,7 @@
     <string name="jj_mm_yyyy">JJ/MM/YYYY</string>
     <string name="save">SAVE</string>
     <string name="next">NEXT</string>
+    <string name="click_on_picture_for_add_a_new_description">Click on picture for add a new description</string>
 
     <style name="api_key">AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM</style>
 

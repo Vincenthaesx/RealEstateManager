@@ -166,16 +166,17 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
         } else {
             Toast.makeText(activity, "Echec request !", Toast.LENGTH_LONG).show()
         }
+
+        if (pictureList.isNotEmpty()) {
+            txtClickOnPicture.visibility = View.VISIBLE
+        }
     }
 
     private fun setupAdapter() {
         if (recyclerViewNewProperty.adapter != null) {
-            recyclerViewNewProperty.adapter?.notifyItemInserted(pictureList.size -1)
+            recyclerViewNewProperty.adapter?.notifyItemInserted(pictureList.size - 1)
         } else {
-            recyclerViewNewProperty.adapter = GenericAdapter(
-                    R.layout.row_image_detail,
-                    pictureList
-            ) { image, position ->
+            recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, pictureList) { image, position ->
 
                 GlideApp.with(this@FragmentSurvey2)
                         .load(image)
@@ -210,8 +211,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
 
             if (listDescriptionImage.isEmpty()) {
                 listDescriptionImage.add(dialogView.edtRecyclerViewImage.text.toString())
-            }
-            else {
+            } else {
                 if (listDescriptionImage.size <= position) {
                     listDescriptionImage.add(position, dialogView.edtRecyclerViewImage.text.toString())
                 } else {
@@ -256,7 +256,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
 
         val property = Property(0, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pictureList, listDescriptionImage, status, date, saleDate, agent)
 
-        if (pictureList.isNotEmpty() && listDescriptionImage.isNotEmpty() && pictureList.size == listDescriptionImage.size) {
+        if (pictureList.isNotEmpty() && listDescriptionImage.isNotEmpty() && pictureList.size == listDescriptionImage.size && roomsCount != 0 && bedroomsCount != 0 && bathroomsCount != 0) {
             actions.onNext(Action.AddNewProperty(property))
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
