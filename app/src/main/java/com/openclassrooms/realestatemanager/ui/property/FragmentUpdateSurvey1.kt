@@ -101,10 +101,9 @@ class FragmentUpdateSurvey1 : BaseUiFragment<Action, ActionUiModel, PropertyTran
                 survey2.arguments = bundle
 
                 fragmentManager?.beginTransaction()
-                        ?.replace(R.id.frameLayout_newProperty, survey2)
+                        ?.replace(R.id.frameLayout_updateProperty, survey2)
                         ?.addToBackStack(null)
                         ?.commit()
-
             } else {
                 Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_LONG).show()
             }

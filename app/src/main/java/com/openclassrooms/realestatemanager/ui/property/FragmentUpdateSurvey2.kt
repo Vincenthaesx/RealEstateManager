@@ -38,7 +38,7 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, PropertyTran
     override fun render(ui: ActionUiModel) {
         when (ui) {
             is ActionUiModel.GetPropertyModel -> {
-                recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, pictureList) { image, description ->
+                recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, ui.property.pictureList) { image, description ->
 
                     GlideApp.with(this@FragmentUpdateSurvey2)
                             .load(image)
@@ -50,6 +50,9 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, PropertyTran
                         txtImageRecyclerView.visibility = View.VISIBLE
                         txtImageRecyclerView.text = ui.property.descriptionPictureList[description]
                     }
+
+                    pictureList.addAll(ui.property.pictureList)
+                    listDescriptionImage.addAll(ui.property.descriptionPictureList)
                 }
 
                 edtRoomCount.hint = ui.property.roomsCount.toString()
@@ -84,8 +87,6 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, PropertyTran
         super.onViewCreated(view, savedInstanceState)
 
         takePicture()
-        configureRecyclerView()
-
 
         val bundle = this.arguments
 
@@ -101,6 +102,7 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, PropertyTran
         }
 
         actions.onNext(Action.GetProperty(idProperty))
+        configureRecyclerView()
 
         val dateFormat = SimpleDateFormat("dd-MM-yyyy")
         try {
