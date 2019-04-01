@@ -38,22 +38,10 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, PropertyTran
     override fun render(ui: ActionUiModel) {
         when (ui) {
             is ActionUiModel.GetPropertyModel -> {
-                recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, ui.property.pictureList) { image, description ->
+                pictureList.addAll(ui.property.pictureList)
+                listDescriptionImage.addAll(ui.property.descriptionPictureList)
 
-                    GlideApp.with(this@FragmentUpdateSurvey2)
-                            .load(image)
-                            .centerCrop()
-                            .override(300, 300)
-                            .into(imageRecyclerView)
-
-                    if (image.isNotEmpty()) {
-                        txtImageRecyclerView.visibility = View.VISIBLE
-                        txtImageRecyclerView.text = ui.property.descriptionPictureList[description]
-                    }
-
-                    pictureList.addAll(ui.property.pictureList)
-                    listDescriptionImage.addAll(ui.property.descriptionPictureList)
-                }
+                setupAdapter()
 
                 edtRoomCount.hint = ui.property.roomsCount.toString()
                 edtBathroomsCount.hint = ui.property.bathroomsCount.toString()
@@ -87,6 +75,8 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, PropertyTran
         super.onViewCreated(view, savedInstanceState)
 
         takePicture()
+        txtClickOnPicture.text = getString(R.string.messageForUpdatePicture)
+        txtClickOnPicture.visibility = View.VISIBLE
 
         val bundle = this.arguments
 
@@ -101,7 +91,6 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, PropertyTran
             idProperty = bundle.getInt(ID_PROPERTY)
         }
 
-        actions.onNext(Action.GetProperty(idProperty))
         configureRecyclerView()
 
         val dateFormat = SimpleDateFormat("dd-MM-yyyy")
@@ -189,10 +178,6 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, PropertyTran
         } else {
             Toast.makeText(activity, "Echec request !", Toast.LENGTH_LONG).show()
         }
-
-        if (pictureList.isNotEmpty()) {
-            txtClickOnPicture.visibility = View.VISIBLE
-        }
     }
 
     private fun setupAdapter() {
@@ -248,6 +233,7 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, PropertyTran
 
         val alertDialog = dialogBuilder?.create()
         alertDialog?.show()
+
     }
 
     private fun retrieveParameterForProperty() {
@@ -310,6 +296,7 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, PropertyTran
 
     private fun configureRecyclerView() {
         recyclerViewNewProperty.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        actions.onNext(Action.GetProperty(idProperty))
     }
 
     companion object {

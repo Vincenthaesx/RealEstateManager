@@ -62,11 +62,8 @@ class PropertyTranslator : BaseTranslator<Action, ActionUiModel>() {
                     .flatMap {property ->
                         propertyRepository.getProperty(property.pid)
                                 .flatMap {result ->
-                                    if (result.pid != property.pid){
-                                        propertyRepository.addNewProperty(property)
-                                    }else   {
-                                        propertyRepository.updateProperty(property.copy(pid = result.pid))
-                                    }
+                                    propertyRepository.updateProperty(property.copy(pid = result.pid))
+
                                 }
                     }
             propertyRepository.getProperty(action.property.pid)
