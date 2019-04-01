@@ -14,6 +14,4 @@ sealed class ActionUiModel {
 
     class Error(val message: String?) : ActionUiModel()
 
-    class Loading(val isLoading: Boolean) : ActionUiModel()
-
 }

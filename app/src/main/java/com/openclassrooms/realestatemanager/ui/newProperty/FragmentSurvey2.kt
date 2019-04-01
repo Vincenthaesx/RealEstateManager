@@ -22,6 +22,7 @@ import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
 import com.openclassrooms.realestatemanager.ui.main.MainActivity
 import com.openclassrooms.realestatemanager.utils.GlideApp
+import com.openclassrooms.realestatemanager.utils.log
 import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import kotlinx.android.synthetic.main.alert_label_edit_text.view.*
 import kotlinx.android.synthetic.main.row_image_detail.*
@@ -38,6 +39,9 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
         when (ui) {
             is ActionUiModel.AddNewPropertyModel -> {
                 Toast.makeText(context, "New property added with id = ${ui.success}", Toast.LENGTH_LONG).show()
+            }
+            is ActionUiModel.Error -> {
+                ui.message?.log()
             }
         }
     }

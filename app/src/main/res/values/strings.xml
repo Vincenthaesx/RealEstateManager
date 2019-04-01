@@ -50,6 +50,7 @@
     <string name="agent">Agent :</string>
     <string name="enter_your_name">enter your name</string>
     <string name="jj_mm_yyyy">JJ/MM/YYYY</string>
+    <string name="label_date">Date</string>
     <string name="save">SAVE</string>
     <string name="next">NEXT</string>
     <string name="click_on_picture_for_add_a_new_description">Click on picture for add a new description</string>

@@ -19,9 +19,11 @@ class FragmentSurvey1 : Fragment() {
     private var survey2: FragmentSurvey2 = FragmentSurvey2()
     private val datetimePicker: SingleDateAndTimePickerDialog by lazy {
         SingleDateAndTimePickerDialog.Builder(context)
-                .bottomSheet()
                 .displayMinutes(false)
                 .displayHours(false)
+                .mainColor(resources.getColor(R.color.blue_01))
+//                .minDateRange(Date())                                     // for fix selected date to today date or after.
+                .title(resources.getString(R.string.label_date))
                 .curved()
                 .minutesStep(1)
                 .listener { date ->
