@@ -24,7 +24,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.property.UpdateProperty" />
+        <activity android:name=".ui.property.UpdateProperty"
+            android:label="Update property"/>
         <activity
             android:name=".ui.newProperty.NewProperty"
             android:label="Add a new property" />

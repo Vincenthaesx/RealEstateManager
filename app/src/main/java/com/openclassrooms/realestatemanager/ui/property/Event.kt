@@ -8,6 +8,8 @@ sealed class Action {
 
     class GetProperty(val id: Int) : Action()
 
+    class GetPropertyForUpdate(val property: Property): Action()
+
 }
 
 sealed class ActionUiModel {

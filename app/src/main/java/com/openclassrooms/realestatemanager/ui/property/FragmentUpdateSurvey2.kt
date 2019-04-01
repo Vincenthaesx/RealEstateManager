@@ -1,4 +1,4 @@
-package com.openclassrooms.realestatemanager.ui.newProperty
+package com.openclassrooms.realestatemanager.ui.property
 
 import android.Manifest
 import android.content.DialogInterface
@@ -33,12 +33,28 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTranslator>() {
+class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>() {
 
     override fun render(ui: ActionUiModel) {
         when (ui) {
-            is ActionUiModel.AddNewPropertyModel -> {
-                Toast.makeText(context, "New property added with id = ${ui.success}", Toast.LENGTH_LONG).show()
+            is ActionUiModel.GetPropertyModel -> {
+                recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, pictureList) { image, description ->
+
+                    GlideApp.with(this@FragmentUpdateSurvey2)
+                            .load(image)
+                            .centerCrop()
+                            .override(300, 300)
+                            .into(imageRecyclerView)
+
+                    if (image.isNotEmpty()) {
+                        txtImageRecyclerView.visibility = View.VISIBLE
+                        txtImageRecyclerView.text = ui.property.descriptionPictureList[description]
+                    }
+                }
+
+                edtRoomCount.hint = ui.property.roomsCount.toString()
+                edtBathroomsCount.hint = ui.property.bathroomsCount.toString()
+                edtBedroomsCount.hint = ui.property.bedroomsCount.toString()
             }
             is ActionUiModel.Error -> {
                 ui.message?.log()
@@ -46,6 +62,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
         }
     }
 
+    private var idProperty: Int = 0
     private lateinit var type: String
     private lateinit var address: String
     private lateinit var price: String
@@ -58,7 +75,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
     private var listDescriptionImage: MutableList<String> = mutableListOf()
     private val pictureList: MutableList<String> = mutableListOf()
 
-    override fun translator(): NewPropertyTranslator = requireActivity().getViewModel()
+    override fun translator(): PropertyTranslator = requireActivity().getViewModel()
 
     override fun getLayout() = R.layout.fragment_survey2
 
@@ -68,6 +85,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
 
         takePicture()
         configureRecyclerView()
+
 
         val bundle = this.arguments
 
@@ -79,7 +97,10 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
             description = bundle.getString(DESCRIPTION)
             agent = bundle.getString(AGENT)
             entryDate = bundle.getString(DATE)
+            idProperty = bundle.getInt(ID_PROPERTY)
         }
+
+        actions.onNext(Action.GetProperty(idProperty))
 
         val dateFormat = SimpleDateFormat("dd-MM-yyyy")
         try {
@@ -178,7 +199,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
         } else {
             recyclerViewNewProperty.adapter = GenericAdapter(R.layout.row_image_detail, pictureList) { image, position ->
 
-                GlideApp.with(this@FragmentSurvey2)
+                GlideApp.with(this@FragmentUpdateSurvey2)
                         .load(image)
                         .centerCrop()
                         .override(300, 300)
@@ -257,7 +278,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
         val property = Property(0, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pictureList, listDescriptionImage, status, date, saleDate, agent)
 
         if (pictureList.isNotEmpty() && listDescriptionImage.isNotEmpty() && pictureList.size == listDescriptionImage.size && roomsCount != 0 && bedroomsCount != 0 && bathroomsCount != 0) {
-            actions.onNext(Action.AddNewProperty(property))
+            actions.onNext(Action.GetPropertyForUpdate(property))
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
         } else {
@@ -290,6 +311,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
     }
 
     companion object {
+        private const val ID_PROPERTY = "idProperty"
         private const val REQUEST_IMAGE_CAPTURE = 0
         private const val REQUEST_READ_EXTERNAL_STORAGE = 7
         private const val REQUEST_IMAGE = 9
