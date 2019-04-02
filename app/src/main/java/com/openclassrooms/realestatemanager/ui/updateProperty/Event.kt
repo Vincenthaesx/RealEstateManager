@@ -16,4 +16,6 @@ sealed class ActionUiModel {
 
     class GetPropertyModel(val property: Property) : ActionUiModel()
 
+    class GetPropertyModelUpdate(val int: Int) : ActionUiModel()
+
 }

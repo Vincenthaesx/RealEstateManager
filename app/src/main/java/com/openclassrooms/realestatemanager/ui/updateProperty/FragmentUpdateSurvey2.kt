@@ -43,9 +43,9 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdateProper
 
                 setupAdapter()
 
-                edtRoomCount.hint = ui.property.roomsCount.toString()
-                edtBathroomsCount.hint = ui.property.bathroomsCount.toString()
-                edtBedroomsCount.hint = ui.property.bedroomsCount.toString()
+                edtRoomCount.setText(ui.property.roomsCount.toString())
+                edtBathroomsCount.setText(ui.property.bathroomsCount.toString())
+                edtBedroomsCount.setText(ui.property.bedroomsCount.toString())
             }
             is ActionUiModel.Error -> {
                 ui.message?.log()
@@ -263,7 +263,7 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdateProper
         val status = true
         val saleDate = null
 
-        val property = Property(0, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pictureList, listDescriptionImage, status, date, saleDate, agent)
+        val property = Property(idProperty, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pictureList, listDescriptionImage, status, date, saleDate, agent)
 
         if (pictureList.isNotEmpty() && listDescriptionImage.isNotEmpty() && pictureList.size == listDescriptionImage.size && roomsCount != 0 && bedroomsCount != 0 && bathroomsCount != 0) {
             actions.onNext(Action.GetPropertyForUpdate(property))

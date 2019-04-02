@@ -19,14 +19,17 @@ class FragmentUpdateSurvey1 : BaseUiFragment<Action, ActionUiModel, UpdateProper
         when (ui) {
             is ActionUiModel.GetPropertyModel -> {
 
-                edtType.hint = ui.property.type
-                edtDescription.hint = ui.property.description
-                edtSurface.hint = ui.property.surface
-                edtAddress.hint = ui.property.address
-                edtPrice.hint = ui.property.price
-                txtNumberDate.text = ui.property.entryDate.toString()
-                edtAgent.hint = ui.property.agent
+                edtType.setText(ui.property.type)
+                edtDescription.setText(ui.property.description)
+                edtSurface.setText(ui.property.surface)
+                edtAddress.setText(ui.property.address)
+                edtPrice.setText(ui.property.price)
 
+                val myFormat = "dd-MM-yyyy"                                 // mention the format you need
+                val sdf = SimpleDateFormat(myFormat, Locale.US)
+                txtNumberDate.text = sdf.format(ui.property.entryDate.time)
+
+                edtAgent.setText(ui.property.agent)
             }
             is ActionUiModel.Error -> {
                 ui.message?.log()
@@ -46,7 +49,7 @@ class FragmentUpdateSurvey1 : BaseUiFragment<Action, ActionUiModel, UpdateProper
                 .displayMinutes(false)
                 .displayHours(false)
                 .mainColor(resources.getColor(R.color.blue_01))
-//                .minDateRange(Date())                                     // for fix selected date to today date or after.
+//                .minDateRange(Date())                                      // for fix selected date to today date or after.
                 .title(resources.getString(R.string.label_date))
                 .curved()
                 .minutesStep(1)

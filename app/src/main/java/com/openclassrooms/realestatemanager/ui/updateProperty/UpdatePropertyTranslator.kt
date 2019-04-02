@@ -44,19 +44,10 @@ class UpdatePropertyTranslator : BaseTranslator<Action, ActionUiModel>() {
 
     private fun Observable<Action.GetPropertyForUpdate>.requestForGetPropertyForUpdate(): Observable<ActionUiModel> {
         return flatMap { action ->
-            Observable.just(action.property)
-                    .flatMap {property ->
-                        updateProperty.getProperty(property.pid)
-                                .flatMap {result ->
-                                    updateProperty.updateProperty(property.copy(pid = result.pid))
-
-                                }
-                    }
-            updateProperty.getProperty(action.property.pid)
+            updateProperty.updateProperty(action.property)
                     .map {
-                        ActionUiModel.GetPropertyModel(it)
+                        ActionUiModel.GetPropertyModelUpdate(it)
                     }
         }
     }
-
 }

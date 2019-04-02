@@ -13,7 +13,6 @@ object UpdatePropertyManager : UpdatePropertyRepository {
         return RealEstateDatabase.realEstateDatabase.propertyDao().getProperty(id)
                 .toObservable()
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
     }
 
     override fun updateProperty(updateProperty: Property): Observable<Int> {

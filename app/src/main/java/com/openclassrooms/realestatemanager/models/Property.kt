@@ -31,7 +31,7 @@ interface PropertyDao {
     @Query("Select * FROM Property")
     fun getAllProperty(): Single<List<Property>>
 
-    @Query("Select * FROM Property WHERE pid == :id")
+    @Query("Select * FROM Property WHERE pid = :id")
     fun getProperty(id: Int): Single<Property>
 
     @Insert
