@@ -1,4 +1,4 @@
-package com.openclassrooms.realestatemanager.ui.property
+package com.openclassrooms.realestatemanager.ui.updateProperty
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -15,7 +15,7 @@ import io.reactivex.subjects.Subject
 abstract class BaseTranslator<R, U> : ViewModel(), RepositoryComponent.Injectable {
     private val actions: Subject<R> = PublishSubject.create<R>()
 
-    private val state: Observable<U> = actions.flatMap { it ->
+    private val state: Observable<U> = actions.flatMap {
         Observable.just(it)
                 .publish {
                     it.reduce()

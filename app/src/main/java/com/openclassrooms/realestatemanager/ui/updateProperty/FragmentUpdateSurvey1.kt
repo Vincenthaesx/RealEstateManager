@@ -1,22 +1,19 @@
-package com.openclassrooms.realestatemanager.ui.property
+package com.openclassrooms.realestatemanager.ui.updateProperty
 
 import android.os.Bundle
 import android.view.View
-import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.widget.NestedScrollView
 import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
 import com.openclassrooms.realestatemanager.utils.log
-import kotlinx.android.synthetic.main.fragment_survey1.*
 import kotlinx.android.synthetic.main.row_new_property.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class FragmentUpdateSurvey1 : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>() {
+class FragmentUpdateSurvey1 : BaseUiFragment<Action, ActionUiModel, UpdatePropertyTranslator>() {
 
     override fun render(ui: ActionUiModel) {
         when (ui) {
@@ -37,11 +34,11 @@ class FragmentUpdateSurvey1 : BaseUiFragment<Action, ActionUiModel, PropertyTran
         }
     }
 
-    override fun translator(): PropertyTranslator = requireActivity().getViewModel()
+    override fun translator(): UpdatePropertyTranslator = requireActivity().getViewModel()
 
     override fun getLayout() = R.layout.fragment_survey1
 
-    var idProperty: Int = 0
+    private var idProperty: Int = 0
     private var entryDate: String = ""
     private var survey2: FragmentUpdateSurvey2 = FragmentUpdateSurvey2()
     private val datetimePicker: SingleDateAndTimePickerDialog by lazy {

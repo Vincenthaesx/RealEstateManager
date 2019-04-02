@@ -1,4 +1,4 @@
-package com.openclassrooms.realestatemanager.ui.property
+package com.openclassrooms.realestatemanager.ui.updateProperty
 
 import android.Manifest
 import android.content.DialogInterface
@@ -33,7 +33,7 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>() {
+class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdatePropertyTranslator>() {
 
     override fun render(ui: ActionUiModel) {
         when (ui) {
@@ -66,7 +66,7 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, PropertyTran
     private var listDescriptionImage: MutableList<String> = mutableListOf()
     private val pictureList: MutableList<String> = mutableListOf()
 
-    override fun translator(): PropertyTranslator = requireActivity().getViewModel()
+    override fun translator(): UpdatePropertyTranslator = requireActivity().getViewModel()
 
     override fun getLayout() = R.layout.fragment_survey2
 
