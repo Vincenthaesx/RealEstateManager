@@ -8,13 +8,13 @@
         android:id="@+id/txtClickOnPicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:text="@string/click_on_picture_for_add_a_new_description"
         android:textStyle="bold"
         android:visibility="gone"
-        android:layout_marginStart="10dp"
-        android:text="@string/click_on_picture_for_add_a_new_description"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewNewProperty"
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:text="@string/select_a_picture_for_property"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/imgButtonSelect"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:text="@string/numberOfRooms"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/edtRoomCount"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +73,7 @@
         app:layout_constraintBottom_toTopOf="@+id/edtBathroomsCount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/txtRoomCount"
+        app:layout_constraintStart_toEndOf="@+id/txtBathroomsCount"
         app:layout_constraintTop_toBottomOf="@+id/imgButtonSelect" />
 
     <TextView
@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:text="@string/numberOfBathrooms"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/edtBathroomsCount"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,7 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:text="@string/NumberOfBedrooms"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/edtBedroomsCount"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +124,7 @@
         app:layout_constraintBottom_toTopOf="@+id/validateNewProperty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/txtBedroomsCount"
+        app:layout_constraintStart_toEndOf="@+id/txtBathroomsCount"
         app:layout_constraintTop_toBottomOf="@+id/edtBathroomsCount" />
 
     <TextView
