@@ -22,6 +22,9 @@ import kotlinx.android.synthetic.main.row_image_detail.*
 class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>() {
 
     private var idProperty: Int = 0
+    private var markerLat: Double = 0.0
+    private var markerLng: Double = 0.0
+    private var locationAddress: String = ""
 
     override fun render(ui: ActionUiModel) {
         when (ui) {
@@ -41,20 +44,6 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
                     }
                 }
 
-                when {
-                    resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT -> {
-
-                    }
-                    resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE -> {
-                        GlideApp.with(this)
-                                .load(START_URL + ui.property.address + END_URL)
-                                .fitCenter()
-                                .override(300, 300)
-                                .into(imgMap)
-                    }
-                    else -> Log.e("TAG", "Error")
-                }
-
                 descriptionDetail.text = ui.property.description
 
                 surface.text = ui.property.surface
@@ -67,12 +56,37 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
 
                 location.text = ui.property.address
 
+                locationAddress = ui.property.address
+
+
+                if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    actions.onNext(Action.GetGeocoding(locationAddress))
+                }
             }
             is ActionUiModel.Error -> {
                 ui.message?.log()
             }
             is ActionUiModel.Loading -> {
                 fragment_property_detail_refresh.isRefreshing = ui.isLoading
+            }
+            is ActionUiModel.GetGeocodingModel -> {
+                markerLat = ui.result.results?.get(0)?.geometry?.location?.lat!!
+                markerLng = ui.result.results?.get(0)?.geometry?.location?.lng!!
+
+                when {
+                    resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT -> {
+
+                    }
+                    resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE -> {
+                        GlideApp.with(this)
+                                .load("$START_URL$markerLat,$markerLng&size=600x400&${Utils.API_KEY}")
+                                .fitCenter()
+                                .override(300, 300)
+                                .into(imgMap)
+                    }
+                    else -> Log.e("TAG", "Error")
+                }
+
             }
         }
     }
@@ -101,6 +115,7 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
         }
 
         configureRecyclerView()
+
         configureSwipeRefreshLayout()
     }
 
@@ -128,7 +143,6 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
 
     companion object {
         private const val ID_PROPERTY = "idProperty"
-        private const val START_URL = "https://maps.googleapis.com/maps/api/staticmap?center="
-        private const val END_URL = "&zoom=19&size=600x400&maptype=roadmap&${Utils.API_KEY}"
+        private const val START_URL = "https://maps.googleapis.com/maps/api/staticmap?zoom=19&markers="
     }
 }

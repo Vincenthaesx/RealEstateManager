@@ -86,6 +86,10 @@ dependencies {
 
     implementation 'com.orhanobut:logger:2.2.0'
 
+    // google map
+    implementation "com.google.android.gms:play-services-maps:16.1.0"
+    implementation 'com.google.maps.android:android-maps-utils:0.4.4'
+
 }
 repositories {
     mavenCentral()

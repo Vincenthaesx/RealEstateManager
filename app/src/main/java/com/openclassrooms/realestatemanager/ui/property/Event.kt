@@ -9,7 +9,7 @@ sealed class Action {
 
     class GetProperty(val id: Int) : Action()
 
-    class GetGeocoding(val address : String) : Action()
+    class GetGeocoding(val address: String) : Action()
 }
 
 sealed class ActionUiModel {
@@ -23,5 +23,4 @@ sealed class ActionUiModel {
     class GetPropertyModel(val property: Property) : ActionUiModel()
 
     class GetGeocodingModel(val result: ResultGeocoding) : ActionUiModel()
-
 }

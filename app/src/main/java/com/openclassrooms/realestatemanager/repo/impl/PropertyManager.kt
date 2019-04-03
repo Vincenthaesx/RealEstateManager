@@ -15,7 +15,6 @@ object PropertyManager : PropertyRepository {
         val geocodeService = Service.retrofitS.create(Service::class.java)
 
         return geocodeService.getGeocoding(address)
-                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 

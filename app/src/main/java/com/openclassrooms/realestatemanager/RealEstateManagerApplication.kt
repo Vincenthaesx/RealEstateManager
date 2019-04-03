@@ -19,15 +19,16 @@ class RealEstateManagerApplication : Application() {
 
         repoComponent = DaggerRepositoryComponent.builder().repositoryModule(RepositoryModule)
                 .build()
+
     }
 
     companion object {
         lateinit var repoComponent: RepositoryComponent
 
-        private var instance: RealEstateManagerApplication? = null
+        private lateinit var instance: RealEstateManagerApplication
 
         fun applicationContext(): Context {
-            return instance!!.applicationContext
+            return instance.applicationContext
         }
 
     }
