@@ -87,9 +87,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.buttonAdd -> {
-                openActivity<NewProperty>()
-            }
             R.id.buttonSearch -> {
 
             }

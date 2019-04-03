@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager.ui.property
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
+import com.openclassrooms.realestatemanager.ui.map.MapActivity
+import com.openclassrooms.realestatemanager.ui.newProperty.NewProperty
 import com.openclassrooms.realestatemanager.utils.GlideApp
 import com.openclassrooms.realestatemanager.utils.log
 import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
@@ -86,6 +89,21 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
         configureRecyclerView()
         configureSwipeRefreshLayout()
 
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            btnAddNewProperty.visibility = View.GONE
+            btnMapFragment.visibility = View.GONE
+        } else {
+            btnMapFragment.setOnClickListener {
+                val intent = Intent(activity, MapActivity::class.java)
+                startActivity(intent)
+            }
+
+            btnAddNewProperty.setImageResource(R.drawable.button_add)
+            btnAddNewProperty.setOnClickListener {
+                val intent = Intent(activity, NewProperty::class.java)
+                startActivity(intent)
+            }
+        }
     }
 
     override fun onDestroy() {
