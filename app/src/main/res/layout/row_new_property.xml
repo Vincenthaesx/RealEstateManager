@@ -4,185 +4,167 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtType"
-        android:layout_width="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/type_of_property"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/edtType"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/type_of_property"
+        app:errorEnabled="true"
+        app:helperTextEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/edtType" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/edtType"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:hint="@string/choose_a_property_type"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@id/edtDescription"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/txtAddress"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2" />
 
-    <TextView
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtSurface"
-        android:layout_width="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/surface_of_property"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/edtSurface"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/surface_of_property"
+        app:errorEnabled="true"
+        app:helperTextEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/edtSurface" />
+        app:layout_constraintTop_toBottomOf="@id/txtType">
 
-    <EditText
-        android:id="@+id/edtSurface"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:hint="@string/choose_surface_of_property"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/edtAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/txtAddress"
-        app:layout_constraintTop_toBottomOf="@+id/edtDescription" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtSurface"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2" />
 
-    <TextView
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtDescription"
-        android:layout_width="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/Description"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/edtDescription"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/Description"
+        app:errorEnabled="true"
+        app:helperTextEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/edtDescription" />
+        app:layout_constraintTop_toBottomOf="@id/txtSurface">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="3" />
 
-    <EditText
-        android:id="@+id/edtDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:hint="@string/describe_the_property"
-        android:inputType="textMultiLine"
-        android:maxLines="4"
-        android:scrollbars="vertical"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@id/edtSurface"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtAddress"
-        app:layout_constraintTop_toBottomOf="@+id/edtType" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtAddress"
-        android:layout_width="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/address_of_the_property"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/edtAddress"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/address_of_the_property"
+        app:errorEnabled="true"
+        app:helperTextEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/edtAddress" />
+        app:layout_constraintTop_toBottomOf="@id/txtDescription">
 
-    <EditText
-        android:id="@+id/edtAddress"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:hint="@string/choose_a_property_address"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@id/edtPrice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/txtAddress"
-        app:layout_constraintTop_toBottomOf="@+id/edtSurface" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2" />
 
-    <TextView
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtPrice"
-        android:layout_width="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/price_of_property"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/edtPrice"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/price_of_property"
+        app:errorEnabled="true"
+        app:helperTextEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/edtPrice" />
+        app:layout_constraintTop_toBottomOf="@id/txtAddress">
 
-    <EditText
-        android:id="@+id/edtPrice"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:hint="@string/choose_price_for_property"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@id/txtNumberDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/txtAddress"
-        app:layout_constraintTop_toBottomOf="@+id/edtAddress" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/txtEntryDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/entry_date"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/txtNumberDate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/txtNumberDate" />
+        app:layout_constraintTop_toBottomOf="@id/txtAgent" />
 
     <TextView
         android:id="@+id/txtNumberDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/jj_mm_yyyy"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@id/edtAgent"
+        app:layout_constraintBottom_toBottomOf="@id/txtEntryDate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/txtAddress"
-        app:layout_constraintTop_toBottomOf="@+id/edtPrice" />
+        app:layout_constraintTop_toTopOf="@+id/txtEntryDate" />
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtAgent"
-        android:layout_width="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/agent"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/edtAgent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/agent"
+        app:errorEnabled="true"
+        app:helperTextEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/edtAgent" />
+        app:layout_constraintTop_toBottomOf="@id/txtPrice">
 
-    <EditText
-        android:id="@+id/edtAgent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:hint="@string/enter_your_name"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@id/nextProperty"
-        app:layout_constraintStart_toEndOf="@id/txtAddress"
-        app:layout_constraintTop_toBottomOf="@+id/txtNumberDate" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtAgent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/nextProperty"
         android:layout_width="80dp"
         android:layout_height="50dp"
-        android:layout_marginTop="25dp"
         android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
         android:background="@color/blue"
         android:gravity="center"
         android:text="@string/next"
@@ -192,6 +174,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtAgent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEntryDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

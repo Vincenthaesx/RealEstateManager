@@ -83,7 +83,7 @@ class FragmentUpdateSurvey1 : BaseUiFragment<Action, ActionUiModel, UpdateProper
 
         nextProperty.setOnClickListener {
 
-            if (edtType.text.isNotEmpty() && edtAddress.text.isNotEmpty() && edtPrice.text.isNotEmpty() && edtSurface.text.isNotEmpty() && edtDescription.text.isNotEmpty() && edtAgent.text.isNotEmpty() && entryDate.isNotEmpty()) {
+            if (edtType.text!!.isNotEmpty() && edtAddress.text!!.isNotEmpty() && edtPrice.text!!.isNotEmpty() && edtSurface.text!!.isNotEmpty() && edtDescription.text!!.isNotEmpty() && edtAgent.text!!.isNotEmpty() && entryDate.isNotEmpty()) {
                 val type = edtType.text.toString()
                 val address = edtAddress.text.toString()
                 val price = edtPrice.text.toString()
