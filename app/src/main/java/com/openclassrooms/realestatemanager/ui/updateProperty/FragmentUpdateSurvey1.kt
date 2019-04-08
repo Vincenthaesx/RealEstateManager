@@ -8,6 +8,7 @@ import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePick
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
+import com.openclassrooms.realestatemanager.utils.Utils.onTouch
 import com.openclassrooms.realestatemanager.utils.log
 import kotlinx.android.synthetic.main.row_new_property.*
 import java.text.SimpleDateFormat
@@ -19,13 +20,17 @@ class FragmentUpdateSurvey1 : BaseUiFragment<Action, ActionUiModel, UpdateProper
         when (ui) {
             is ActionUiModel.GetPropertyModel -> {
 
+                onTouch(edtType)
+                onTouch(edtDescription)
+                onTouch(edtAddress)
+
                 edtType.setText(ui.property.type)
                 edtDescription.setText(ui.property.description)
                 edtSurface.setText(ui.property.surface)
                 edtAddress.setText(ui.property.address)
                 edtPrice.setText(ui.property.price)
 
-                val myFormat = "dd-MM-yyyy"                                 // mention the format you need
+                val myFormat = "dd-MM-yyyy"
                 val sdf = SimpleDateFormat(myFormat, Locale.US)
                 txtNumberDate.text = sdf.format(ui.property.entryDate.time)
 

@@ -20,17 +20,17 @@
         android:id="@+id/recyclerViewNewProperty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
         app:layout_constraintBottom_toTopOf="@id/imgButtonSelect"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/txtClickOnPicture" />
 
     <TextView
         android:id="@+id/txtImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="16dp"
         android:text="@string/select_a_picture_for_property"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -43,89 +43,82 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="25dp"
+        android:background="#FFFF"
         android:src="@drawable/button_add_picture"
-        app:layout_constraintBottom_toTopOf="@+id/edtRoomCount"
+        app:layout_constraintBottom_toTopOf="@+id/txtRoomCount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerViewNewProperty" />
 
-
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtRoomCount"
-        android:layout_width="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:text="@string/numberOfRooms"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/edtRoomCount"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/numberOfRooms"
+        app:errorEnabled="true"
+        app:helperTextEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/edtRoomCount" />
+        app:layout_constraintTop_toBottomOf="@+id/imgButtonSelect">
 
-    <EditText
-        android:id="@+id/edtRoomCount"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:hint="@string/choose_number_of_rooms"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/edtBathroomsCount"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/txtBathroomsCount"
-        app:layout_constraintTop_toBottomOf="@+id/imgButtonSelect" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtRoomCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:inputType="number"/>
 
-    <TextView
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtBathroomsCount"
-        android:layout_width="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:text="@string/numberOfBathrooms"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/edtBathroomsCount"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/numberOfBathrooms"
+        app:errorEnabled="true"
+        app:helperTextEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/edtBathroomsCount" />
+        app:layout_constraintTop_toBottomOf="@+id/txtRoomCount">
 
-    <EditText
-        android:id="@+id/edtBathroomsCount"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:hint="@string/choose_number_of_bathrooms"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/edtBedroomsCount"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/txtBathroomsCount"
-        app:layout_constraintTop_toBottomOf="@+id/edtRoomCount" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtBathroomsCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:inputType="number"/>
 
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtBedroomsCount"
-        android:layout_width="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:text="@string/NumberOfBedrooms"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/edtBedroomsCount"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/NumberOfBedrooms"
+        app:errorEnabled="true"
+        app:helperTextEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/edtBedroomsCount" />
+        app:layout_constraintTop_toBottomOf="@+id/txtBathroomsCount">
 
-    <EditText
-        android:id="@+id/edtBedroomsCount"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:hint="@string/choose_number_of_bedrooms"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/validateNewProperty"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/txtBathroomsCount"
-        app:layout_constraintTop_toBottomOf="@+id/edtBathroomsCount" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtBedroomsCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:inputType="number"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/validateNewProperty"
@@ -143,6 +136,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtBedroomsCount" />
+        app:layout_constraintTop_toBottomOf="@+id/txtBedroomsCount" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.utils.Utils.onTouch
 import kotlinx.android.synthetic.main.row_new_property.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -47,6 +48,10 @@ class FragmentSurvey1 : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        onTouch(edtType)
+        onTouch(edtDescription)
+        onTouch(edtAddress)
 
         txtNumberDate.setOnClickListener {
 

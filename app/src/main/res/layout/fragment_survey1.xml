@@ -7,12 +7,12 @@
     android:orientation="vertical"
     tools:context=".ui.newProperty.NewProperty">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <include layout="@layout/row_new_property" />
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

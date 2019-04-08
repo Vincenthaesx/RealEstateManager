@@ -1,5 +1,7 @@
 package com.openclassrooms.realestatemanager.utils
 
+import android.view.MotionEvent
+import android.widget.EditText
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -33,6 +35,16 @@ object Utils {
      */
     fun convertDollarToEuro(dollars: Int): Int {
         return Math.round(dollars * 0.812).toInt()
+    }
+
+    fun onTouch(button: EditText) {
+        button.setOnTouchListener { view, event ->
+            view.parent.requestDisallowInterceptTouchEvent(true)
+            if ((event.action and MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {
+                view.parent.requestDisallowInterceptTouchEvent(false)
+            }
+            return@setOnTouchListener false
+        }
     }
 
 }

@@ -22,7 +22,10 @@
             android:id="@+id/edtType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="2" />
+            android:maxLines="2"
+            android:overScrollMode="always"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -44,7 +47,7 @@
             android:id="@+id/edtSurface"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="2" />
+            android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,7 +69,10 @@
             android:id="@+id/edtDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="3" />
+            android:maxLines="3"
+            android:overScrollMode="always"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,7 +94,10 @@
             android:id="@+id/edtAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="2" />
+            android:maxLines="2"
+            android:overScrollMode="always"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

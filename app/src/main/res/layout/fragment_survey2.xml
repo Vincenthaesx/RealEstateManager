@@ -6,6 +6,12 @@
     android:background="@drawable/thumbnail_light"
     tools:context=".ui.newProperty.NewProperty">
 
-    <include layout="@layout/row_new_property1" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/row_new_property1" />
+
+    </ScrollView>
 
 </LinearLayout>
