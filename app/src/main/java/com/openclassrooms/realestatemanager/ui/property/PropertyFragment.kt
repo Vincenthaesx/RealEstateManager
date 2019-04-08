@@ -98,7 +98,6 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
                 startActivity(intent)
             }
 
-            btnAddNewProperty.setImageResource(R.drawable.button_add)
             btnAddNewProperty.setOnClickListener {
                 val intent = Intent(activity, NewProperty::class.java)
                 startActivity(intent)
