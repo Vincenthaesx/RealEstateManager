@@ -56,6 +56,7 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
                             bundle.putInt("id", property.pid)
 
                             propertyDetailFragment.arguments = bundle
+
                             fragmentManager?.beginTransaction()
                                     ?.replace(R.id.activity_main_frame_propertyDetail, propertyDetailFragment)
                                     ?.addToBackStack(null)
