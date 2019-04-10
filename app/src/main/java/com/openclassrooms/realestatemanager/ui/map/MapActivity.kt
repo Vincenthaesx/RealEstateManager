@@ -8,6 +8,7 @@ import android.location.Geocoder
 import android.location.Location
 import android.location.LocationListener
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -28,12 +29,15 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
     private lateinit var myMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
+
     private lateinit var locationAddress: List<String>
+    private lateinit var idProperty: List<Int>
 
     override fun render(ui: ActionUiModel) {
         when (ui) {
             is ActionUiModel.GetAllPropertyModel -> {
                 locationAddress = ui.listProperty.map { it.address }
+                idProperty = ui.listProperty.map { it.pid }
             }
         }
     }
@@ -64,26 +68,24 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
         setUpMap()
     }
 
-    private fun getLocationFromAddress(context: Context, strAddress: String): LatLng? {
+    private fun getLocationFromAddress(context: Context, strAddress: String): List<LatLng?> {
         val coder = Geocoder(context)
         val address: List<Address>?
-        var p1: LatLng? = null
 
         try {
-            address = coder.getFromLocationName(strAddress, 10)
+            address = coder.getFromLocationName(strAddress, 3)
             if (address == null) {
-                return null
+                return listOf(null)
             }
-            val location = address[0]
-            location.latitude
-            location.longitude
 
-            p1 = LatLng(location.latitude, location.longitude)
+            return address.map {
+                LatLng(it.latitude, it.longitude)
+            }
         } catch (e: Exception) {
             e.printStackTrace()
+            return emptyList()
         }
 
-        return p1
 
     }
 
@@ -101,17 +103,31 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
             if (location != null) {
                 lastLocation = location
                 val currentLatLng = LatLng(location.latitude, location.longitude)
+                val options = MarkerOptions()
 
-                val address = getLocationFromAddress(this, locationAddress.toString())
-                myMap.addMarker(address?.let { MarkerOptions().position(it) })
+                val address = locationAddress.map {
+                    getLocationFromAddress(this, it).firstOrNull()
+                }
+
+                for (point in address) {
+                    myMap.addMarker(point?.let { options.position(it) }).apply {
+                        tag = idProperty
+                    }
+                }
 
                 myMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12f))
             }
         }
     }
 
-    override fun onMarkerClick(position: Marker?): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onMarkerClick(marker: Marker?): Boolean {
+        return if (marker?.tag != null) {
+            Log.e("TAG", "onClickMarker: " + marker.tag!!)
+            true
+        } else {
+            Log.e("TAG", "onClickMarker: ERROR NO TAG")
+            false
+        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int,
