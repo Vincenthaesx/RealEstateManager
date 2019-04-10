@@ -2,7 +2,6 @@ package com.openclassrooms.realestatemanager.ui.map
 
 import com.openclassrooms.realestatemanager.di.RepositoryComponent
 import com.openclassrooms.realestatemanager.repo.MapRepository
-import com.openclassrooms.realestatemanager.repo.NewPropertyRepository
 import com.openclassrooms.realestatemanager.ui.base.BaseTranslator
 import com.openclassrooms.realestatemanager.utils.log
 import io.reactivex.Observable
@@ -39,10 +38,6 @@ class MapTranslator : BaseTranslator<Action, ActionUiModel>() {
                     .map<ActionUiModel> { action ->
                         ActionUiModel.GetAllPropertyModel(action)
                     }
-                    .startWith(ActionUiModel.Loading(true))
-                    .concatWith(Observable.just(ActionUiModel.Loading(false)))
         }
     }
-
-
 }

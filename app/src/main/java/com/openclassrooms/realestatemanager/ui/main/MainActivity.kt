@@ -14,12 +14,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.ui.newProperty.NewProperty
 import com.openclassrooms.realestatemanager.ui.property.PropertyFragment
 import com.openclassrooms.realestatemanager.utils.addFragment
-import com.openclassrooms.realestatemanager.utils.openActivity
 import io.reactivex.disposables.CompositeDisposable
-
 
 class MainActivity : AppCompatActivity() {
 

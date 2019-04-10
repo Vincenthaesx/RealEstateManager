@@ -5,6 +5,7 @@ import com.openclassrooms.realestatemanager.models.Property
 sealed class Action {
 
     class GetAllProperty() : Action()
+
 }
 
 sealed class ActionUiModel {
@@ -13,5 +14,4 @@ sealed class ActionUiModel {
 
     class Error(val message: String?) : ActionUiModel()
 
-    class Loading(val isLoading: Boolean) : ActionUiModel()
 }

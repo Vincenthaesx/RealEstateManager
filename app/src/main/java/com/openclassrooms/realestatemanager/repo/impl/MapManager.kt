@@ -15,5 +15,4 @@ object MapManager : MapRepository {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
-
 }

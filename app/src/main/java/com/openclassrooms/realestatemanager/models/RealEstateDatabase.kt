@@ -41,7 +41,7 @@ abstract class RealEstateDatabase : RoomDatabase() {
                     val gson = Gson()
 
                     contentValues.put("type", "House")
-                    contentValues.put("address", "7 Rue aux Moutons, 28270 Brezolles")
+                    contentValues.put("address", "2 Rue aux Moutons 28270 Brezolles")
                     contentValues.put("price", "$256 976")
                     contentValues.put("surface", "107 m²")
                     contentValues.put("roomsCount", 6)
@@ -56,7 +56,7 @@ abstract class RealEstateDatabase : RoomDatabase() {
                     contentValues.put("agent", "Vincent")
                     // -------------------
                     contentValues1.put("type", "Palace")
-                    contentValues1.put("address", "12 Champs Elysee, 95000 Paris")
+                    contentValues1.put("address", "24 Rue Saint-Dominique 75007 Paris")
                     contentValues1.put("price", "$552 000")
                     contentValues1.put("surface", "185 m²")
                     contentValues1.put("roomsCount", 12)

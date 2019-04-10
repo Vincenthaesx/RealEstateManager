@@ -1,12 +1,14 @@
 package com.openclassrooms.realestatemanager.ui.map
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
 import android.location.Location
 import android.location.LocationListener
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -18,22 +20,35 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.ui.base.BaseUiActivity
+import com.openclassrooms.realestatemanager.ui.base.getViewModel
 
-class MapActivity : AppCompatActivity(), LocationListener, OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), LocationListener, OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private lateinit var myMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
+    private lateinit var locationAddress: List<String>
+
+    override fun render(ui: ActionUiModel) {
+        when (ui) {
+            is ActionUiModel.GetAllPropertyModel -> {
+                locationAddress = ui.listProperty.map { it.address }
+            }
+        }
+    }
+
+    override fun translator(): MapTranslator = getViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.map_fragment)
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
         requestPermission()
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment?
-        mapFragment?.getMapAsync(this)
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        actions.onNext(Action.GetAllProperty())
+
     }
 
     private fun requestPermission() {
@@ -44,10 +59,32 @@ class MapActivity : AppCompatActivity(), LocationListener, OnMapReadyCallback, G
     override fun onMapReady(googleMap: GoogleMap) {
         myMap = googleMap
 
-        myMap.uiSettings.isZoomControlsEnabled = true
         myMap.setOnMarkerClickListener(this)
 
         setUpMap()
+    }
+
+    private fun getLocationFromAddress(context: Context, strAddress: String): LatLng? {
+        val coder = Geocoder(context)
+        val address: List<Address>?
+        var p1: LatLng? = null
+
+        try {
+            address = coder.getFromLocationName(strAddress, 10)
+            if (address == null) {
+                return null
+            }
+            val location = address[0]
+            location.latitude
+            location.longitude
+
+            p1 = LatLng(location.latitude, location.longitude)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return p1
+
     }
 
     private fun setUpMap() {
@@ -64,19 +101,16 @@ class MapActivity : AppCompatActivity(), LocationListener, OnMapReadyCallback, G
             if (location != null) {
                 lastLocation = location
                 val currentLatLng = LatLng(location.latitude, location.longitude)
-                placeMarkerOnMap(currentLatLng)
+
+                val address = getLocationFromAddress(this, locationAddress.toString())
+                myMap.addMarker(address?.let { MarkerOptions().position(it) })
+
                 myMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12f))
             }
         }
     }
 
-    private fun placeMarkerOnMap(location: LatLng) {
-        val markerOptions = MarkerOptions().position(location)
-
-        myMap.addMarker(markerOptions)
-    }
-
-    override fun onMarkerClick(p0: Marker?): Boolean {
+    override fun onMarkerClick(position: Marker?): Boolean {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
@@ -91,7 +125,8 @@ class MapActivity : AppCompatActivity(), LocationListener, OnMapReadyCallback, G
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED
                         && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
 
-                    Toast.makeText(this, "Permission granted!", Toast.LENGTH_LONG).show()
+                    val mapFragment = supportFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment?
+                    mapFragment?.getMapAsync(this)
 
                 } else {
                     Toast.makeText(this, "Permission denied!", Toast.LENGTH_LONG).show()
