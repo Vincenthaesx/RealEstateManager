@@ -10,12 +10,14 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.models.Property
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
@@ -26,7 +28,8 @@ import com.openclassrooms.realestatemanager.utils.log
 import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import kotlinx.android.synthetic.main.alert_label_edit_text.view.*
 import kotlinx.android.synthetic.main.row_image_detail.*
-import kotlinx.android.synthetic.main.row_new_property1.*
+import kotlinx.android.synthetic.main.row_new_property.*
+import kotlinx.android.synthetic.main.row_update_property.*
 import java.io.File
 import java.io.FileOutputStream
 import java.text.ParseException
@@ -61,14 +64,35 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdateProper
     private lateinit var description: String
     private lateinit var agent: String
     private lateinit var entryDate: String
+    private var soldDate: Date? = null
     private lateinit var date: Date
+    private val datetimePicker: SingleDateAndTimePickerDialog by lazy {
+        SingleDateAndTimePickerDialog.Builder(context)
+                .displayMinutes(false)
+                .displayHours(false)
+                .mainColor(resources.getColor(R.color.blue_01))
+                .minDateRange(Date())
+                .title(resources.getString(R.string.label_date))
+                .curved()
+                .minutesStep(1)
+                .listener { date ->
+                    val textView: TextView = txtNumberDateUpdate
+                    textView.text = SimpleDateFormat("dd.MM.yyyy").format(System.currentTimeMillis())
+                    val myFormat = "dd-MM-yyyy" // mention the format you need
+                    val sdf = SimpleDateFormat(myFormat, Locale.US)
+
+                    soldDate = date
+                    textView.text = sdf.format(date.time)
+                }
+                .build()
+    }
 
     private var listDescriptionImage: MutableList<String> = mutableListOf()
     private val pictureList: MutableList<String> = mutableListOf()
 
     override fun translator(): UpdatePropertyTranslator = requireActivity().getViewModel()
 
-    override fun getLayout() = R.layout.fragment_survey2
+    override fun getLayout() = R.layout.fragment_survey_update
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -89,6 +113,12 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdateProper
             agent = bundle.getString(AGENT)
             entryDate = bundle.getString(DATE)
             idProperty = bundle.getInt(ID_PROPERTY)
+        }
+
+        txtNumberDateUpdate.setOnClickListener {
+            if (!datetimePicker.isDisplaying) {
+                datetimePicker.display()
+            }
         }
 
         configureRecyclerView()
@@ -259,16 +289,27 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdateProper
         } else {
             Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
         }
+        val dateSold: Date?
 
-        val status = true
-        val saleDate = null
+        val status: Boolean = !checkboxSell.isChecked
+        if (checkboxSell.isChecked) {
+            dateSold = soldDate
+        } else {
+            dateSold = null
+        }
 
-        val property = Property(idProperty, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pictureList, listDescriptionImage, status, date, saleDate, agent)
+        val property = Property(idProperty, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pictureList, listDescriptionImage, status, date, dateSold, agent)
 
         if (pictureList.isNotEmpty() && listDescriptionImage.isNotEmpty() && pictureList.size == listDescriptionImage.size && roomsCount != 0 && bedroomsCount != 0 && bathroomsCount != 0) {
-            actions.onNext(Action.GetPropertyForUpdate(property))
-            val intent = Intent(activity, MainActivity::class.java)
-            startActivity(intent)
+            if (checkboxSell.isChecked && dateSold == null) {
+                Toast.makeText(activity, "Please enter date to sold", Toast.LENGTH_SHORT).show()
+            } else if (dateSold.toString().isNotEmpty() && !checkboxSell.isChecked) {
+                Toast.makeText(activity, "Please check the checkbox for sold the property", Toast.LENGTH_SHORT).show()
+            } else {
+                actions.onNext(Action.GetPropertyForUpdate(property))
+                val intent = Intent(activity, MainActivity::class.java)
+                startActivity(intent)
+            }
         } else {
             Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
         }

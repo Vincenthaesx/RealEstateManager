@@ -141,7 +141,7 @@
         app:layout_constraintTop_toBottomOf="@id/txtCheckBoxSell"/>
 
     <TextView
-        android:id="@+id/txtEntryDate"
+        android:id="@+id/txtSoldDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -150,11 +150,11 @@
         android:layout_marginEnd="10dp"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@id/txtNumberDate"
+        app:layout_constraintEnd_toStartOf="@id/txtNumberDateUpdate"
         app:layout_constraintTop_toBottomOf="@id/txtBedroomsCount" />
 
     <TextView
-        android:id="@+id/txtNumberDate"
+        android:id="@+id/txtNumberDateUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -162,24 +162,24 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@id/txtEntryDate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txtEntryDate" />
+        app:layout_constraintTop_toTopOf="@+id/txtSoldDate" />
 
-    <!--<TextView-->
-        <!--android:id="@+id/validateNewProperty"-->
-        <!--android:layout_width="80dp"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:layout_marginTop="20dp"-->
-        <!--android:layout_marginBottom="20dp"-->
-        <!--android:background="@color/validate"-->
-        <!--android:gravity="center"-->
-        <!--android:text="@string/save"-->
-        <!--android:textColor="#FFF"-->
-        <!--android:textSize="20sp"-->
-        <!--android:textStyle="bold"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintHorizontal_bias="0.5"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/txtBedroomsCount" />-->
+    <TextView
+        android:id="@+id/validateNewProperty"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/validate"
+        android:gravity="center"
+        android:text="@string/save"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkboxSell" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
