@@ -5,8 +5,8 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="floatingActionButtonStyle">@style/Widget.Design.FloatingActionButton</item>
-        <item name="colorPrimaryDark">@color/top</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/topTheme</item>
+        <item name="colorAccent">@color/white</item>
     </style>
 
     <!-- Toolbar theme. -->

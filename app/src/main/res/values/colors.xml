@@ -7,7 +7,8 @@
     <color name="view">#909090</color>*
 
     <color name="top">#838084</color>
-    <color name="toolbar">#b3b1b4</color>
+    <color name="toolbar">#1E88E5</color>
+    <color name="topTheme">#1565C0</color>
     <color name="base">#908d91</color>
     <color name="red">#ce0018</color>
     <color name="validate">#57d53b</color>
