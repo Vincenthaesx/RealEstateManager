@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -58,8 +57,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:hint="@string/numberOfRooms"
         app:errorEnabled="true"
         app:helperTextEnabled="true"
@@ -70,8 +69,8 @@
             android:id="@+id/edtRoomCount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:inputType="number"/>
+            android:inputType="number"
+            android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,8 +80,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:hint="@string/numberOfBathrooms"
         app:errorEnabled="true"
         app:helperTextEnabled="true"
@@ -93,8 +92,8 @@
             android:id="@+id/edtBathroomsCount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:inputType="number"/>
+            android:inputType="number"
+            android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,8 +103,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:hint="@string/NumberOfBedrooms"
         app:errorEnabled="true"
         app:helperTextEnabled="true"
@@ -116,38 +115,19 @@
             android:id="@+id/edtBedroomsCount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:inputType="number"/>
+            android:inputType="number"
+            android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/txtCheckBoxSell"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sold"
-        android:layout_marginStart="16dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/txtBedroomsCount"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <CheckBox
-        android:id="@+id/checkboxSell"
-        android:layout_width="30dp"
-        android:layout_height="25dp"
-        app:layout_constraintStart_toStartOf="@id/txtCheckBoxSell"
-        app:layout_constraintEnd_toEndOf="@id/txtCheckBoxSell"
-        app:layout_constraintTop_toBottomOf="@id/txtCheckBoxSell"/>
 
     <TextView
         android:id="@+id/txtSoldDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:text="Sold date :"
-        android:layout_marginEnd="10dp"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/txtNumberDateUpdate"
@@ -160,7 +140,7 @@
         android:layout_marginEnd="16dp"
         android:text="@string/jj_mm_yyyy"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@id/txtEntryDate"
+        app:layout_constraintBottom_toBottomOf="@id/txtSoldDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtSoldDate" />
 
@@ -176,8 +156,8 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtSoldDate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -39,6 +39,10 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
 
                     property_price.text = property.price
 
+                    if (!property.status) {
+                        image_property_sold.visibility = View.VISIBLE
+                    }
+
                     when {
                         resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT -> itemView.setOnClickListener {
 

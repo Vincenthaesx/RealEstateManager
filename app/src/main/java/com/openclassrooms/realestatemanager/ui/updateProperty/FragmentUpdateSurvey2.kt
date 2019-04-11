@@ -288,27 +288,18 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdateProper
         } else {
             Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
         }
-        val dateSold: Date?
+        var status = true
 
-        val status: Boolean = !checkboxSell.isChecked
-        if (checkboxSell.isChecked) {
-            dateSold = soldDate
-        } else {
-            dateSold = null
+        if (soldDate != null) {
+            status = false
         }
 
-        val property = Property(idProperty, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pictureList, listDescriptionImage, status, date, dateSold, agent)
+        val property = Property(idProperty, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pictureList, listDescriptionImage, status, date, soldDate, agent)
 
         if (pictureList.isNotEmpty() && listDescriptionImage.isNotEmpty() && pictureList.size == listDescriptionImage.size && roomsCount != 0 && bedroomsCount != 0 && bathroomsCount != 0) {
-            if (checkboxSell.isChecked && dateSold == null) {
-                Toast.makeText(activity, "Please enter date to sold", Toast.LENGTH_SHORT).show()
-            } else if (dateSold.toString().isNotEmpty() && !checkboxSell.isChecked) {
-                Toast.makeText(activity, "Please check the checkbox for sold the property", Toast.LENGTH_SHORT).show()
-            } else {
-                actions.onNext(Action.GetPropertyForUpdate(property))
-                val intent = Intent(activity, MainActivity::class.java)
-                startActivity(intent)
-            }
+            actions.onNext(Action.GetPropertyForUpdate(property))
+            val intent = Intent(activity, MainActivity::class.java)
+            startActivity(intent)
         } else {
             Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
         }
