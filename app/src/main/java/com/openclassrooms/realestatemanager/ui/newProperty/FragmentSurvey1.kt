@@ -23,7 +23,6 @@ class FragmentSurvey1 : Fragment() {
                 .displayMinutes(false)
                 .displayHours(false)
                 .mainColor(resources.getColor(R.color.blue_01))
-//                .minDateRange(Date())                                     // for fix selected date to today date or after.
                 .title(resources.getString(R.string.label_date))
                 .curved()
                 .minutesStep(1)

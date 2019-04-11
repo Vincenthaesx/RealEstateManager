@@ -28,7 +28,6 @@ import com.openclassrooms.realestatemanager.utils.log
 import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import kotlinx.android.synthetic.main.alert_label_edit_text.view.*
 import kotlinx.android.synthetic.main.row_image_detail.*
-import kotlinx.android.synthetic.main.row_new_property.*
 import kotlinx.android.synthetic.main.row_update_property.*
 import java.io.File
 import java.io.FileOutputStream

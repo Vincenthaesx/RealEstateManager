@@ -23,6 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiActivity
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
+import kotlinx.android.synthetic.main.map_fragment.*
 
 class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), LocationListener, OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
@@ -63,6 +64,8 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
     override fun onMapReady(googleMap: GoogleMap) {
         myMap = googleMap
 
+        myMap.uiSettings.isRotateGesturesEnabled = true
+
         myMap.setOnMarkerClickListener(this)
 
         setUpMap()
@@ -75,7 +78,7 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
         try {
             address = coder.getFromLocationName(strAddress, 3)
             if (address == null) {
-                return listOf(null)
+                return emptyList()
             }
 
             return address.map {
@@ -85,8 +88,6 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
             e.printStackTrace()
             return emptyList()
         }
-
-
     }
 
     private fun setUpMap() {
@@ -98,6 +99,7 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
         }
 
         myMap.isMyLocationEnabled = true
+        myMap.uiSettings.isMyLocationButtonEnabled = false
 
         fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
             if (location != null) {
@@ -115,6 +117,9 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
                     }
                 }
 
+                imgMyLocation.setOnClickListener {
+                    myMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12f))
+                }
                 myMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12f))
             }
         }

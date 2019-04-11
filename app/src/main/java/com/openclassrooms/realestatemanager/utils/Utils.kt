@@ -1,5 +1,7 @@
 package com.openclassrooms.realestatemanager.utils
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.view.MotionEvent
 import android.widget.EditText
 import java.text.SimpleDateFormat
@@ -7,25 +9,7 @@ import java.util.*
 
 object Utils {
 
-    private const val dateFormat = "dd/MM/yyyy"
-
     const val API_KEY = "key=AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM"
-
-    /**
-     * Conversion de la date d'aujourd'hui en un format plus approprié
-     * NOTE : NE PAS SUPPRIMER, A MONTRER DURANT LA SOUTENANCE
-     * @return
-     */
-//    val todayDate: String
-//        get() {
-//            val dateFormat = SimpleDateFormat("yyyy/MM/dd")
-//            return dateFormat.format(Date())
-//        }
-
-    fun getTodayDate(): String {
-        val df = SimpleDateFormat(dateFormat, Locale.getDefault())
-        return df.format(Date())
-    }
 
     /**
      * Conversion d'un prix d'un bien immobilier (Dollars vers Euros)
@@ -35,6 +19,33 @@ object Utils {
      */
     fun convertDollarToEuro(dollars: Int): Int {
         return Math.round(dollars * 0.812).toInt()
+    }
+
+    fun convertEuroToDollar(euro: Int): Int {
+        return Math.round(euro * 1.142).toInt()
+    }
+
+    /**
+     * Conversion de la date d'aujourd'hui en un format plus approprié
+     * NOTE : NE PAS SUPPRIMER, A MONTRER DURANT LA SOUTENANCE
+     * @return
+     */
+    fun getTodayDate(): String {
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+        return dateFormat.format(Date())
+    }
+
+    /**
+     * Vérification de la connexion réseau
+     * NOTE : NE PAS SUPPRIMER, A MONTRER DURANT LA SOUTENANCE
+     * @param context
+     * @return
+     */
+    fun isInternetAvailable(context: Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        val activeNetwork = cm.activeNetworkInfo
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting
     }
 
     fun onTouch(button: EditText) {
