@@ -2,6 +2,7 @@ package com.openclassrooms.realestatemanager.ui.map
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
@@ -23,7 +24,6 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiActivity
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
-import com.openclassrooms.realestatemanager.ui.property.PropertyDetailFragment
 import kotlinx.android.synthetic.main.map_fragment.*
 
 class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), LocationListener, OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
@@ -160,17 +160,9 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
     }
 
     private fun launchDetailFragment(databaseId: Int) {
-        val propertyDetailFragment = PropertyDetailFragment()
-
-        val bundle = Bundle()
-        bundle.putInt(ID, databaseId)
-        propertyDetailFragment.arguments = bundle
-
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.mapView, propertyDetailFragment)
-                .addToBackStack(null)
-                .commit()
-
+        val intent = Intent(this, TransitionActivity::class.java)
+        intent.putExtra(ID, databaseId)
+        startActivity(intent)
     }
 
 
@@ -191,7 +183,7 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
     }
 
     companion object {
-        private const val ID = "id"
+        private const val ID = "idProperty"
         private const val PERMISSION_REQUEST_CODE = 110
     }
 }

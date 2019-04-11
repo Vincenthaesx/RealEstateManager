@@ -25,17 +25,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.updateProperty.UpdateProperty"
-            android:label="Update property"/>
+        <activity
+            android:name=".ui.map.TransitionActivity"
+            android:label="Detail property" />
+        <activity
+            android:name=".ui.updateProperty.UpdateProperty"
+            android:label="Update property" />
         <activity
             android:name=".ui.newProperty.NewProperty"
             android:label="Add a new property" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
         <activity
             android:name=".ui.main.MainActivity"
             android:label="Real Estate Manager">
@@ -51,6 +57,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.map.MapActivity" />
+
     </application>
 
 </manifest>
