@@ -43,6 +43,10 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdateProper
                 pictureList.addAll(ui.property.pictureList)
                 listDescriptionImage.addAll(ui.property.descriptionPictureList)
 
+                if (!ui.property.status) {
+                    txtNumberDateUpdate.text = ui.property.saleDate.toString()
+                }
+
                 setupAdapter()
 
                 edtRoomCount.setText(ui.property.roomsCount.toString())
