@@ -142,6 +142,7 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
     }
 
     companion object {
+
         private const val ID_PROPERTY = "idProperty"
         private const val START_URL = "https://maps.googleapis.com/maps/api/staticmap?zoom=19&markers="
     }

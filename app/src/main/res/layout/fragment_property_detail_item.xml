@@ -217,7 +217,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="2dp"
         android:text="@string/locationTest"
-        app:layout_constraintStart_toEndOf="@+id/imageLocation"
+        app:layout_constraintStart_toStartOf="@+id/imageLocation"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/locationTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

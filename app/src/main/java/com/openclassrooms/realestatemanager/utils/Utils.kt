@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import android.view.MotionEvent
@@ -48,6 +49,11 @@ object Utils {
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting
     }
 
+
+
+    // Method for application
+
+    @SuppressLint("ClickableViewAccessibility")
     fun onTouch(button: EditText) {
         button.setOnTouchListener { view, event ->
             view.parent.requestDisallowInterceptTouchEvent(true)

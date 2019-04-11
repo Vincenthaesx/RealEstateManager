@@ -23,6 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiActivity
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
+import com.openclassrooms.realestatemanager.ui.property.PropertyDetailFragment
 import kotlinx.android.synthetic.main.map_fragment.*
 
 class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), LocationListener, OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
@@ -31,14 +32,15 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
 
-    private lateinit var locationAddress: List<String>
-    private lateinit var idProperty: List<Int>
+    private lateinit var pairOfProperty: Pair<List<String>, List<Int>>
 
     override fun render(ui: ActionUiModel) {
         when (ui) {
             is ActionUiModel.GetAllPropertyModel -> {
-                locationAddress = ui.listProperty.map { it.address }
-                idProperty = ui.listProperty.map { it.pid }
+                val locationAddress = ui.listProperty.map { it.address }
+                val idProperty = ui.listProperty.map { it.pid }
+
+                pairOfProperty = Pair(locationAddress, idProperty)
             }
         }
     }
@@ -107,13 +109,14 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
                 val currentLatLng = LatLng(location.latitude, location.longitude)
                 val options = MarkerOptions()
 
-                val address = locationAddress.map {
+                val address = pairOfProperty.first.map {
                     getLocationFromAddress(this, it).firstOrNull()
                 }
 
                 for (point in address) {
-                    myMap.addMarker(point?.let { options.position(it) }).apply {
-                        tag = idProperty
+                    myMap.addMarker(point.let { it?.let { it1 -> options.position(it1) } }).apply {
+                        val id = address.indexOf(point)
+                        tag = pairOfProperty.second[id]
                     }
                 }
 
@@ -127,7 +130,7 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
 
     override fun onMarkerClick(marker: Marker?): Boolean {
         return if (marker?.tag != null) {
-            Log.e("TAG", "onClickMarker: " + marker.tag!!)
+            launchDetailFragment(marker.tag as Int)
             true
         } else {
             Log.e("TAG", "onClickMarker: ERROR NO TAG")
@@ -156,6 +159,21 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
         }
     }
 
+    private fun launchDetailFragment(databaseId: Int) {
+        val propertyDetailFragment = PropertyDetailFragment()
+
+        val bundle = Bundle()
+        bundle.putInt(ID, databaseId)
+        propertyDetailFragment.arguments = bundle
+
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.mapView, propertyDetailFragment)
+                .addToBackStack(null)
+                .commit()
+
+    }
+
+
     override fun onLocationChanged(location: Location) {
 
     }
@@ -173,6 +191,7 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
     }
 
     companion object {
-        private const val PERMISSION_REQUEST_CODE: Int = 110
+        private const val ID = "id"
+        private const val PERMISSION_REQUEST_CODE = 110
     }
 }

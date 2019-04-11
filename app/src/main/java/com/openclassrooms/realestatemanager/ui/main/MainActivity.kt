@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.ui.property.PropertyDetailFragment
 import com.openclassrooms.realestatemanager.ui.property.PropertyFragment
 import com.openclassrooms.realestatemanager.utils.addFragment
 import io.reactivex.disposables.CompositeDisposable
@@ -124,6 +125,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
+        private const val ID_PROPERTY = "idProperty"
+        private const val ID = "id"
         private const val PERMISSION_REQUEST_CODE: Int = 101
     }
 
