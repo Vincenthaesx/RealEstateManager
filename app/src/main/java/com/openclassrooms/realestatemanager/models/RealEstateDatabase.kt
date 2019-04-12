@@ -51,7 +51,7 @@ abstract class RealEstateDatabase : RoomDatabase() {
                     contentValues.put("pictureList", gson.toJson(list1))
                     contentValues.put("descriptionPictureList", gson.toJson(list3))
                     contentValues.put("status", true)
-                    contentValues.put("entryDate", 2018-5-28)
+                    contentValues.put("entryDate", 28-5-2018)
                     contentValues.put("saleDate", "")
                     contentValues.put("agent", "Vincent")
                     // -------------------
@@ -66,7 +66,7 @@ abstract class RealEstateDatabase : RoomDatabase() {
                     contentValues1.put("pictureList", gson.toJson(list2))
                     contentValues1.put("descriptionPictureList", gson.toJson(list4))
                     contentValues1.put("status", true)
-                    contentValues1.put("entryDate", 2018-5-28)
+                    contentValues1.put("entryDate", 28-5-2018)
                     contentValues1.put("saleDate", "")
                     contentValues1.put("agent", "Vincent")
 

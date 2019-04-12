@@ -59,6 +59,7 @@
     <string name="sold">Sold</string>
     <string name="list">List</string>
     <string name="map">Map</string>
+    <string name="permissions">Permission Denied</string>
 
     <style name="api_key">AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM</style>
 

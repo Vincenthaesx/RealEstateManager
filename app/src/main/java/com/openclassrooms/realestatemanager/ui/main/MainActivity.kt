@@ -95,9 +95,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.action_map -> {
                 requestPermissionMap()
-                supportFragmentManager.beginTransaction()
-                        .replace(R.id.activity_main_frame_property, mapFragment)
-                        .commit()
             }
         }
         return true
@@ -125,17 +122,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
 
                 } else {
-                    Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.permissions), Toast.LENGTH_SHORT).show()
                 }
                 return
             }
             PERMISSION_REQUEST_CODE -> {
 
-                if (grantResults.size > 1
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                         && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+
+                    supportFragmentManager.beginTransaction()
+                            .replace(R.id.activity_main_frame_property, mapFragment)
+                            .commit()
                 } else {
-                    Toast.makeText(this, "Permission denied!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, getString(R.string.permissions), Toast.LENGTH_SHORT).show()
                 }
             }
             else -> {
