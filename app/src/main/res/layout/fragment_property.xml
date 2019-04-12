@@ -22,19 +22,6 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <TextView
-        android:id="@+id/btnMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/toolbar"
-        android:gravity="center"
-        android:text="@string/access_map"
-        android:textColor="@color/design_default_color_background"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnAddNewProperty"
         android:layout_width="wrap_content"
@@ -43,8 +30,8 @@
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/button_add"
-        app:backgroundTint="@color/black"
-        app:layout_constraintBottom_toTopOf="@id/btnMapFragment"
+        app:backgroundTint="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

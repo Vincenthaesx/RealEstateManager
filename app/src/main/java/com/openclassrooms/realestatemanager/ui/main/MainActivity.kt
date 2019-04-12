@@ -2,10 +2,8 @@ package com.openclassrooms.realestatemanager.ui.main
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -13,48 +11,40 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
+import com.google.android.material.navigation.NavigationView
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.ui.property.PropertyDetailFragment
+import com.openclassrooms.realestatemanager.ui.property.MapFragment
 import com.openclassrooms.realestatemanager.ui.property.PropertyFragment
 import com.openclassrooms.realestatemanager.utils.addFragment
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private val disposable: CompositeDisposable by lazy {
         CompositeDisposable()
     }
 
     private var propertyFragment: PropertyFragment = PropertyFragment()
+    private var mapFragment: MapFragment = MapFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        if (savedInstanceState == null) {
+            if (!propertyFragment.isVisible) {
+                addFragment(propertyFragment, R.id.activity_main_frame_property)
+            } else {
+                supportFragmentManager.beginTransaction()
+                        .replace(R.id.activity_main_frame_property, propertyFragment)
+                        .commit()
+            }
+        }
+
         requestPermission()
         configureToolBar()
-
-        when {
-            resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT -> {
-                if (propertyFragment.isVisible) {
-                    addFragment(propertyFragment, R.id.activity_main_frame_property)
-                } else {
-                    supportFragmentManager.beginTransaction()
-                            .replace(R.id.activity_main_frame_property, propertyFragment)
-                            .commit()
-                }
-            }
-            resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE -> {
-                if (propertyFragment.isVisible) {
-                    addFragment(propertyFragment, R.id.activity_main_frame_property)
-                } else {
-                    supportFragmentManager.beginTransaction()
-                            .replace(R.id.activity_main_frame_property, propertyFragment)
-                            .commit()
-                }
-            }
-            else -> Log.e("TAG", "Error")
-        }
+        configureBottomView()
     }
 
     override fun onDestroy() {
@@ -69,6 +59,10 @@ class MainActivity : AppCompatActivity() {
     private fun configureToolBar() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
+    }
+
+    private fun configureBottomView() {
+        bottom_navigation.setOnNavigationItemSelectedListener { item -> onNavigationItemSelected(item) }
     }
 
     // -------------
@@ -87,6 +81,22 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.buttonSearch -> {
 
+            }
+        }
+        return true
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_list_view -> {
+                supportFragmentManager.beginTransaction()
+                        .replace(R.id.activity_main_frame_property, propertyFragment)
+                        .commit()
+            }
+            R.id.action_map -> {
+                supportFragmentManager.beginTransaction()
+                        .replace(R.id.activity_main_frame_property, mapFragment)
+                        .commit()
             }
         }
         return true
@@ -125,8 +135,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val ID_PROPERTY = "idProperty"
-        private const val ID = "id"
         private const val PERMISSION_REQUEST_CODE: Int = 101
     }
 

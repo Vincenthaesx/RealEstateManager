@@ -44,6 +44,12 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
                     }
                 }
 
+                if (ui.property.status) {
+                    imgButtonEdit.visibility = View.VISIBLE
+                } else {
+                    txtSold.visibility = View.VISIBLE
+                }
+
                 descriptionDetail.text = ui.property.description
 
                 surface.text = ui.property.surface
@@ -57,7 +63,6 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
                 location.text = ui.property.address
 
                 locationAddress = ui.property.address
-
 
                 if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     actions.onNext(Action.GetGeocoding(locationAddress))
@@ -108,15 +113,14 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
             idProperty = bundle.getInt("id", idProperty)
         }
 
+        configureRecyclerView()
+        configureSwipeRefreshLayout()
+
         imgButtonEdit.setOnClickListener {
             val intent = Intent(activity, UpdateProperty::class.java)
             intent.putExtra(ID_PROPERTY, idProperty)
             startActivity(intent)
         }
-
-        configureRecyclerView()
-
-        configureSwipeRefreshLayout()
     }
 
     override fun onDestroy() {

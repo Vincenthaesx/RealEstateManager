@@ -26,9 +26,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".ui.map.TransitionActivity"
-            android:label="Detail property" />
-        <activity
             android:name=".ui.updateProperty.UpdateProperty"
             android:label="Update property" />
         <activity
@@ -56,7 +53,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.map.MapActivity" />
 
     </application>
 

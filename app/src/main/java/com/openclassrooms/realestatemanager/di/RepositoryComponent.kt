@@ -1,6 +1,5 @@
 package com.openclassrooms.realestatemanager.di
 
-import com.openclassrooms.realestatemanager.ui.map.MapTranslator
 import com.openclassrooms.realestatemanager.ui.newProperty.NewPropertyTranslator
 import com.openclassrooms.realestatemanager.ui.property.PropertyTranslator
 import com.openclassrooms.realestatemanager.ui.updateProperty.UpdatePropertyTranslator
@@ -18,7 +17,5 @@ interface RepositoryComponent {
     fun inject(newProperty: NewPropertyTranslator)
 
     fun inject(updateProperty: UpdatePropertyTranslator)
-
-    fun inject(mapProperty: MapTranslator)
 
 }

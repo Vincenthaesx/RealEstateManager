@@ -1,32 +1,32 @@
-package com.openclassrooms.realestatemanager.ui.map
+package com.openclassrooms.realestatemanager.ui.property
 
 import android.Manifest
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
-import android.location.Location
 import android.location.LocationListener
-import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
+import android.location.Location
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.ui.base.BaseUiActivity
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
-import kotlinx.android.synthetic.main.map_fragment.*
+import kotlinx.android.synthetic.main.fragment_map.*
 
-class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), LocationListener, OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+class MapFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>(), LocationListener, OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private lateinit var myMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -45,21 +45,21 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
         }
     }
 
-    override fun translator(): MapTranslator = getViewModel()
+    override fun translator(): PropertyTranslator = requireActivity().getViewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.map_fragment)
+    override fun getLayout() = R.layout.fragment_map
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         requestPermission()
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity!!)
         actions.onNext(Action.GetAllProperty())
-
     }
 
     private fun requestPermission() {
-        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
+        ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
                 PERMISSION_REQUEST_CODE)
     }
 
@@ -93,9 +93,9 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
     }
 
     private fun setUpMap() {
-        if (ActivityCompat.checkSelfPermission(this,
+        if (ActivityCompat.checkSelfPermission(context!!,
                         android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
+            ActivityCompat.requestPermissions(activity!!,
                     arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), PERMISSION_REQUEST_CODE)
             return
         }
@@ -103,14 +103,14 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
         myMap.isMyLocationEnabled = true
         myMap.uiSettings.isMyLocationButtonEnabled = false
 
-        fusedLocationClient.lastLocation.addOnSuccessListener(this) { location ->
+        fusedLocationClient.lastLocation.addOnSuccessListener(activity!!) { location ->
             if (location != null) {
                 lastLocation = location
                 val currentLatLng = LatLng(location.latitude, location.longitude)
                 val options = MarkerOptions()
 
                 val address = pairOfProperty.first.map {
-                    getLocationFromAddress(this, it).firstOrNull()
+                    getLocationFromAddress(context!!, it).firstOrNull()
                 }
 
                 for (point in address) {
@@ -149,20 +149,26 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED
                         && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
 
-                    val mapFragment = supportFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment?
+                    val mapFragment = fragmentManager?.findFragmentById(R.id.mapView) as SupportMapFragment?
                     mapFragment?.getMapAsync(this)
 
                 } else {
-                    Toast.makeText(this, "Permission denied!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Permission denied!", Toast.LENGTH_LONG).show()
                 }
             }
         }
     }
 
     private fun launchDetailFragment(databaseId: Int) {
-        val intent = Intent(this, TransitionActivity::class.java)
-        intent.putExtra(ID, databaseId)
-        startActivity(intent)
+        val propertyDetailFragment = PropertyDetailFragment()
+
+        val bundle = Bundle()
+        bundle.putInt(ID, databaseId)
+        propertyDetailFragment.arguments = bundle
+
+        fragmentManager?.beginTransaction()
+                ?.add(R.id.activity_main_frame_property, propertyDetailFragment)
+                ?.commit()
     }
 
 
@@ -183,7 +189,7 @@ class MapActivity : BaseUiActivity<Action, ActionUiModel, MapTranslator>(), Loca
     }
 
     companion object {
-        private const val ID = "idProperty"
+        private const val ID = "id"
         private const val PERMISSION_REQUEST_CODE = 110
     }
 }

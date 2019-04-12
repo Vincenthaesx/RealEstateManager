@@ -23,6 +23,21 @@
         android:layout_margin="15dp"
         android:background="@color/white"
         android:src="@drawable/button_edit"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/MediaTitle_detail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/MediaTitle_detail" />
+
+    <TextView
+        android:id="@+id/txtSold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:text="@string/sold"
+        android:textColor="@color/red"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/MediaTitle_detail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/MediaTitle_detail" />
@@ -217,8 +232,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="2dp"
         android:text="@string/locationTest"
-        app:layout_constraintStart_toStartOf="@+id/imageLocation"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageLocation"
         app:layout_constraintTop_toBottomOf="@+id/locationTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

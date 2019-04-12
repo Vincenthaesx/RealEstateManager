@@ -23,8 +23,23 @@
         android:layout_margin="15dp"
         android:background="@color/white"
         android:src="@drawable/button_edit"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtSold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:text="@string/sold"
+        android:textColor="@color/red"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/MediaTitle_detail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/MediaTitle_detail" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_detailImage"
