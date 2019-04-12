@@ -1,28 +1,26 @@
 package com.openclassrooms.realestatemanager.ui.property
 
-import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
-import android.location.LocationListener
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import android.location.Location
+import android.location.LocationListener
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
 import kotlinx.android.synthetic.main.fragment_map.*
 
@@ -52,15 +50,12 @@ class MapFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        requestPermission()
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity!!)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         actions.onNext(Action.GetAllProperty())
-    }
 
-    private fun requestPermission() {
-        ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
-                PERMISSION_REQUEST_CODE)
+        val supportMapFragment = childFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment?
+        supportMapFragment?.getMapAsync(this)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -103,7 +98,7 @@ class MapFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>(),
         myMap.isMyLocationEnabled = true
         myMap.uiSettings.isMyLocationButtonEnabled = false
 
-        fusedLocationClient.lastLocation.addOnSuccessListener(activity!!) { location ->
+        fusedLocationClient.lastLocation.addOnSuccessListener(requireActivity()) { location ->
             if (location != null) {
                 lastLocation = location
                 val currentLatLng = LatLng(location.latitude, location.longitude)
@@ -138,27 +133,6 @@ class MapFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>(),
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int,
-                                            permissions: Array<String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        when (requestCode) {
-            PERMISSION_REQUEST_CODE -> {
-
-                if (grantResults.size > 1
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                        && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-
-                    val mapFragment = fragmentManager?.findFragmentById(R.id.mapView) as SupportMapFragment?
-                    mapFragment?.getMapAsync(this)
-
-                } else {
-                    Toast.makeText(context, "Permission denied!", Toast.LENGTH_LONG).show()
-                }
-            }
-        }
-    }
-
     private fun launchDetailFragment(databaseId: Int) {
         val propertyDetailFragment = PropertyDetailFragment()
 
@@ -167,7 +141,8 @@ class MapFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>(),
         propertyDetailFragment.arguments = bundle
 
         fragmentManager?.beginTransaction()
-                ?.add(R.id.activity_main_frame_property, propertyDetailFragment)
+                ?.replace(R.id.activity_main_frame_property, propertyDetailFragment)
+                ?.addToBackStack(null)
                 ?.commit()
     }
 
