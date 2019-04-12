@@ -20,5 +20,4 @@
         <item name="android:colorControlNormal">@color/toolbar</item>
     </style>
 
-
 </resources>
