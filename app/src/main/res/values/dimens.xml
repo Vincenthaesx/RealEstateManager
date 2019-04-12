@@ -4,5 +4,6 @@
     <dimen name="row_prop_height">175dp</dimen>
     <dimen name="row_image_width">170dp</dimen>
     <dimen name="margin_row_text">4dp</dimen>
+    <bool name="isTab">false</bool>
 
 </resources>

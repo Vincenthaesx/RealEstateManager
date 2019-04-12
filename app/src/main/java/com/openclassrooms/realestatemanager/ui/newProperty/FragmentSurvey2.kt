@@ -310,14 +310,12 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
 
             builder = Notification.Builder(context, NOTIFICATION_CHANNEL_ID)
                     .setSmallIcon(R.drawable.icon_globe)
-                    .setContentTitle(NOTIFICATION_TITLE)
                     .setContentText("A new property is added")
                     .setAutoCancel(true)
                     .setContentIntent(pendingIntent)
         } else {
             builder = Notification.Builder(context)
                     .setSmallIcon(R.drawable.icon_globe)
-                    .setContentTitle(NOTIFICATION_TITLE)
                     .setContentText("A new property is added")
                     .setAutoCancel(true)
                     .setContentIntent(pendingIntent)
@@ -326,7 +324,6 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
     }
 
     companion object {
-        private const val NOTIFICATION_TITLE = "RealEstateManager"
         private const val NOTIFICATION_CHANNEL_ID = "5000"
         private const val NOTIFICATION_CHANNEL_NAME = "RealEstateManager"
         private const val REQUEST_IMAGE_CAPTURE = 0

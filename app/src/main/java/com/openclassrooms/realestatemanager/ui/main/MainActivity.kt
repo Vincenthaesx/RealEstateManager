@@ -42,6 +42,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
 
+//        if(resources.getBoolean(R.bool.isTab)) {
+//            System.out.println("tablet")
+//        } else {
+//            System.out.println("mobile")
+//        }
+
         requestPermission()
         configureToolBar()
         configureBottomView()
