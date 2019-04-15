@@ -90,24 +90,84 @@
         app:layout_constraintTop_toBottomOf="@+id/DescriptionTitle_detail" />
 
     <ImageView
-        android:id="@+id/imageSurface"
+        android:id="@+id/imgPrice"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
-        android:src="@drawable/surface"
+        android:src="@drawable/img_price"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descriptionDetail" />
+
+    <TextView
+        android:id="@+id/priceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/price"
+        app:layout_constraintStart_toEndOf="@+id/imageSurface"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionDetail" />
+
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="2dp"
+        android:text="@string/_120_000"
+        app:layout_constraintStart_toEndOf="@+id/imageSurface"
+        app:layout_constraintTop_toBottomOf="@+id/priceTitle" />
+
+    <ImageView
+        android:id="@+id/imgEntryDate"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/entry_date"
+        app:layout_constraintBottom_toBottomOf="@id/imgPrice"
+        app:layout_constraintStart_toStartOf="@id/imageLocation"
+        app:layout_constraintTop_toTopOf="@id/imgPrice" />
+
+    <TextView
+        android:id="@+id/EntryDateTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/entry_date_property"
+        app:layout_constraintBottom_toBottomOf="@id/imgEntryDate"
+        app:layout_constraintStart_toEndOf="@id/imgEntryDate"
+        app:layout_constraintTop_toTopOf="@id/imgEntryDate" />
+
+    <TextView
+        android:id="@+id/entryDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="2dp"
+        android:text="@string/_28_03_2018"
+        app:layout_constraintStart_toEndOf="@id/imgSeller"
+        app:layout_constraintTop_toBottomOf="@id/EntryDateTitle" />
+
+    <ImageView
+        android:id="@+id/imageSurface"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/surface"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgPrice" />
 
     <TextView
         android:id="@+id/surfaceTitleDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
         android:text="@string/surface"
+        app:layout_constraintBottom_toBottomOf="@id/imageSurface"
         app:layout_constraintStart_toEndOf="@+id/imageSurface"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionDetail" />
+        app:layout_constraintTop_toTopOf="@+id/imageSurface" />
 
 
     <TextView

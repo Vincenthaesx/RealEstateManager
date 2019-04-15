@@ -64,8 +64,22 @@
     <string name="points_of_interest">Points of interest :</string>
     <string name="point_of_interest">Point of interest</string>
     <string name="parc_piscine_disneyland_cin_ma_restaurants">parc, piscine, disneyland, cinéma, restaurants</string>
-    <string name="simulator">Simulator</string>
     <string name="vincent">Vincent</string>
+    <string name="_120_000">120 000$</string>
+    <string name="price">Price</string>
+    <string name="_28_03_2018">28/03/2018</string>
+    <string name="entry_date_property">Entry date</string>
+    <string name="_130_000">130 000$</string>
+    <string name="loan_rate">Loan rate :</string>
+    <string name="simulator">Simulator</string>
+    <string name="purcent">2%</string>
+    <string name="duration">Duration :</string>
+    <string name="bring">Bring :</string>
+    <string name="simulate">Simulate</string>
+    <string name="total">Total :</string>
+    <string name="_450">450</string>
+    <string name="price_by_mouth">Price by mouth :</string>
+    <string name="_200_000">200 000</string>
 
     <style name="api_key">AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM</style>
 

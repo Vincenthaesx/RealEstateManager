@@ -19,8 +19,6 @@ import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import kotlinx.android.synthetic.main.fragment_property_detail.*
 import kotlinx.android.synthetic.main.fragment_property_detail_item.*
 import kotlinx.android.synthetic.main.row_image_detail.*
-import kotlinx.android.synthetic.main.row_new_property.*
-import kotlinx.android.synthetic.main.row_new_property1.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -64,6 +62,12 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
                 numberOfRoom.text = ui.property.roomsCount.toString()
 
                 numberOfBathrooms.text = ui.property.bathroomsCount.toString()
+
+                val myFormat = "dd-MM-yyyy"
+                val sdf = SimpleDateFormat(myFormat, Locale.US)
+                entryDate.text = sdf.format(ui.property.entryDate.time)
+
+                price.text = ui.property.price
 
                 numberOfBedrooms.text = ui.property.bedroomsCount.toString()
 
