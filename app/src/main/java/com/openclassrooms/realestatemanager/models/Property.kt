@@ -17,10 +17,11 @@ data class Property(
         var bathroomsCount: Int,                      // Bathrooms count
         var bedroomsCount: Int,                       // Bedrooms count
         var description: String,                      // Full description of the property
+        var PointOfInterest: String,                  // Point of interest
         var pictureList: List<String>,                // List of pictures
         var descriptionPictureList: List<String>,     // List of description for pictures
         var status: Boolean = true,                   // Status (True is available, False is sold)
-        var entryDate: Date,                         // Date of entry on the market
+        var entryDate: Date,                          // Date of entry on the market
         var saleDate: Date? = null,                   // Date of sale, if sold
         var agent: String                             // Full name of the real estate agent in charge of this property
 )

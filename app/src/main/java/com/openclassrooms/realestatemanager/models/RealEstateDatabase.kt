@@ -23,9 +23,9 @@ abstract class RealEstateDatabase : RoomDatabase() {
                     .build()
         }
 
-        private fun prepopulateDatabase(): RoomDatabase.Callback {
+        private fun prepopulateDatabase(): Callback {
 
-            return object : RoomDatabase.Callback() {
+            return object : Callback() {
 
                 override fun onCreate(db: SupportSQLiteDatabase) {
 
@@ -48,6 +48,7 @@ abstract class RealEstateDatabase : RoomDatabase() {
                     contentValues.put("bathroomsCount", 1)
                     contentValues.put("bedroomsCount", 2)
                     contentValues.put("description", "A nice background_property house to see if everything works, la description de la maison dois normalement s'afficher correctement sans poser de soucis ni en portrait ni en paysage, ce qui permettra a l'utilisateur de profiter un maximum de l'application.")
+                    contentValues.put("PointOfInterest", "parc, disneyland, cinéma, restaurants")
                     contentValues.put("pictureList", gson.toJson(list1))
                     contentValues.put("descriptionPictureList", gson.toJson(list3))
                     contentValues.put("status", true)
@@ -63,6 +64,7 @@ abstract class RealEstateDatabase : RoomDatabase() {
                     contentValues1.put("bathroomsCount", 2)
                     contentValues1.put("bedroomsCount", 4)
                     contentValues1.put("description", "A nice background_property palace to see if everything works, thanks a lot")
+                    contentValues1.put("PointOfInterest", "boulangerie, kebab, piscine, plage")
                     contentValues1.put("pictureList", gson.toJson(list2))
                     contentValues1.put("descriptionPictureList", gson.toJson(list4))
                     contentValues1.put("status", true)

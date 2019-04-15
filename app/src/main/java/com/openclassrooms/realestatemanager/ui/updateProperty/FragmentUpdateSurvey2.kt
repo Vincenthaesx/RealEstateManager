@@ -52,6 +52,7 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdateProper
 
                 setupAdapter()
 
+                edtPointOfInterest.setText(ui.property.PointOfInterest)
                 edtRoomCount.setText(ui.property.roomsCount.toString())
                 edtBathroomsCount.setText(ui.property.bathroomsCount.toString())
                 edtBedroomsCount.setText(ui.property.bedroomsCount.toString())
@@ -231,6 +232,7 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdateProper
                 imageRecyclerView.setOnClickListener {
                     configureAlertDialog(position)
                 }
+
                 val s = listDescriptionImage.getOrNull(position)
                 if (s != null) {
                     txtImageRecyclerView.text = s
@@ -277,6 +279,7 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdateProper
         var roomsCount = 0
         var bedroomsCount = 0
         var bathroomsCount = 0
+        var pointOfInterest = ""
 
         if (!edtRoomCount.text.isNullOrEmpty()) {
             roomsCount = edtRoomCount.text.toString().toInt()
@@ -295,15 +298,21 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdateProper
         } else {
             Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
         }
+
+        if (!edtPointOfInterest.text.isNullOrEmpty()) {
+            pointOfInterest = edtPointOfInterest.text.toString()
+        } else {
+            Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
+        }
         var status = true
 
         if (soldDate != null) {
             status = false
         }
 
-        val property = Property(idProperty, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pictureList, listDescriptionImage, status, date, soldDate, agent)
+        val property = Property(idProperty, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pointOfInterest, pictureList, listDescriptionImage, status, date, soldDate, agent)
 
-        if (pictureList.isNotEmpty() && listDescriptionImage.isNotEmpty() && pictureList.size == listDescriptionImage.size && roomsCount != 0 && bedroomsCount != 0 && bathroomsCount != 0) {
+        if (pictureList.isNotEmpty() && listDescriptionImage.isNotEmpty() && pictureList.size == listDescriptionImage.size && roomsCount != 0 && bedroomsCount != 0 && bathroomsCount != 0 && pointOfInterest.isNotEmpty()) {
             actions.onNext(Action.GetPropertyForUpdate(property))
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)

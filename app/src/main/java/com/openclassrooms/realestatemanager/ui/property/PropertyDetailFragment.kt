@@ -16,10 +16,13 @@ import com.openclassrooms.realestatemanager.utils.GlideApp
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.utils.log
 import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
-import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_property_detail.*
 import kotlinx.android.synthetic.main.fragment_property_detail_item.*
 import kotlinx.android.synthetic.main.row_image_detail.*
+import kotlinx.android.synthetic.main.row_new_property.*
+import kotlinx.android.synthetic.main.row_new_property1.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>() {
 
@@ -47,7 +50,11 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
                 if (ui.property.status) {
                     imgButtonEdit.visibility = View.VISIBLE
                 } else {
+                    soldDate.visibility = View.VISIBLE
                     txtSold.visibility = View.VISIBLE
+                    val myFormat = "dd-MM-yyyy"
+                    val sdf = SimpleDateFormat(myFormat, Locale.US)
+                    soldDate.text = sdf.format(ui.property.saleDate?.time)
                 }
 
                 descriptionDetail.text = ui.property.description
@@ -60,6 +67,10 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
 
                 numberOfBedrooms.text = ui.property.bedroomsCount.toString()
 
+                agent.text = ui.property.agent
+
+                pointOfInterest.text = ui.property.PointOfInterest
+
                 location.text = ui.property.address
 
                 locationAddress = ui.property.address
@@ -71,6 +82,19 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
                         .fitCenter()
                         .override(300, 300)
                         .into(imgMap)
+
+                btnSimulator.setOnClickListener {
+                    val simulatorFragment = SimulatorFragment()
+                    val bundle = Bundle()
+                    bundle.putInt(ID_SIMULATOR, idProperty)
+                    simulatorFragment.arguments = bundle
+
+                    fragmentManager?.beginTransaction()
+                            ?.replace(R.id.activity_main_frame_property, simulatorFragment)
+                            ?.addToBackStack(null)
+                            ?.commit()
+                }
+
             }
             is ActionUiModel.Error -> {
                 ui.message?.log()
@@ -84,10 +108,6 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
     override fun translator(): PropertyTranslator = requireActivity().getViewModel()
 
     override fun getLayout() = R.layout.fragment_property_detail
-
-    private val disposable: CompositeDisposable by lazy {
-        CompositeDisposable()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -147,6 +167,7 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
     companion object {
 
         private const val ID_PROPERTY = "idProperty"
+        private const val ID_SIMULATOR = "idSimulator"
         private const val START_URL = "https://maps.googleapis.com/maps/api/staticmap?zoom=19&markers="
     }
 }

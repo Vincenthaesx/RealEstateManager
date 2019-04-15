@@ -239,6 +239,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
         var roomsCount = 0
         var bedroomsCount = 0
         var bathroomsCount = 0
+        var pointOfInterest = ""
 
         if (!edtRoomCount.text.isNullOrEmpty()) {
             roomsCount = edtRoomCount.text.toString().toInt()
@@ -258,12 +259,16 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
             Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
         }
 
+        if (!edtPointOfInterest.text.isNullOrEmpty()) {
+            pointOfInterest = edtPointOfInterest.text.toString()
+        }
+
         val status = true
         val saleDate = null
 
-        val property = Property(0, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pictureList, listDescriptionImage, status, date, saleDate, agent)
+        val property = Property(0, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pointOfInterest, pictureList, listDescriptionImage, status, date, saleDate, agent)
 
-        if (pictureList.isNotEmpty() && listDescriptionImage.isNotEmpty() && pictureList.size == listDescriptionImage.size && roomsCount != 0 && bedroomsCount != 0 && bathroomsCount != 0) {
+        if (pictureList.isNotEmpty() && listDescriptionImage.isNotEmpty() && pictureList.size == listDescriptionImage.size && roomsCount != 0 && bedroomsCount != 0 && bathroomsCount != 0 && pointOfInterest.isNotEmpty()) {
             actions.onNext(Action.AddNewProperty(property))
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)

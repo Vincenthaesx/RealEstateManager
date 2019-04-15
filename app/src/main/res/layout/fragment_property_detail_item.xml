@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.main.MainActivity">
 
     <TextView
@@ -32,15 +32,26 @@
         android:id="@+id/txtSold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/sold"
         android:textColor="@color/red"
-        android:textSize="20sp"
         android:textStyle="bold"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/MediaTitle_detail"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/soldDate"
         app:layout_constraintTop_toTopOf="@id/MediaTitle_detail" />
+
+    <TextView
+        android:id="@+id/soldDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="10/03/2018"
+        android:textColor="@color/red"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/txtSold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txtSold" />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -80,8 +91,8 @@
 
     <ImageView
         android:id="@+id/imageSurface"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:src="@drawable/surface"
@@ -112,8 +123,8 @@
 
     <ImageView
         android:id="@+id/imageNumberOfRoom"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
         android:src="@drawable/home"
@@ -144,8 +155,8 @@
 
     <ImageView
         android:id="@+id/imageBathrooms"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
         android:src="@drawable/bathrooms"
@@ -176,8 +187,8 @@
 
     <ImageView
         android:id="@+id/imageBedrooms"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
         android:src="@drawable/bedrooms"
@@ -207,44 +218,117 @@
 
     <ImageView
         android:id="@+id/imageLocation"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:src="@drawable/location"
+        app:layout_constraintBottom_toBottomOf="@id/imageNumberOfRoom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/surfaceTitleDetail"
-        app:layout_constraintTop_toBottomOf="@id/descriptionDetail" />
+        app:layout_constraintTop_toTopOf="@id/imageNumberOfRoom" />
 
     <TextView
         android:id="@+id/locationTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
         android:text="@string/location"
+        app:layout_constraintBottom_toBottomOf="@id/imageLocation"
         app:layout_constraintStart_toEndOf="@+id/imageLocation"
-        app:layout_constraintTop_toBottomOf="@id/descriptionDetail" />
+        app:layout_constraintTop_toTopOf="@id/imageLocation" />
 
     <TextView
         android:id="@+id/location"
-        android:layout_width="100dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="2dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/locationTest"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageLocation"
-        app:layout_constraintTop_toBottomOf="@+id/locationTitle" />
+        app:layout_constraintStart_toEndOf="@+id/imageLocation"
+        app:layout_constraintTop_toBottomOf="@id/locationTitle" />
+
+    <ImageView
+        android:id="@+id/imgSeller"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/seller"
+        app:layout_constraintBottom_toBottomOf="@id/imageSurface"
+        app:layout_constraintStart_toStartOf="@id/imageLocation"
+        app:layout_constraintTop_toTopOf="@id/imageSurface" />
+
+    <TextView
+        android:id="@+id/agentTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/agentTitle"
+        app:layout_constraintBottom_toBottomOf="@id/imgSeller"
+        app:layout_constraintStart_toEndOf="@id/imgSeller"
+        app:layout_constraintTop_toTopOf="@id/imgSeller" />
+
+    <TextView
+        android:id="@+id/agent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="2dp"
+        android:text="@string/vincent"
+        app:layout_constraintStart_toEndOf="@id/imgSeller"
+        app:layout_constraintTop_toBottomOf="@id/agentTitle" />
 
     <ImageView
         android:id="@+id/imgMap"
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnSimulator" />
+
+    <ImageView
+        android:id="@+id/imgPointOfInterest"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/point_of_interest"
+        app:layout_constraintStart_toStartOf="@id/imageLocation"
+        app:layout_constraintTop_toTopOf="@id/imageBedrooms" />
+
+    <TextView
+        android:id="@+id/PointOfInterestTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/point_of_interest"
+        app:layout_constraintBottom_toBottomOf="@id/imgPointOfInterest"
+        app:layout_constraintStart_toEndOf="@id/imgPointOfInterest"
+        app:layout_constraintTop_toTopOf="@id/imgPointOfInterest" />
+
+    <TextView
+        android:id="@+id/pointOfInterest"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/parc_piscine_disneyland_cin_ma_restaurants"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgPointOfInterest"
+        app:layout_constraintTop_toBottomOf="@id/PointOfInterestTitle" />
+
+    <Button
+        android:id="@+id/btnSimulator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/simulator"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pointOfInterest" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

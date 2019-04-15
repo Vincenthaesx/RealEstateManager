@@ -34,11 +34,11 @@
     <string name="choose_price_for_property">choose price for property</string>
     <string name="surface_of_property">Surface of property :</string>
     <string name="choose_surface_of_property">choose surface of property</string>
-    <string name="numberOfRooms">Number of rooms :</string>
+    <string name="numberOfRooms">Rooms :</string>
     <string name="choose_number_of_rooms">choose number of rooms</string>
-    <string name="numberOfBathrooms">Number of bathrooms :</string>
+    <string name="numberOfBathrooms">Bathrooms :</string>
     <string name="choose_number_of_bathrooms">choose number of bathrooms</string>
-    <string name="NumberOfBedrooms">Number of bedrooms :</string>
+    <string name="NumberOfBedrooms">Bedrooms :</string>
     <string name="choose_number_of_bedrooms">choose number of bedrooms</string>
     <string name="Description">Description :</string>
     <string name="describe_the_property">Describe the property</string>
@@ -56,10 +56,16 @@
     <string name="click_on_picture_for_add_a_new_description">Click on picture for add a new description</string>
     <string name="messageForUpdatePicture">Click on picture for change picture and description</string>
     <string name="access_map">access map</string>
-    <string name="sold">Sold</string>
+    <string name="sold">Sold at : </string>
     <string name="list">List</string>
     <string name="map">Map</string>
     <string name="permissions">Permission Denied</string>
+    <string name="agentTitle">Agent</string>
+    <string name="points_of_interest">Points of interest :</string>
+    <string name="point_of_interest">Point of interest</string>
+    <string name="parc_piscine_disneyland_cin_ma_restaurants">parc, piscine, disneyland, cinéma, restaurants</string>
+    <string name="simulator">Simulator</string>
+    <string name="vincent">Vincent</string>
 
     <style name="api_key">AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM</style>
 
