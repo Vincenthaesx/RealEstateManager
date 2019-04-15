@@ -8,12 +8,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.orhanobut.logger.Logger
 
-inline fun <reified T : Any> Any.safeCast(action: (T) -> Unit) {
-    if (this is T) {
-        action.invoke(this)
-    }
-}
-
 fun String.log() {
     Logger.d(this)
 }

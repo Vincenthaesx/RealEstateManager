@@ -22,8 +22,7 @@ class PropertyTranslator : BaseTranslator<Action, ActionUiModel>() {
         return Observable.mergeArray(
 
                 ofType<Action.GetAllProperty>().requestForGetAllProperty(),
-                ofType<Action.GetProperty>().requestForGetProperty(),
-                ofType<Action.GetGeocoding>().requestForGetGeocode()
+                ofType<Action.GetProperty>().requestForGetProperty()
 
                         .onErrorReturn {
                             it.log()
@@ -53,15 +52,6 @@ class PropertyTranslator : BaseTranslator<Action, ActionUiModel>() {
                     }
                     .startWith(ActionUiModel.Loading(true))
                     .concatWith(Observable.just(ActionUiModel.Loading(false)))
-        }
-    }
-
-    private fun Observable<Action.GetGeocoding>.requestForGetGeocode(): Observable<ActionUiModel> {
-        return flatMap { action ->
-            propertyRepository.getGeocodingProperty(action.address)
-                    .map {
-                        ActionUiModel.GetGeocodingModel(it)
-                    }
         }
     }
 

@@ -1,11 +1,13 @@
 package com.openclassrooms.realestatemanager.ui.property
 
+import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.maps.model.LatLng
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
@@ -22,8 +24,6 @@ import kotlinx.android.synthetic.main.row_image_detail.*
 class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>() {
 
     private var idProperty: Int = 0
-    private var markerLat: Double = 0.0
-    private var markerLng: Double = 0.0
     private var locationAddress: String = ""
 
     override fun render(ui: ActionUiModel) {
@@ -64,34 +64,19 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
 
                 locationAddress = ui.property.address
 
-                if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    actions.onNext(Action.GetGeocoding(locationAddress))
-                }
+                val latLng = context?.let { getLocationFromAddress(it, locationAddress) }
+
+                GlideApp.with(this)
+                        .load("$START_URL${latLng?.latitude},${latLng?.longitude}&size=600x400&${Utils.API_KEY}")
+                        .fitCenter()
+                        .override(300, 300)
+                        .into(imgMap)
             }
             is ActionUiModel.Error -> {
                 ui.message?.log()
             }
             is ActionUiModel.Loading -> {
                 fragment_property_detail_refresh.isRefreshing = ui.isLoading
-            }
-            is ActionUiModel.GetGeocodingModel -> {
-                markerLat = ui.result.results?.get(0)?.geometry?.location?.lat!!
-                markerLng = ui.result.results?.get(0)?.geometry?.location?.lng!!
-
-                when {
-                    resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT -> {
-
-                    }
-                    resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE -> {
-                        GlideApp.with(this)
-                                .load("$START_URL$markerLat,$markerLng&size=600x400&${Utils.API_KEY}")
-                                .fitCenter()
-                                .override(300, 300)
-                                .into(imgMap)
-                    }
-                    else -> Log.e("TAG", "Error")
-                }
-
             }
         }
     }
@@ -123,9 +108,27 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
         }
     }
 
-    override fun onDestroy() {
-        this.disposeWhenDestroy()
-        super.onDestroy()
+    private fun getLocationFromAddress(context: Context, strAddress: String): LatLng? {
+        val coder = Geocoder(context)
+        val address: List<Address>?
+        var p1: LatLng? = null
+
+        try {
+            address = coder.getFromLocationName(strAddress, 5)
+            if (address == null) {
+                return null
+            }
+            val location = address[0]
+            location.latitude
+            location.longitude
+
+            p1 = LatLng(location.latitude, location.longitude)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return p1
+
     }
 
     // -----------------
@@ -139,10 +142,6 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
 
     private fun configureSwipeRefreshLayout() {
         fragment_property_detail_refresh.setOnRefreshListener { actions.onNext(Action.GetProperty(idProperty)) }
-    }
-
-    private fun disposeWhenDestroy() {
-        this.disposable.clear()
     }
 
     companion object {
