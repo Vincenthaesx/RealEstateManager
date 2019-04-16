@@ -5,10 +5,7 @@ import android.view.View
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
-import kotlinx.android.synthetic.main.fragment_property_detail_item.*
 import kotlinx.android.synthetic.main.fragment_simulator.*
-import kotlinx.android.synthetic.main.fragment_simulator.price
-import java.util.regex.Pattern
 
 class SimulatorFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>() {
 
@@ -18,24 +15,15 @@ class SimulatorFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslat
         when (ui) {
             is ActionUiModel.GetPropertyModel -> {
 
-                var price1 = ui.property.price
-                var rate = 2
-                var duration = 0
-                var apport = 0
-
-                val p = Pattern.compile("\\d+\\s\\d+")
-                val m = p.matcher(price1)
-                while (m.find()) {
-                    price.text = m.group()
-                    price1 = m.group()
-                }
+                val priceProperty = ui.property.price
+                price.text = priceProperty.toString()
 
                 btnSimulatorResult.setOnClickListener {
-                    apport = edtApport.text.toString().toInt()
-                    duration = edtDuration.text.toString().toInt()
+                    val apport = edtApport.text.toString().toInt()
+                    val duration = edtDuration.text.toString().toInt()
 
-                    val total = ((price1.toInt() - apport) *2/100 )
-                    val priceByMouth = ((price1.toInt() - apport) *2/100) / 12 * duration
+                    val total = ((priceProperty - apport) + ((2*priceProperty)/100))
+                    val priceByMouth = ((priceProperty - apport) + ((2*priceProperty)/100)) / (12 * duration)
 
                     resultTotal.visibility = View.VISIBLE
                     resultByMouth.visibility = View.VISIBLE
@@ -45,9 +33,6 @@ class SimulatorFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslat
                     resultTotal.text = total.toString()
                     resultByMouth.text = priceByMouth.toString()
                 }
-
-
-
             }
         }
     }

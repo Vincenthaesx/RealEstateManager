@@ -5,35 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="5dp"
+    android:layout_marginTop="5dp"
     tools:context=".ui.main.MainActivity">
 
     <ImageView
         android:id="@+id/image_property"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
         android:scaleType="fitXY"
         android:src="@drawable/ic_launcher_background"
-        app:layout_constraintBottom_toTopOf="@id/view_property"
-        app:layout_constraintEnd_toStartOf="@id/property_type"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/image_property_sold"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
         android:scaleType="fitXY"
         android:src="@drawable/property_sold"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/image_property"
-        app:layout_constraintEnd_toEndOf="@id/image_property"
-        app:layout_constraintStart_toStartOf="@id/image_property"
-        app:layout_constraintTop_toTopOf="@id/image_property" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/property_type"
         android:layout_width="0px"
-        android:layout_height="wrap_content"
+        android:layout_height="0px"
         android:layout_marginStart="20dp"
         android:text="@string/flat"
         android:textSize="30sp"
@@ -45,7 +42,7 @@
     <TextView
         android:id="@+id/property_city"
         android:layout_width="0px"
-        android:layout_height="wrap_content"
+        android:layout_height="0px"
         android:layout_marginStart="20dp"
         android:text="@string/manhattan"
         app:layout_constraintBottom_toTopOf="@+id/property_price"
@@ -58,22 +55,23 @@
         android:layout_width="0px"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/_17_870_000"
         android:textColor="@color/price"
         app:layout_constraintBottom_toTopOf="@+id/view_property"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/image_property"
-        app:layout_constraintTop_toBottomOf="@+id/property_city" />
+        app:layout_constraintStart_toEndOf="@+id/image_property" />
 
     <View
         android:id="@+id/view_property"
-        android:layout_width="fill_parent"
-        android:layout_height="1px"
+        android:layout_width="0dp"
+        android:layout_height="2px"
+        android:layout_marginStart="10dp"
         android:background="@color/view"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_property"
         app:layout_constraintTop_toBottomOf="@id/image_property" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

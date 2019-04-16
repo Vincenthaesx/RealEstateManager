@@ -91,7 +91,7 @@ class FragmentUpdateSurvey1 : BaseUiFragment<Action, ActionUiModel, UpdateProper
             if (edtType.text!!.isNotEmpty() && edtAddress.text!!.isNotEmpty() && edtPrice.text!!.isNotEmpty() && edtSurface.text!!.isNotEmpty() && edtDescription.text!!.isNotEmpty() && edtAgent.text!!.isNotEmpty() && entryDate.isNotEmpty()) {
                 val type = edtType.text.toString()
                 val address = edtAddress.text.toString()
-                val price = edtPrice.text.toString()
+                val price = edtPrice.text.toString().toInt()
                 val surface = edtSurface.text.toString()
                 val description = edtDescription.text.toString()
                 val agent = edtAgent.text.toString()
@@ -99,7 +99,7 @@ class FragmentUpdateSurvey1 : BaseUiFragment<Action, ActionUiModel, UpdateProper
                 val bundle = Bundle()
                 bundle.putString(TYPE, type)
                 bundle.putString(ADDRESS, address)
-                bundle.putString(PRICE, price)
+                bundle.putInt(PRICE, price)
                 bundle.putString(SURFACE, surface)
                 bundle.putString(DESCRIPTION, description)
                 bundle.putString(AGENT, agent)

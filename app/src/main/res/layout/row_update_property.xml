@@ -62,15 +62,17 @@
         android:hint="@string/numberOfRooms"
         app:errorEnabled="true"
         app:helperTextEnabled="true"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/txtBathroomsCount"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgButtonSelect">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtRoomCount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:inputType="number"
+            android:maxLength="2"
             android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -84,15 +86,17 @@
         android:hint="@string/numberOfBathrooms"
         app:errorEnabled="true"
         app:helperTextEnabled="true"
-        app:layout_constraintStart_toEndOf="@id/txtRoomCount"
         app:layout_constraintEnd_toStartOf="@id/txtBedroomsCount"
+        app:layout_constraintStart_toEndOf="@id/txtRoomCount"
         app:layout_constraintTop_toBottomOf="@+id/imgButtonSelect">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtBathroomsCount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:inputType="number"
+            android:maxLength="2"
             android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -105,11 +109,12 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:gravity="center"
         android:hint="@string/NumberOfBedrooms"
         app:errorEnabled="true"
         app:helperTextEnabled="true"
-        app:layout_constraintStart_toEndOf="@id/txtBathroomsCount"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/txtBathroomsCount"
         app:layout_constraintTop_toBottomOf="@+id/imgButtonSelect">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -117,6 +122,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
+            android:maxLength="2"
             android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -132,8 +138,8 @@
         android:hint="@string/points_of_interest"
         app:errorEnabled="true"
         app:helperTextEnabled="true"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtRoomCount">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -179,8 +185,8 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtSoldDate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtSoldDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,7 +21,7 @@
         android:id="@+id/activity_main_frame_property"
         android:layout_width="0px"
         android:layout_height="0px"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -31,9 +31,9 @@
         android:id="@+id/activity_main_frame_propertyDetail"
         android:layout_width="0px"
         android:layout_height="0px"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/activity_main_frame_property"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -45,14 +45,26 @@
 
     <View
         android:id="@+id/view_property"
-        android:layout_width="1px"
-        android:layout_height="wrap_content"
+        android:layout_width="1.5dp"
+        android:layout_height="0dp"
         android:background="@color/view"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"/>
+
+    <View
+        android:id="@+id/view_property2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/view"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation" />
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

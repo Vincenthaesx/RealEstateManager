@@ -1,9 +1,7 @@
 package com.openclassrooms.realestatemanager.ui.property
 
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.openclassrooms.realestatemanager.R
@@ -22,6 +20,7 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
     private var propertyDetailFragment: PropertyDetailFragment = PropertyDetailFragment()
 
     override fun render(ui: ActionUiModel) {
+
         when (ui) {
             is ActionUiModel.GetAllPropertyModel -> {
                 fragment_property_recyclerView.adapter = GenericAdapter(R.layout.fragment_property_item, ui.listProperty) { property, _ ->
@@ -36,17 +35,24 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
 
                     property_city.text = property.address
 
-                    property_price.text = property.price
-
+                    property_price.text = "${property.price }$"
 
 
                     if (!property.status) {
                         image_property_sold.visibility = View.VISIBLE
                     }
 
-                    when {
-                        resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT -> itemView.setOnClickListener {
+                    itemView.setOnClickListener {
+                        if (resources.getBoolean(R.bool.isTab)) {
 
+                            val bundle = Bundle()
+                            bundle.putInt("id", property.pid)
+                            propertyDetailFragment.arguments = bundle
+
+                            fragmentManager?.beginTransaction()
+                                    ?.replace(R.id.activity_main_frame_propertyDetail, propertyDetailFragment)
+                                    ?.commit()
+                        } else {
                             val bundle = Bundle()
                             bundle.putInt("id", property.pid)
                             propertyDetailFragment.arguments = bundle
@@ -56,19 +62,8 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
                                     ?.addToBackStack(null)
                                     ?.commit()
                         }
-                        resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE -> itemView.setOnClickListener {
-                            val bundle = Bundle()
-                            bundle.putInt("id", property.pid)
-
-                            propertyDetailFragment.arguments = bundle
-
-                            fragmentManager?.beginTransaction()
-                                    ?.replace(R.id.activity_main_frame_propertyDetail, propertyDetailFragment)
-                                    ?.addToBackStack(null)
-                                    ?.commit()
-                        }
-                        else -> Log.e("TAG", "Error")
                     }
+
                 }
             }
             is ActionUiModel.Error -> {
@@ -95,13 +90,10 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
         configureRecyclerView()
         configureSwipeRefreshLayout()
 
-        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            btnAddNewProperty.visibility = View.GONE
-        } else {
-            btnAddNewProperty.setOnClickListener {
-                val intent = Intent(activity, NewProperty::class.java)
-                startActivity(intent)
-            }
+        btnAddNewProperty.setOnClickListener {
+            val intent = Intent(activity, NewProperty::class.java)
+            startActivity(intent)
+
         }
     }
 

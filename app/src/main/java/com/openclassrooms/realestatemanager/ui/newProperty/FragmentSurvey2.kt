@@ -55,7 +55,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
 
     private lateinit var type: String
     private lateinit var address: String
-    private lateinit var price: String
+    private var price: Int = 0
     private lateinit var surface: String
     private lateinit var description: String
     private lateinit var agent: String
@@ -81,7 +81,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
         if (bundle != null) {
             type = bundle.getString(TYPE)
             address = bundle.getString(ADDRESS)
-            price = bundle.getString(PRICE)
+            price = bundle.getInt(PRICE)
             surface = bundle.getString(SURFACE)
             description = bundle.getString(DESCRIPTION)
             agent = bundle.getString(AGENT)

@@ -67,7 +67,7 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
                 val sdf = SimpleDateFormat(myFormat, Locale.US)
                 entryDate.text = sdf.format(ui.property.entryDate.time)
 
-                price.text = ui.property.price
+                price.text ="${ui.property.price }$"
 
                 numberOfBedrooms.text = ui.property.bedroomsCount.toString()
 

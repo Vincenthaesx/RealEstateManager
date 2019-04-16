@@ -31,15 +31,26 @@
         android:id="@+id/txtSold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/sold"
         android:textColor="@color/red"
-        android:textSize="20sp"
         android:textStyle="bold"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/MediaTitle_detail"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/soldDate"
         app:layout_constraintTop_toTopOf="@id/MediaTitle_detail" />
+
+    <TextView
+        android:id="@+id/soldDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="10/03/2018"
+        android:textColor="@color/red"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/txtSold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txtSold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_detailImage"
@@ -192,6 +203,125 @@
         app:layout_constraintStart_toEndOf="@+id/imageBedrooms"
         app:layout_constraintTop_toBottomOf="@+id/imageBathrooms" />
 
+    <ImageView
+        android:id="@+id/imgPrice"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/img_price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionDetail" />
+
+    <TextView
+        android:id="@+id/priceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/price"
+        app:layout_constraintStart_toEndOf="@+id/imageSurface"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionDetail" />
+
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="2dp"
+        android:text="@string/_120_000"
+        app:layout_constraintStart_toEndOf="@+id/imageSurface"
+        app:layout_constraintTop_toBottomOf="@+id/priceTitle" />
+
+    <ImageView
+        android:id="@+id/imgSeller"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/seller"
+        app:layout_constraintBottom_toBottomOf="@id/imageSurface"
+        app:layout_constraintStart_toStartOf="@id/imageLocation"
+        app:layout_constraintTop_toTopOf="@id/imageSurface" />
+
+    <ImageView
+        android:id="@+id/imgPointOfInterest"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/point_of_interest"
+        app:layout_constraintStart_toStartOf="@id/imageLocation"
+        app:layout_constraintTop_toTopOf="@id/imageBedrooms" />
+
+    <TextView
+        android:id="@+id/PointOfInterestTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/point_of_interest"
+        app:layout_constraintBottom_toBottomOf="@id/imgPointOfInterest"
+        app:layout_constraintStart_toEndOf="@id/imgPointOfInterest"
+        app:layout_constraintTop_toTopOf="@id/imgPointOfInterest" />
+
+    <TextView
+        android:id="@+id/pointOfInterest"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/parc_piscine_disneyland_cin_ma_restaurants"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgPointOfInterest"
+        app:layout_constraintTop_toBottomOf="@id/PointOfInterestTitle" />
+
+    <TextView
+        android:id="@+id/agentTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/agentTitle"
+        app:layout_constraintBottom_toBottomOf="@id/imgSeller"
+        app:layout_constraintStart_toEndOf="@id/imgSeller"
+        app:layout_constraintTop_toTopOf="@id/imgSeller" />
+
+    <TextView
+        android:id="@+id/agent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="2dp"
+        android:text="@string/vincent"
+        app:layout_constraintStart_toEndOf="@id/imgSeller"
+        app:layout_constraintTop_toBottomOf="@id/agentTitle" />
+
+    <ImageView
+        android:id="@+id/imgEntryDate"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/entry_date"
+        app:layout_constraintBottom_toBottomOf="@id/imgPrice"
+        app:layout_constraintStart_toStartOf="@id/imageLocation"
+        app:layout_constraintTop_toTopOf="@id/imgPrice" />
+
+    <TextView
+        android:id="@+id/EntryDateTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/entry_date_property"
+        app:layout_constraintBottom_toBottomOf="@id/imgEntryDate"
+        app:layout_constraintStart_toEndOf="@id/imgEntryDate"
+        app:layout_constraintTop_toTopOf="@id/imgEntryDate" />
+
+    <TextView
+        android:id="@+id/entryDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="2dp"
+        android:text="@string/_28_03_2018"
+        app:layout_constraintStart_toEndOf="@id/imgSeller"
+        app:layout_constraintTop_toBottomOf="@id/EntryDateTitle" />
+
     <TextView
         android:id="@+id/numberOfBedrooms"
         android:layout_width="wrap_content"
@@ -252,7 +382,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="simulator"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
