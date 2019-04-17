@@ -125,6 +125,7 @@ class MapFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>(),
 
     override fun onMarkerClick(marker: Marker?): Boolean {
         return if (marker?.tag != null) {
+            progressBarMap.visibility = View.GONE
             launchDetailFragment(marker.tag as Int)
             true
         } else {

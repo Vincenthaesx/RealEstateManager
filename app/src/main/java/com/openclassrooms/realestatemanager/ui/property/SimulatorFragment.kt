@@ -19,11 +19,11 @@ class SimulatorFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslat
                 price.text = priceProperty.toString()
 
                 btnSimulatorResult.setOnClickListener {
-                    val apport = edtApport.text.toString().toInt()
+                    val bring = edtApport.text.toString().toInt()
                     val duration = edtDuration.text.toString().toInt()
 
-                    val total = ((priceProperty - apport) + ((2*priceProperty)/100))
-                    val priceByMouth = ((priceProperty - apport) + ((2*priceProperty)/100)) / (12 * duration)
+                    val total = ((priceProperty - bring) + ((2*priceProperty)/100)).toFloat()
+                    val priceByMouth = ((priceProperty - bring) + ((2*priceProperty)/100)) / (12 * duration).toFloat()
 
                     resultTotal.visibility = View.VISIBLE
                     resultByMouth.visibility = View.VISIBLE

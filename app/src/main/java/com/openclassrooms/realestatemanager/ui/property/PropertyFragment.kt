@@ -9,11 +9,15 @@ import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
 import com.openclassrooms.realestatemanager.ui.newProperty.NewProperty
 import com.openclassrooms.realestatemanager.utils.GlideApp
+import com.openclassrooms.realestatemanager.utils.doubleToStringNoDecimal
 import com.openclassrooms.realestatemanager.utils.log
 import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_property.*
 import kotlinx.android.synthetic.main.fragment_property_item.*
+import java.text.DecimalFormat
+import java.text.NumberFormat
+import java.util.*
 
 class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>() {
 
@@ -35,8 +39,10 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
 
                     property_city.text = property.address
 
-                    property_price.text = "${property.price }$"
+                    val price = property.price
+                    val priceProperty = doubleToStringNoDecimal(price)
 
+                    property_price.text = (priceProperty+"€")
 
                     if (!property.status) {
                         image_property_sold.visibility = View.VISIBLE
@@ -44,7 +50,6 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
 
                     itemView.setOnClickListener {
                         if (resources.getBoolean(R.bool.isTab)) {
-
                             val bundle = Bundle()
                             bundle.putInt("id", property.pid)
                             propertyDetailFragment.arguments = bundle

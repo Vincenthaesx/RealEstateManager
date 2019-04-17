@@ -14,6 +14,7 @@ import com.openclassrooms.realestatemanager.ui.base.getViewModel
 import com.openclassrooms.realestatemanager.ui.updateProperty.UpdateProperty
 import com.openclassrooms.realestatemanager.utils.GlideApp
 import com.openclassrooms.realestatemanager.utils.Utils
+import com.openclassrooms.realestatemanager.utils.doubleToStringNoDecimal
 import com.openclassrooms.realestatemanager.utils.log
 import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import kotlinx.android.synthetic.main.fragment_property_detail.*
@@ -67,7 +68,10 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
                 val sdf = SimpleDateFormat(myFormat, Locale.US)
                 entryDate.text = sdf.format(ui.property.entryDate.time)
 
-                price.text ="${ui.property.price }$"
+                val priceP = ui.property.price
+                val priceProperty = doubleToStringNoDecimal(priceP)
+
+                price.text = (priceProperty+"€")
 
                 numberOfBedrooms.text = ui.property.bedroomsCount.toString()
 

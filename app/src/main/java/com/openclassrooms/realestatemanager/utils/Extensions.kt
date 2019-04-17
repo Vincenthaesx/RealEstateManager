@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.orhanobut.logger.Logger
+import java.text.DecimalFormat
+import java.text.NumberFormat
 
 fun String.log() {
     Logger.d(this)
@@ -36,5 +38,11 @@ fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int) {
 
 fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int) {
     supportFragmentManager.inTransaction { replace(frameId, fragment) }
+}
+
+fun doubleToStringNoDecimal(d: Int): String {
+    val formatter = NumberFormat.getInstance() as DecimalFormat
+    formatter.applyPattern("#,###")
+    return formatter.format(d)
 }
 
