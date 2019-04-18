@@ -14,24 +14,27 @@ class SimulatorFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslat
     override fun render(ui: ActionUiModel) {
         when (ui) {
             is ActionUiModel.GetPropertyModel -> {
+                var bring = 0
+                var duration = 1
 
                 val priceProperty = ui.property.price
-                price.text = priceProperty.toString()
+                price.text = "$priceProperty €"
+                edtDuration.setText(duration.toString())
+                edtApport.setText(bring.toString())
 
                 btnSimulatorResult.setOnClickListener {
-                    val bring = edtApport.text.toString().toInt()
-                    val duration = edtDuration.text.toString().toInt()
+
+                    duration = edtDuration.text.toString().toInt()
+                    bring = edtApport.text.toString().toInt()
+
 
                     val total = ((priceProperty - bring) + ((2*priceProperty)/100)).toFloat()
                     val priceByMouth = ((priceProperty - bring) + ((2*priceProperty)/100)) / (12 * duration).toFloat()
 
-                    resultTotal.visibility = View.VISIBLE
-                    resultByMouth.visibility = View.VISIBLE
-                    resultByMouthTitle.visibility = View.VISIBLE
-                    resultTotalTitle.visibility = View.VISIBLE
+                    constraintResult.visibility = View.VISIBLE
 
-                    resultTotal.text = total.toString()
-                    resultByMouth.text = priceByMouth.toString()
+                    resultTotal.text = "$total €"
+                    resultByMouth.text = "$priceByMouth €"
                 }
             }
         }

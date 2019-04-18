@@ -1,6 +1,5 @@
 package com.openclassrooms.realestatemanager.ui.property
 
-import androidx.sqlite.db.SimpleSQLiteQuery
 import com.openclassrooms.realestatemanager.models.Property
 
 sealed class Action {

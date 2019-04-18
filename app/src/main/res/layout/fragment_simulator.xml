@@ -10,23 +10,33 @@
         android:id="@+id/simulatorTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="18dp"
         android:text="@string/simulator"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:id="@+id/divider_estate"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/colorGrey"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toStartOf="@id/priceOfProperty"
+        app:layout_constraintEnd_toEndOf="@id/price"
+        app:layout_constraintTop_toBottomOf="@id/simulatorTitle" />
+
     <TextView
         android:id="@+id/priceOfProperty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="@string/price_of_property"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/simulatorTitle" />
+        app:layout_constraintTop_toBottomOf="@id/divider_estate" />
 
     <TextView
         android:id="@+id/price"
@@ -44,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="30dp"
         android:text="@string/loan_rate"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,8 +76,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="@string/duration"
         android:layout_marginTop="20dp"
+        android:text="@string/duration"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@id/txtPrice"
         app:layout_constraintStart_toStartOf="parent"
@@ -139,58 +149,76 @@
         android:id="@+id/btnSimulatorResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:text="@string/simulate"
         android:textSize="30sp"
-        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/resultTotalTitle"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintResult"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/total"
-        android:textSize="25sp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="20dp"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtDuration" />
-
-    <TextView
-        android:id="@+id/resultTotal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:text="@string/_200_000"
-        android:textSize="20sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/resultTotalTitle"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/border"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/resultTotalTitle" />
-
-    <TextView
-        android:id="@+id/resultByMouthTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/price_by_mouth"
-        android:textSize="25sp"
-        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/resultTotalTitle" />
+        app:layout_constraintBottom_toTopOf="@+id/btnSimulatorResult">
 
-    <TextView
-        android:id="@+id/resultByMouth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:text="@string/_450"
-        android:textSize="20sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/resultByMouthTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/resultByMouthTitle" />
+        <TextView
+            android:id="@+id/resultTotalTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="13dp"
+            android:text="@string/total"
+            android:textColor="@color/red"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/resultTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="13dp"
+            android:text="@string/_200_000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/resultTotalTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/resultTotalTitle" />
+
+        <TextView
+            android:id="@+id/resultByMouthTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="13dp"
+            android:text="@string/price_by_mouth"
+            android:textColor="@color/red"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/resultTotalTitle" />
+
+        <TextView
+            android:id="@+id/resultByMouth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="13dp"
+            android:text="@string/_450"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/resultByMouthTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/resultByMouthTitle" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
