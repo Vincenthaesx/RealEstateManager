@@ -179,7 +179,7 @@ class SearchFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>
             args.add(estateToDate.time)
         }
 
-        query += " AND pictureList >= ?"
+        query += if (conditions) " AND pictureList >= ?" else " WHERE pictureList >= ?"
         args.add(estatePhoto)
 
         launchListFragment(query, args)

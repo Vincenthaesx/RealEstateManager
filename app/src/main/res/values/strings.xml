@@ -150,7 +150,7 @@
         <item>@string/activity_add_estate_penthouse</item>
     </string-array>
 
-    <string name="search_type_all">All</string>
+    <string name="search_type_all">ALL</string>
 
     <string-array name="search_statute_array">
         <item>@string/activity_add_estate_available</item>
@@ -158,7 +158,7 @@
         <item>@string/search_statute_all</item>
     </string-array>
 
-    <string name="search_statute_all">All</string>
+    <string name="search_statute_all">ALL</string>
     <string name="activity_add_estate_available">Available</string>
     <string name="activity_add_estate_sold">Sold</string>
 

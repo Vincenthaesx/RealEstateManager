@@ -40,7 +40,7 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
 
                     property_price.text = (priceProperty + "€")
 
-                    if (!property.status) {
+                    if (property.status == "Sold") {
                         image_property_sold.visibility = View.VISIBLE
                     }
 
@@ -88,7 +88,7 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
 
                     property_price.text = (priceProperty + "€")
 
-                    if (!property.status) {
+                    if (property.status == "Sold") {
                         image_property_sold.visibility = View.VISIBLE
                     }
 
@@ -168,6 +168,8 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
             val args = arguments?.getStringArrayList("ARGS") as ArrayList<Any>
 
             query?.let { Action.GetPropertyBySearch(it, args) }?.let { actions.onNext(it) }
+
+            btnAddNewProperty.visibility = View.GONE
         } else{
             actions.onNext(Action.GetAllProperty())
         }

@@ -43,7 +43,7 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdateProper
                 pictureList.addAll(ui.property.pictureList)
                 listDescriptionImage.addAll(ui.property.descriptionPictureList)
 
-                if (!ui.property.status) {
+                if (ui.property.status == "Available") {
                     val text = ui.property.saleDate
                     val myFormat = "dd-MM-yyyy" // mention the format you need
                     val sdf = SimpleDateFormat(myFormat, Locale.US)
@@ -304,10 +304,10 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdateProper
         } else {
             Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
         }
-        var status = true
+        var status = "Available"
 
         if (soldDate != null) {
-            status = false
+            status = "Sold"
         }
 
         val property = Property(idProperty, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pointOfInterest, pictureList, listDescriptionImage, status, date, soldDate, agent)

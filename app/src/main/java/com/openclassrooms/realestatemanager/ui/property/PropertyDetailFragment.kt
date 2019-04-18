@@ -46,7 +46,7 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
                     }
                 }
 
-                if (ui.property.status) {
+                if (ui.property.status == "Available") {
                     imgButtonEdit.visibility = View.VISIBLE
                 } else {
                     soldDate.visibility = View.VISIBLE

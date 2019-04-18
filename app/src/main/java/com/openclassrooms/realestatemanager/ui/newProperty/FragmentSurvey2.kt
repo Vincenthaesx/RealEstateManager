@@ -263,7 +263,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
             pointOfInterest = edtPointOfInterest.text.toString()
         }
 
-        val status = true
+        val status = "Available"
         val saleDate = null
 
         val property = Property(0, type, address, price, surface, roomsCount, bathroomsCount, bedroomsCount, description, pointOfInterest, pictureList, listDescriptionImage, status, date, saleDate, agent)
