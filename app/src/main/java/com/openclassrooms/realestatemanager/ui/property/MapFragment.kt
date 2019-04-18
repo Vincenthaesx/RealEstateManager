@@ -100,6 +100,7 @@ class MapFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>(),
 
         fusedLocationClient.lastLocation.addOnSuccessListener(requireActivity()) { location ->
             if (location != null) {
+                progressBarMap.visibility = View.GONE
                 lastLocation = location
                 val currentLatLng = LatLng(location.latitude, location.longitude)
                 val options = MarkerOptions()
@@ -125,7 +126,6 @@ class MapFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>(),
 
     override fun onMarkerClick(marker: Marker?): Boolean {
         return if (marker?.tag != null) {
-            progressBarMap.visibility = View.GONE
             launchDetailFragment(marker.tag as Int)
             true
         } else {

@@ -126,6 +126,8 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
             idProperty = bundle.getInt("id", idProperty)
         }
 
+        actions.onNext(Action.GetProperty(idProperty))
+
         configureRecyclerView()
         configureSwipeRefreshLayout()
 
@@ -165,7 +167,6 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
 
     private fun configureRecyclerView() {
         recyclerView_detailImage.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        actions.onNext(Action.GetProperty(idProperty))
     }
 
     private fun configureSwipeRefreshLayout() {

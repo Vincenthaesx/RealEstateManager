@@ -15,13 +15,10 @@ import com.wbinarytree.github.kotlinutilsrecyclerview.GenericAdapter
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_property.*
 import kotlinx.android.synthetic.main.fragment_property_item.*
-import java.text.DecimalFormat
-import java.text.NumberFormat
-import java.util.*
 
 class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>() {
 
-    private var propertyDetailFragment: PropertyDetailFragment = PropertyDetailFragment()
+    private lateinit var propertyDetailFragment : PropertyDetailFragment
 
     override fun render(ui: ActionUiModel) {
 
@@ -36,13 +33,12 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
                             .into(image_property)
 
                     property_type.text = property.type
-
                     property_city.text = property.address
 
                     val price = property.price
                     val priceProperty = doubleToStringNoDecimal(price)
 
-                    property_price.text = (priceProperty+"€")
+                    property_price.text = (priceProperty + "€")
 
                     if (!property.status) {
                         image_property_sold.visibility = View.VISIBLE
@@ -50,6 +46,8 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
 
                     itemView.setOnClickListener {
                         if (resources.getBoolean(R.bool.isTab)) {
+                            propertyDetailFragment = PropertyDetailFragment()
+
                             val bundle = Bundle()
                             bundle.putInt("id", property.pid)
                             propertyDetailFragment.arguments = bundle
@@ -57,7 +55,10 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
                             fragmentManager?.beginTransaction()
                                     ?.replace(R.id.activity_main_frame_propertyDetail, propertyDetailFragment)
                                     ?.commit()
+
                         } else {
+                            propertyDetailFragment = PropertyDetailFragment()
+
                             val bundle = Bundle()
                             bundle.putInt("id", property.pid)
                             propertyDetailFragment.arguments = bundle
@@ -68,7 +69,6 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
                                     ?.commit()
                         }
                     }
-
                 }
             }
             is ActionUiModel.Error -> {
