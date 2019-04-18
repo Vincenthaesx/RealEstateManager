@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentTransaction
 import com.orhanobut.logger.Logger
 import java.text.DecimalFormat
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun String.log() {
     Logger.d(this)
@@ -45,4 +47,12 @@ fun doubleToStringNoDecimal(d: Int): String {
     formatter.applyPattern("#,###")
     return formatter.format(d)
 }
+
+private val BASE_FORMAT = SimpleDateFormat("dd/MM/yyyy")
+
+fun String.toFRDate() = BASE_FORMAT.parse(this)
+
+fun Date.toFRString() = BASE_FORMAT.format(this)
+
+fun Long.toFRDate() = Date(this)
 

@@ -15,6 +15,7 @@ import com.google.android.material.navigation.NavigationView
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.property.MapFragment
 import com.openclassrooms.realestatemanager.ui.property.PropertyFragment
+import com.openclassrooms.realestatemanager.ui.property.SearchFragment
 import com.openclassrooms.realestatemanager.utils.addFragment
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private var propertyFragment: PropertyFragment = PropertyFragment()
+    private var searchFragment: SearchFragment = SearchFragment()
     private var mapFragment: MapFragment = MapFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,7 +82,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.buttonSearch -> {
-
+                supportFragmentManager.beginTransaction()
+                        .replace(R.id.activity_main_frame_property, searchFragment)
+                        .addToBackStack(null)
+                        .commit()
             }
         }
         return true

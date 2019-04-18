@@ -5,4 +5,13 @@
     <dimen name="row_image_width">170dp</dimen>
     <dimen name="margin_row_text">4dp</dimen>
 
+    <dimen name="padding_to_parent">15dp</dimen>
+    <dimen name="space_between_elements">10dp</dimen>
+    <dimen name="small_space_between_items">5dp</dimen>
+    <dimen name="material_margin_fab">8dp</dimen>
+    <dimen name="size_text_small">10sp</dimen>
+    <dimen name="size_text_normal">16sp</dimen>
+    <dimen name="size_text_big">18sp</dimen>
+
+
 </resources>

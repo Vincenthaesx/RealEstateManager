@@ -1,6 +1,7 @@
 package com.openclassrooms.realestatemanager.models
 
 import androidx.room.*
+import androidx.sqlite.db.SupportSQLiteQuery
 import io.reactivex.Single
 import java.util.*
 
@@ -34,6 +35,9 @@ interface PropertyDao {
 
     @Query("Select * FROM Property WHERE pid = :id")
     fun getProperty(id: Int): Single<Property>
+
+    @RawQuery
+    fun getItemsBySearch(query: SupportSQLiteQuery) : Single<List<Property>>
 
     @Insert
     fun insertNewProperty(property: Property): Long

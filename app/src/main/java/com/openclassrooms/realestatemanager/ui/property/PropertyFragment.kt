@@ -71,6 +71,54 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
                     }
                 }
             }
+            is ActionUiModel.GetPropertyBySearchModel -> {
+                fragment_property_recyclerView.adapter = GenericAdapter(R.layout.fragment_property_item, ui.listProperty) { property, _ ->
+
+                    GlideApp.with(this@PropertyFragment)
+                            .load(property.pictureList.first())
+                            .fitCenter()
+                            .override(300, 300)
+                            .into(image_property)
+
+                    property_type.text = property.type
+                    property_city.text = property.address
+
+                    val price = property.price
+                    val priceProperty = doubleToStringNoDecimal(price)
+
+                    property_price.text = (priceProperty + "€")
+
+                    if (!property.status) {
+                        image_property_sold.visibility = View.VISIBLE
+                    }
+
+                    itemView.setOnClickListener {
+                        if (resources.getBoolean(R.bool.isTab)) {
+                            propertyDetailFragment = PropertyDetailFragment()
+
+                            val bundle = Bundle()
+                            bundle.putInt("id", property.pid)
+                            propertyDetailFragment.arguments = bundle
+
+                            fragmentManager?.beginTransaction()
+                                    ?.replace(R.id.activity_main_frame_propertyDetail, propertyDetailFragment)
+                                    ?.commit()
+
+                        } else {
+                            propertyDetailFragment = PropertyDetailFragment()
+
+                            val bundle = Bundle()
+                            bundle.putInt("id", property.pid)
+                            propertyDetailFragment.arguments = bundle
+
+                            fragmentManager?.beginTransaction()
+                                    ?.replace(R.id.activity_main_frame_property, propertyDetailFragment)
+                                    ?.addToBackStack(null)
+                                    ?.commit()
+                        }
+                    }
+                }
+            }
             is ActionUiModel.Error -> {
                 ui.message?.log()
                 fragment_property_swipeRefresh.isRefreshing = false
@@ -113,7 +161,16 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
 
     private fun configureRecyclerView() {
         fragment_property_recyclerView.layoutManager = LinearLayoutManager(activity)
-        actions.onNext(Action.GetAllProperty())
+
+        val bundle = arguments?.size()
+        if (bundle != null) {
+            val query = arguments?.getString("QUERY")
+            val args = arguments?.getStringArrayList("ARGS") as ArrayList<Any>
+
+            query?.let { Action.GetPropertyBySearch(it, args) }?.let { actions.onNext(it) }
+        } else{
+            actions.onNext(Action.GetAllProperty())
+        }
     }
 
     private fun configureSwipeRefreshLayout() {

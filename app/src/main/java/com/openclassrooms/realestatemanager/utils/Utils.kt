@@ -2,15 +2,11 @@ package com.openclassrooms.realestatemanager.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.Configuration
 import android.net.ConnectivityManager
 import android.view.MotionEvent
 import android.widget.EditText
 import java.text.SimpleDateFormat
 import java.util.*
-import android.content.res.Configuration.SCREENLAYOUT_SIZE_LARGE
-import android.content.res.Configuration.SCREENLAYOUT_SIZE_MASK
-
 
 
 object Utils {
