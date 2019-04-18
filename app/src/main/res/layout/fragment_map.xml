@@ -9,8 +9,8 @@
     <ProgressBar
         android:id="@+id/progressBarMap"
         android:layout_width="wrap_content"
-        android:progress="@android:integer/config_longAnimTime"
         android:layout_height="wrap_content"
+        android:progress="@android:integer/config_longAnimTime"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
         android:id="@+id/imgMyLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="32dp"
+        android:layout_margin="28dp"
         android:backgroundTint="@color/white"
         android:src="@drawable/icon_location"
         app:layout_constraintBottom_toBottomOf="parent"

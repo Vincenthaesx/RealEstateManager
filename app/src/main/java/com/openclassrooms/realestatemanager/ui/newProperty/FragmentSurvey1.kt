@@ -2,12 +2,15 @@ package com.openclassrooms.realestatemanager.ui.newProperty
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog
+import com.google.android.material.textfield.TextInputEditText
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.utils.Utils.onTouch
 import kotlinx.android.synthetic.main.row_new_property.*
@@ -48,9 +51,10 @@ class FragmentSurvey1 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        onTouch(edtType)
         onTouch(edtDescription)
         onTouch(edtAddress)
+
+        edtType.setOnClickListener { this.displayPopupMenu(resources.getStringArray(R.array.property_type_array), edtType) }
 
         txtNumberDate.setOnClickListener {
 
@@ -91,6 +95,16 @@ class FragmentSurvey1 : Fragment() {
 
         }
     }
+
+    private fun displayPopupMenu(listToDisplay: Array<String>, view: TextInputEditText) {
+        val popupMenu = PopupMenu(this.context, view)
+        (0 until listToDisplay.size).forEach { it ->
+            popupMenu.menu.add(Menu.NONE, it, it, listToDisplay[it])
+            popupMenu.setOnMenuItemClickListener { view.setText(it.title);true }
+        }
+        popupMenu.show()
+    }
+
 
     companion object {
         private const val TYPE = "type"

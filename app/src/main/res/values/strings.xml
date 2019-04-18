@@ -87,8 +87,16 @@
     <string name="search_price_max">Price max</string>
     <string name="search_surface_min">Surface min</string>
     <string name="search_surface_max">Surface max</string>
+
     <string name="search_bedrooms_min">Bedroom min</string>
     <string name="search_bedrooms_max">Bedroom max</string>
+
+    <string name="search_rooms_min">Room min</string>
+    <string name="search_rooms_max">Room max</string>
+
+    <string name="search_bathrooms_min">Bathroom min</string>
+    <string name="search_bathrooms_max">Bathroom max</string>
+
     <string name="search_from_date">From date</string>
     <string name="search_to_date">To date</string>
     <string name="search_media_min">Photo min</string>
@@ -135,7 +143,14 @@
         <item>@string/search_type_all</item>
     </string-array>
 
-    <string name="search_type_all">ALL</string>
+    <string-array name="property_type_array">
+        <item>@string/activity_add_estate_flat</item>
+        <item>@string/activity_add_estate_house</item>
+        <item>@string/activity_add_estate_duplex</item>
+        <item>@string/activity_add_estate_penthouse</item>
+    </string-array>
+
+    <string name="search_type_all">All</string>
 
     <string-array name="search_statute_array">
         <item>@string/activity_add_estate_available</item>
@@ -143,14 +158,14 @@
         <item>@string/search_statute_all</item>
     </string-array>
 
-    <string name="search_statute_all">ALL</string>
-    <string name="activity_add_estate_available">AVAILABLE</string>
-    <string name="activity_add_estate_sold">SOLD</string>
+    <string name="search_statute_all">All</string>
+    <string name="activity_add_estate_available">Available</string>
+    <string name="activity_add_estate_sold">Sold</string>
 
-    <string name="activity_add_estate_flat">FLAT</string>
-    <string name="activity_add_estate_house">HOUSE</string>
-    <string name="activity_add_estate_duplex">DUPLEX</string>
-    <string name="activity_add_estate_penthouse">PENTHOUSE</string>
+    <string name="activity_add_estate_flat">Flat</string>
+    <string name="activity_add_estate_house">House</string>
+    <string name="activity_add_estate_duplex">Duplex</string>
+    <string name="activity_add_estate_penthouse">Penthouse</string>
 
     <!-- OVERLAY -->
     <string name="overlay_image_title">Title</string>
@@ -159,6 +174,7 @@
 
     <string name="overlay_image_title_error">You must provide a title</string>
     <string name="overlay_image_desc_error">You must provide a description</string>
+    <string name="search_from_date_search">Search from date</string>
 
     <style name="api_key">AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM</style>
 

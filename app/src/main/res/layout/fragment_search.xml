@@ -185,7 +185,7 @@
                 android:hint="@string/search_bedrooms_min"
                 android:paddingBottom="@dimen/space_between_elements"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/search_fragment_surface_min_layout"
+                app:layout_constraintTop_toBottomOf="@+id/search_fragment_room_min_layout"
                 app:layout_constraintWidth_percent=".49">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -206,7 +206,7 @@
                 android:hint="@string/search_bedrooms_max"
                 android:paddingBottom="@dimen/space_between_elements"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/search_fragment_surface_max_layout"
+                app:layout_constraintTop_toBottomOf="@+id/search_fragment_room_min_layout"
                 app:layout_constraintWidth_percent=".49">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -217,18 +217,104 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- ESTATE ROOM NUMBER MIN -->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/search_fragment_room_min_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/search_rooms_min"
+                android:paddingBottom="@dimen/space_between_elements"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/search_fragment_surface_min_layout"
+                app:layout_constraintWidth_percent=".49">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/search_fragment_room_min"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- ESTATE ROOM NUMBER MAX -->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/search_fragment_room_max_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/search_rooms_max"
+                android:paddingBottom="@dimen/space_between_elements"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/search_fragment_surface_min_layout"
+                app:layout_constraintWidth_percent=".49">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/search_fragment_room_max"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- ESTATE BATHROOM NUMBER MIN -->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/search_fragment_bathrooms_min_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/search_bathrooms_min"
+                android:paddingBottom="@dimen/space_between_elements"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/search_fragment_bedrooms_max_layout"
+                app:layout_constraintWidth_percent=".49">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/search_fragment_bathrooms_min"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- ESTATE BATHROOM NUMBER MAX -->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/search_fragment_bathrooms_max_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/search_bathrooms_max"
+                android:paddingBottom="@dimen/space_between_elements"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/search_fragment_bedrooms_max_layout"
+                app:layout_constraintWidth_percent=".49">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/search_bathrooms_room_max"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
             <TextView
                 android:id="@+id/title_nearby"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:gravity="center"
-                android:text="@string/activity_add_title_nearby"
+                android:text="@string/search_from_date_search"
                 android:textColor="@color/colorGreyTitle"
                 android:textSize="@dimen/size_text_big"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/search_fragment_bedrooms_max_layout" />
+                app:layout_constraintTop_toBottomOf="@id/search_fragment_bathrooms_max_layout" />
 
             <View
                 android:id="@+id/nearby_separator"
@@ -238,71 +324,6 @@
                 android:paddingBottom="@dimen/space_between_elements"
                 app:layout_constraintTop_toBottomOf="@id/title_nearby" />
 
-            <!-- ESTATE SECTOR -->
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/search_fragment_sector_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_between_elements"
-                android:hint="@string/activity_add_estate_sector_address_hint"
-                android:paddingBottom="@dimen/space_between_elements"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nearby_separator">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/search_fragment_sector"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:drawableEnd="@drawable/baseline_arrow_drop_down_black_24"
-                    android:focusable="false"
-                    android:inputType="text" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- ESTATE VICINITY -->
-
-            <CheckBox
-                android:id="@+id/search_fragment_nearby_parks"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/activity_add_estate_parks"
-                android:textSize="@dimen/size_text_big"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/search_fragment_sector_layout"
-                app:layout_constraintWidth_percent=".49" />
-
-            <CheckBox
-                android:id="@+id/search_fragment_nearby_shops"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/activity_add_estate_shops"
-                android:textSize="@dimen/size_text_big"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/search_fragment_sector_layout"
-                app:layout_constraintWidth_percent=".49" />
-
-            <CheckBox
-                android:id="@+id/search_fragment_nearby_schools"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/activity_add_estate_schools"
-                android:textSize="@dimen/size_text_big"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/search_fragment_nearby_parks"
-                app:layout_constraintWidth_percent=".49" />
-
-            <CheckBox
-                android:id="@+id/search_fragment_nearby_highway"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/activity_add_estate_highway"
-                android:textSize="@dimen/size_text_big"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/search_fragment_nearby_shops"
-                app:layout_constraintWidth_percent=".49" />
 
             <!-- ESTATE FROM DATE -->
 
@@ -311,10 +332,11 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_between_elements"
                 android:hint="@string/search_from_date"
                 android:paddingBottom="@dimen/small_space_between_items"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/search_fragment_nearby_schools"
+                app:layout_constraintTop_toBottomOf="@+id/nearby_separator"
                 app:layout_constraintWidth_percent=".49">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -335,10 +357,11 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_between_elements"
                 android:hint="@string/search_to_date"
                 android:paddingBottom="@dimen/small_space_between_items"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/search_fragment_nearby_schools"
+                app:layout_constraintTop_toBottomOf="@+id/nearby_separator"
                 app:layout_constraintWidth_percent=".49">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -380,8 +403,9 @@
         android:id="@+id/search_fragment_FAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/space_between_elements"
+        android:layout_margin="28dp"
         android:src="@drawable/baseline_search_white_24"
+        app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

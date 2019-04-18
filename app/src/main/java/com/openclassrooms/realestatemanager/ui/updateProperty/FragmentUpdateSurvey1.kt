@@ -1,10 +1,13 @@
 package com.openclassrooms.realestatemanager.ui.updateProperty
 
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
+import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog
+import com.google.android.material.textfield.TextInputEditText
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
@@ -28,7 +31,7 @@ class FragmentUpdateSurvey1 : BaseUiFragment<Action, ActionUiModel, UpdateProper
                 edtDescription.setText(ui.property.description)
                 edtSurface.setText(ui.property.surface)
                 edtAddress.setText(ui.property.address)
-                edtPrice.setText(ui.property.price)
+                edtPrice.setText(ui.property.price.toString())
 
                 val myFormat = "dd-MM-yyyy"
                 val sdf = SimpleDateFormat(myFormat, Locale.US)
@@ -86,6 +89,8 @@ class FragmentUpdateSurvey1 : BaseUiFragment<Action, ActionUiModel, UpdateProper
             }
         }
 
+        edtType.setOnClickListener { this.displayPopupMenu(resources.getStringArray(R.array.property_type_array), edtType) }
+
         nextProperty.setOnClickListener {
 
             if (edtType.text!!.isNotEmpty() && edtAddress.text!!.isNotEmpty() && edtPrice.text!!.isNotEmpty() && edtSurface.text!!.isNotEmpty() && edtDescription.text!!.isNotEmpty() && edtAgent.text!!.isNotEmpty() && entryDate.isNotEmpty()) {
@@ -117,6 +122,15 @@ class FragmentUpdateSurvey1 : BaseUiFragment<Action, ActionUiModel, UpdateProper
             }
 
         }
+    }
+
+    private fun displayPopupMenu(listToDisplay: Array<String>, view: TextInputEditText) {
+        val popupMenu = PopupMenu(this.context, view)
+        (0 until listToDisplay.size).forEach { it ->
+            popupMenu.menu.add(Menu.NONE, it, it, listToDisplay[it])
+            popupMenu.setOnMenuItemClickListener { view.setText(it.title);true }
+        }
+        popupMenu.show()
     }
 
     companion object {

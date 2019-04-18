@@ -22,10 +22,10 @@
             android:id="@+id/edtType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="2"
-            android:overScrollMode="always"
-            android:scrollbarStyle="insideInset"
-            android:scrollbars="vertical" />
+            android:clickable="true"
+            android:drawableEnd="@drawable/baseline_arrow_drop_down_black_24"
+            android:focusable="false"
+            android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

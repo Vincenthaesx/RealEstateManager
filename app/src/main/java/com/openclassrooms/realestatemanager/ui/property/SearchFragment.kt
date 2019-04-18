@@ -17,8 +17,6 @@ import java.util.*
 
 class SearchFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>() {
 
-    private var sectorList = listOf<String>()
-
     override fun render(ui: ActionUiModel) {
         when (ui) {
             is ActionUiModel.GetPropertyBySearchModel -> {
@@ -38,7 +36,6 @@ class SearchFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>
     }
 
     private fun setOnClickListener() {
-        search_fragment_sector.setOnClickListener { this.displayPopupMenu(sectorList.toTypedArray(), search_fragment_sector) }
         search_fragment_spinner.setOnClickListener { this.displayPopupMenu(resources.getStringArray(R.array.search_type_array), search_fragment_spinner) }
         search_fragment_statute.setOnClickListener { this.displayPopupMenu(resources.getStringArray(R.array.search_statute_array), search_fragment_statute) }
         search_fragment_from_date.setOnClickListener { this.displayDatePicker(search_fragment_from_date) }
@@ -78,11 +75,10 @@ class SearchFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>
         val estateSurfaceMax = search_fragment_surface_max.text.toString().toIntOrNull()
         val estateBedroomMin = search_fragment_bedrooms_min.text.toString().toIntOrNull()
         val estateBedroomMax = search_fragment_bedrooms_max.text.toString().toIntOrNull()
-        val estateSector = search_fragment_sector.text.toString()
-        val estatePark = search_fragment_nearby_parks.isChecked;
-        val estateShop = search_fragment_nearby_shops.isChecked
-        val estateSchool = search_fragment_nearby_schools.isChecked;
-        val estateHighway = search_fragment_nearby_highway.isChecked
+        val estateRoomMin = search_fragment_room_min.text.toString().toIntOrNull()
+        val estateRoomMax = search_fragment_room_max.text.toString().toIntOrNull()
+        val estateBathroomMin = search_fragment_bathrooms_min.text.toString().toIntOrNull()
+        val estateBathroomMax = search_bathrooms_room_max.text.toString().toIntOrNull()
         val estateFromDate = try {
             search_fragment_from_date.text.toString().toFRDate()
         } catch (e: Exception) {
@@ -147,6 +143,30 @@ class SearchFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>
             args.add(estateBedroomMax)
         }
 
+        if (estateRoomMin != null) {
+            query += if (conditions) " AND " else " WHERE "; conditions = true
+            query += "roomsCount >= :$estateBedroomMin"
+            args.add(estateRoomMin)
+        }
+
+        if (estateRoomMax != null) {
+            query += if (conditions) " AND " else " WHERE "; conditions = true
+            query += "roomsCount <= :$estateBedroomMax"
+            args.add(estateRoomMax)
+        }
+
+        if (estateBathroomMin != null) {
+            query += if (conditions) " AND " else " WHERE "; conditions = true
+            query += "bathroomsCount >= :$estateBedroomMin"
+            args.add(estateBathroomMin)
+        }
+
+        if (estateBathroomMax != null) {
+            query += if (conditions) " AND " else " WHERE "; conditions = true
+            query += "bathroomsCount <= :$estateBedroomMax"
+            args.add(estateBathroomMax)
+        }
+
         if (estateFromDate != null) {
             query += if (conditions) " AND " else " WHERE "; conditions = true
             query += "entryDate >= ?"
@@ -166,10 +186,10 @@ class SearchFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>
 
     }
 
-    private fun launchListFragment(query:String,args:ArrayList<Any>){
+    private fun launchListFragment(query: String, args: ArrayList<Any>) {
         val bundle = Bundle()
         val propertyFragment = PropertyFragment()
-        bundle.putString("QUERY",query)
+        bundle.putString("QUERY", query)
         bundle.putStringArrayList("ARGS", args as ArrayList<String>)
         propertyFragment.arguments = bundle
 
