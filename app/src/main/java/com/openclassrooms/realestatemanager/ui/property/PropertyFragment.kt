@@ -3,6 +3,7 @@ package com.openclassrooms.realestatemanager.ui.property
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
@@ -72,52 +73,57 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
                 }
             }
             is ActionUiModel.GetPropertyBySearchModel -> {
-                fragment_property_recyclerView.adapter = GenericAdapter(R.layout.fragment_property_item, ui.listProperty) { property, _ ->
+                if (ui.listProperty.isEmpty()) {
+                    Toast.makeText(context, "No result found !", Toast.LENGTH_LONG).show()
+                } else {
+                    fragment_property_recyclerView.adapter = GenericAdapter(R.layout.fragment_property_item, ui.listProperty) { property, _ ->
 
-                    GlideApp.with(this@PropertyFragment)
-                            .load(property.pictureList.first())
-                            .fitCenter()
-                            .override(300, 300)
-                            .into(image_property)
+                        GlideApp.with(this@PropertyFragment)
+                                .load(property.pictureList.first())
+                                .fitCenter()
+                                .override(300, 300)
+                                .into(image_property)
 
-                    property_type.text = property.type
-                    property_city.text = property.address
+                        property_type.text = property.type
+                        property_city.text = property.address
 
-                    val price = property.price
-                    val priceProperty = doubleToStringNoDecimal(price)
+                        val price = property.price
+                        val priceProperty = doubleToStringNoDecimal(price)
 
-                    property_price.text = (priceProperty + "€")
+                        property_price.text = (priceProperty + "€")
 
-                    if (property.status == "Sold") {
-                        image_property_sold.visibility = View.VISIBLE
-                    }
+                        if (property.status == "Sold") {
+                            image_property_sold.visibility = View.VISIBLE
+                        }
 
-                    itemView.setOnClickListener {
-                        if (resources.getBoolean(R.bool.isTab)) {
-                            propertyDetailFragment = PropertyDetailFragment()
+                        itemView.setOnClickListener {
+                            if (resources.getBoolean(R.bool.isTab)) {
+                                propertyDetailFragment = PropertyDetailFragment()
 
-                            val bundle = Bundle()
-                            bundle.putInt("id", property.pid)
-                            propertyDetailFragment.arguments = bundle
+                                val bundle = Bundle()
+                                bundle.putInt("id", property.pid)
+                                propertyDetailFragment.arguments = bundle
 
-                            fragmentManager?.beginTransaction()
-                                    ?.replace(R.id.activity_main_frame_propertyDetail, propertyDetailFragment)
-                                    ?.commit()
+                                fragmentManager?.beginTransaction()
+                                        ?.replace(R.id.activity_main_frame_propertyDetail, propertyDetailFragment)
+                                        ?.commit()
 
-                        } else {
-                            propertyDetailFragment = PropertyDetailFragment()
+                            } else {
+                                propertyDetailFragment = PropertyDetailFragment()
 
-                            val bundle = Bundle()
-                            bundle.putInt("id", property.pid)
-                            propertyDetailFragment.arguments = bundle
+                                val bundle = Bundle()
+                                bundle.putInt("id", property.pid)
+                                propertyDetailFragment.arguments = bundle
 
-                            fragmentManager?.beginTransaction()
-                                    ?.replace(R.id.activity_main_frame_property, propertyDetailFragment)
-                                    ?.addToBackStack(null)
-                                    ?.commit()
+                                fragmentManager?.beginTransaction()
+                                        ?.replace(R.id.activity_main_frame_property, propertyDetailFragment)
+                                        ?.addToBackStack(null)
+                                        ?.commit()
+                            }
                         }
                     }
                 }
+
             }
             is ActionUiModel.Error -> {
                 ui.message?.log()

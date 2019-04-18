@@ -2,32 +2,25 @@ package com.openclassrooms.realestatemanager.ui.property
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
+import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
-import com.openclassrooms.realestatemanager.ui.base.getViewModel
 import com.openclassrooms.realestatemanager.utils.toFRDate
 import kotlinx.android.synthetic.main.fragment_search.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class SearchFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>() {
+class SearchFragment : Fragment() {
 
-    override fun render(ui: ActionUiModel) {
-        when (ui) {
-            is ActionUiModel.GetPropertyBySearchModel -> {
-                // some result
-            }
-        }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_search, container, false)
     }
-
-    override fun translator(): PropertyTranslator = requireActivity().getViewModel()
-
-    override fun getLayout() = R.layout.fragment_search
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
