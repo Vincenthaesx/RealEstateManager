@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="price">#d10125</color>
+    <color name="view">#909090</color>*
+
+    <color name="top">#838084</color>
+    <color name="toolbar">#1E88E5</color>
+    <color name="topTheme">#1565C0</color>
+    <color name="base">#908d91</color>
+    <color name="red">#ce0018</color>
+    <color name="validate">#57d53b</color>
+    <color name="blue">#60A0FF</color>
+    <color name="blue_01">#2eaadc</color>
+    <color name="black">#DE000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="colorGreen">#388e3c</color>
+    <color name="colorRed">#7f0000</color>
+
+    <color name="colorBlack">#000000</color>
+    <color name="colorBlackBackground">#96000000</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorLiteGrey">#32757575</color>
+    <color name="colorGrey">#757575</color>
+    <color name="colorGreyTitle">#212121</color>
+    <color name="colorGreyText">#424242</color>
+    <color name="colorError">#b71c1c</color>
+
+</resources>

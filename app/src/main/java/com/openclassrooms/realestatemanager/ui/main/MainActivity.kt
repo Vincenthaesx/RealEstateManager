@@ -136,9 +136,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                         && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
 
-                    supportFragmentManager.beginTransaction()
-                            .replace(R.id.activity_main_frame_property, mapFragment)
-                            .commit()
+                    if (resources.getBoolean(R.bool.isTab)) {
+                        supportFragmentManager.beginTransaction()
+                                .replace(R.id.activity_main_frame_propertyDetail, mapFragment)
+                                .commit()
+                    } else {
+                        supportFragmentManager.beginTransaction()
+                                .replace(R.id.activity_main_frame_property, mapFragment)
+                                .commit()
+                    }
+
                 } else {
                     Toast.makeText(this, getString(R.string.permissions), Toast.LENGTH_SHORT).show()
                 }

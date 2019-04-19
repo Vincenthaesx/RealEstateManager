@@ -87,7 +87,6 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
                 GlideApp.with(this)
                         .load("$START_URL${latLng?.latitude},${latLng?.longitude}&size=600x400&${Utils.API_KEY}")
                         .fitCenter()
-                        .override(300, 300)
                         .into(imgMap)
 
                 btnSimulator.setOnClickListener {

@@ -1,0 +1,181 @@
+<resources>
+    <string name="app_name">Real Estate Manager</string>
+
+    <string name="available">Available</string>
+    <string name="unavailable">Unavailable</string>
+    <string name="property_placeholder">Tap a property in the list to show its details here</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="description">Une petite description pour essayer le detail fragment, et voir si tout fonctionne correctement sans poser de probléme, cette application servira a afficher une liste de maison a vendre.</string>
+    <string name="surface">Surface</string>
+    <string name="_750_sq_m">750 sq m</string>
+    <string name="number_of_rooms">Number of rooms</string>
+    <string name="_8">8</string>
+    <string name="number_of_bathrooms">Number of bathrooms</string>
+    <string name="_2">2</string>
+    <string name="number_of_bedrooms">Number of bedrooms</string>
+    <string name="_4">4</string>
+    <string name="location">Location</string>
+    <string name="locationTest">740 Park avenue Apt 6/7A New York NY 10021 United States</string>
+    <string name="manhattan">Manhattan</string>
+    <string name="flat">Flat</string>
+    <string name="_17_870_000">$17,870,000</string>
+    <string name="media">Media</string>
+    <string name="descriptionTitle">Description</string>
+    <string name="addnewproperty">addNewProperty</string>
+    <string name="editproperty">editProperty</string>
+    <string name="searchproperty">searchProperty</string>
+    <string name="type_of_property">Type of property :</string>
+    <string name="choose_a_property_type">choose a property type</string>
+    <string name="address_of_the_property">Address of property :</string>
+    <string name="choose_a_property_address">choose a property address</string>
+    <string name="price_of_property">Price of property :</string>
+    <string name="choose_price_for_property">choose price for property</string>
+    <string name="surface_of_property">Surface of property :</string>
+    <string name="choose_surface_of_property">choose surface of property</string>
+    <string name="numberOfRooms">Rooms :</string>
+    <string name="choose_number_of_rooms">choose number of rooms</string>
+    <string name="numberOfBathrooms">Bathrooms :</string>
+    <string name="choose_number_of_bathrooms">choose number of bathrooms</string>
+    <string name="NumberOfBedrooms">Bedrooms :</string>
+    <string name="choose_number_of_bedrooms">choose number of bedrooms</string>
+    <string name="Description">Description :</string>
+    <string name="describe_the_property">Describe the property</string>
+    <string name="select_a_picture_for_property">Select a picture for property :</string>
+    <string name="status_of_property">Status of property :</string>
+    <string name="sold_not_sold">sold / not sold</string>
+    <string name="not_sold_sold">Not sold / sold</string>
+    <string name="entry_date">Entry date :</string>
+    <string name="agent">Agent :</string>
+    <string name="enter_your_name">enter your name</string>
+    <string name="jj_mm_yyyy">JJ/MM/YYYY</string>
+    <string name="label_date">Date</string>
+    <string name="save">SAVE</string>
+    <string name="next">NEXT</string>
+    <string name="click_on_picture_for_add_a_new_description">Click on picture for add a new description</string>
+    <string name="messageForUpdatePicture">Click on picture for change picture and description</string>
+    <string name="access_map">access map</string>
+    <string name="sold">Sold at : </string>
+    <string name="list">List</string>
+    <string name="map">Map</string>
+    <string name="permissions">Permission Denied</string>
+    <string name="agentTitle">Agent</string>
+    <string name="points_of_interest">Points of interest :</string>
+    <string name="point_of_interest">Point of interest</string>
+    <string name="parc_piscine_disneyland_cin_ma_restaurants">parc, piscine, disneyland, cinéma, restaurants</string>
+    <string name="vincent">Vincent</string>
+    <string name="_120_000">120 000$</string>
+    <string name="price">Price</string>
+    <string name="_28_03_2018">28/03/2018</string>
+    <string name="entry_date_property">Entry date</string>
+    <string name="_130_000">130 000$</string>
+    <string name="loan_rate">Loan rate :</string>
+    <string name="simulator">Simulator</string>
+    <string name="purcent">2%</string>
+    <string name="duration">Duration :</string>
+    <string name="bring">Bring :</string>
+    <string name="simulate">Simulate</string>
+    <string name="total">Total :</string>
+    <string name="_450">450</string>
+    <string name="price_by_mouth">Price by month :</string>
+    <string name="_200_000">200 000</string>
+    <string name="app_label">searchable</string>
+    <string name="search_hint">search</string>
+    <string name="search_statute">Estate statute</string>
+    <string name="search_price_min">Price min</string>
+    <string name="search_price_max">Price max</string>
+    <string name="search_surface_min">Surface min</string>
+    <string name="search_surface_max">Surface max</string>
+
+    <string name="search_bedrooms_min">Bedroom min</string>
+    <string name="search_bedrooms_max">Bedroom max</string>
+
+    <string name="search_rooms_min">Room min</string>
+    <string name="search_rooms_max">Room max</string>
+
+    <string name="search_bathrooms_min">Bathroom min</string>
+    <string name="search_bathrooms_max">Bathroom max</string>
+
+    <string name="search_from_date">From date</string>
+    <string name="search_to_date">To date</string>
+    <string name="search_media_min">Photo min</string>
+    <string name="search_empty_result">There is no estate matching your search</string>
+    <string name="activity_add_estate_sold_checkbox">This estate is sold?</string>
+    <string name="activity_add_estate_sold_date">Sale date</string>
+    <string name="activity_add_estate_type_hint">Estate type</string>
+    <string name="activity_add_estate_price_hint">Estate price</string>
+    <string name="activity_add_estate_surface_hint">Estate surface</string>
+    <string name="activity_add_estate_room_number_hint">Rooms number</string>
+    <string name="activity_add_estate_bathroom_number_hint">Bathrooms number</string>
+    <string name="activity_add_estate_bedroom_number_hint">Bedrooms number</string>
+    <string name="activity_add_estate_desc_hint">Description</string>
+    <string name="activity_add_estate_date_hint">Estate market entry date</string>
+    <string name="activity_add_estate_address_hint">Address</string>
+    <string name="activity_add_estate_add_address_hint">Additional address</string>
+    <string name="activity_add_estate_sector_address_hint">Sector</string>
+    <string name="activity_add_estate_city_address_hint">City</string>
+    <string name="activity_add_estate_zip_address_hint">Zip Code</string>
+    <string name="activity_add_estate_country_address_hint">State</string>
+
+    <string name="activity_add_estate_parks">Parks</string>
+    <string name="activity_add_estate_shops">Shops</string>
+    <string name="activity_add_estate_schools">Schools</string>
+    <string name="activity_add_estate_highway">Highway</string>
+
+    <string name="activity_add_estate_choose_pic">Choose picture</string>
+    <string name="activity_add_estate_take_pic">Take picture</string>
+    <string name="activity_add_estate_save">Save</string>
+
+    <string name="activity_add_title_estate">Estate information</string>
+    <string name="activity_add_title_address">Address information</string>
+    <string name="activity_add_title_nearby">Nearby points of interest</string>
+    <string name="activity_add_title_media">Media</string>
+
+    <string name="activity_add_estate_saved">Estate successfully saved in database</string>
+    <string name="activity_add_estate_save_error">You must provide title and description for each picture before saving estate</string>
+
+    <string-array name="search_type_array">
+        <item>@string/activity_add_estate_flat</item>
+        <item>@string/activity_add_estate_house</item>
+        <item>@string/activity_add_estate_duplex</item>
+        <item>@string/activity_add_estate_penthouse</item>
+        <item>@string/search_type_all</item>
+    </string-array>
+
+    <string-array name="property_type_array">
+        <item>@string/activity_add_estate_flat</item>
+        <item>@string/activity_add_estate_house</item>
+        <item>@string/activity_add_estate_duplex</item>
+        <item>@string/activity_add_estate_penthouse</item>
+    </string-array>
+
+    <string name="search_type_all">ALL</string>
+
+    <string-array name="search_statute_array">
+        <item>@string/activity_add_estate_available</item>
+        <item>@string/activity_add_estate_sold</item>
+        <item>@string/search_statute_all</item>
+    </string-array>
+
+    <string name="search_statute_all">ALL</string>
+    <string name="activity_add_estate_available">Available</string>
+    <string name="activity_add_estate_sold">Sold</string>
+
+    <string name="activity_add_estate_flat">Flat</string>
+    <string name="activity_add_estate_house">House</string>
+    <string name="activity_add_estate_duplex">Duplex</string>
+    <string name="activity_add_estate_penthouse">Penthouse</string>
+
+    <!-- OVERLAY -->
+    <string name="overlay_image_title">Title</string>
+    <string name="overlay_image_desc">Description</string>
+    <string name="overlay_image_details_saved">Image details saved</string>
+
+    <string name="overlay_image_title_error">You must provide a title</string>
+    <string name="overlay_image_desc_error">You must provide a description</string>
+    <string name="search_from_date_search">Search from date</string>
+
+    <style name="api_key">AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM</style>
+
+</resources>
