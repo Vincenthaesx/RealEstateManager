@@ -31,7 +31,6 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
     override fun render(ui: ActionUiModel) {
         when (ui) {
             is ActionUiModel.GetPropertyModel -> {
-
                 recyclerView_detailImage.adapter = GenericAdapter(R.layout.row_image_detail, ui.property.pictureList) { image, description ->
 
                     GlideApp.with(this@PropertyDetailFragment)
@@ -71,7 +70,7 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
                 val priceP = ui.property.price
                 val priceProperty = doubleToStringNoDecimal(priceP)
 
-                price.text = (priceProperty+"€")
+                price.text = (priceProperty + "€")
 
                 numberOfBedrooms.text = ui.property.bedroomsCount.toString()
 
@@ -102,6 +101,9 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
                             ?.addToBackStack(null)
                             ?.commit()
                 }
+
+                constraintPropertyDetail.visibility = View.VISIBLE
+                progressBarDetail.visibility = View.GONE
 
             }
             is ActionUiModel.Error -> {

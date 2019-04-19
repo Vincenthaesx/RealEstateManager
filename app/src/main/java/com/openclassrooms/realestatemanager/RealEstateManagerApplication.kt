@@ -15,7 +15,7 @@ class RealEstateManagerApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        RealEstateManagerApplication.applicationContext()
+        applicationContext()
 
         repoComponent = DaggerRepositoryComponent.builder().repositoryModule(RepositoryModule)
                 .build()

@@ -53,15 +53,14 @@ class MapFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         actions.onNext(Action.GetAllProperty())
 
-        if (Utils.isInternetAvailable(RealEstateManagerApplication.applicationContext())){
+        if (Utils.isInternetAvailable(RealEstateManagerApplication.applicationContext())) {
             val supportMapFragment = childFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment?
             supportMapFragment?.getMapAsync(this)
-        }else{
-            Toast.makeText(context,"Connexion error",Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(context, "Connexion error", Toast.LENGTH_SHORT).show()
         }
     }
 
