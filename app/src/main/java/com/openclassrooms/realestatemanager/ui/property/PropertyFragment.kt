@@ -3,7 +3,6 @@ package com.openclassrooms.realestatemanager.ui.property
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
@@ -19,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_property_item.*
 
 class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>() {
 
-    private lateinit var propertyDetailFragment : PropertyDetailFragment
+    private lateinit var propertyDetailFragment: PropertyDetailFragment
 
     override fun render(ui: ActionUiModel) {
 
@@ -73,57 +72,52 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
                 }
             }
             is ActionUiModel.GetPropertyBySearchModel -> {
-                if (ui.listProperty.isEmpty()) {
-                    Toast.makeText(context, "No result found !", Toast.LENGTH_LONG).show()
-                } else {
-                    fragment_property_recyclerView.adapter = GenericAdapter(R.layout.fragment_property_item, ui.listProperty) { property, _ ->
+                fragment_property_recyclerView.adapter = GenericAdapter(R.layout.fragment_property_item, ui.listProperty) { property, _ ->
 
-                        GlideApp.with(this@PropertyFragment)
-                                .load(property.pictureList.first())
-                                .fitCenter()
-                                .override(300, 300)
-                                .into(image_property)
+                    GlideApp.with(this@PropertyFragment)
+                            .load(property.pictureList.first())
+                            .fitCenter()
+                            .override(300, 300)
+                            .into(image_property)
 
-                        property_type.text = property.type
-                        property_city.text = property.address
+                    property_type.text = property.type
+                    property_city.text = property.address
 
-                        val price = property.price
-                        val priceProperty = doubleToStringNoDecimal(price)
+                    val price = property.price
+                    val priceProperty = doubleToStringNoDecimal(price)
 
-                        property_price.text = (priceProperty + "€")
+                    property_price.text = (priceProperty + "€")
 
-                        if (property.status == "Sold") {
-                            image_property_sold.visibility = View.VISIBLE
-                        }
+                    if (property.status == "Sold") {
+                        image_property_sold.visibility = View.VISIBLE
+                    }
 
-                        itemView.setOnClickListener {
-                            if (resources.getBoolean(R.bool.isTab)) {
-                                propertyDetailFragment = PropertyDetailFragment()
+                    itemView.setOnClickListener {
+                        if (resources.getBoolean(R.bool.isTab)) {
+                            propertyDetailFragment = PropertyDetailFragment()
 
-                                val bundle = Bundle()
-                                bundle.putInt("id", property.pid)
-                                propertyDetailFragment.arguments = bundle
+                            val bundle = Bundle()
+                            bundle.putInt("id", property.pid)
+                            propertyDetailFragment.arguments = bundle
 
-                                fragmentManager?.beginTransaction()
-                                        ?.replace(R.id.activity_main_frame_propertyDetail, propertyDetailFragment)
-                                        ?.commit()
+                            fragmentManager?.beginTransaction()
+                                    ?.replace(R.id.activity_main_frame_propertyDetail, propertyDetailFragment)
+                                    ?.commit()
 
-                            } else {
-                                propertyDetailFragment = PropertyDetailFragment()
+                        } else {
+                            propertyDetailFragment = PropertyDetailFragment()
 
-                                val bundle = Bundle()
-                                bundle.putInt("id", property.pid)
-                                propertyDetailFragment.arguments = bundle
+                            val bundle = Bundle()
+                            bundle.putInt("id", property.pid)
+                            propertyDetailFragment.arguments = bundle
 
-                                fragmentManager?.beginTransaction()
-                                        ?.replace(R.id.activity_main_frame_property, propertyDetailFragment)
-                                        ?.addToBackStack(null)
-                                        ?.commit()
-                            }
+                            fragmentManager?.beginTransaction()
+                                    ?.replace(R.id.activity_main_frame_property, propertyDetailFragment)
+                                    ?.addToBackStack(null)
+                                    ?.commit()
                         }
                     }
                 }
-
             }
             is ActionUiModel.Error -> {
                 ui.message?.log()
@@ -146,7 +140,7 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        configureRecyclerView()
+        configureView()
         configureSwipeRefreshLayout()
 
         btnAddNewProperty.setOnClickListener {
@@ -165,7 +159,7 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
     // CONFIGURATION
     // -----------------
 
-    private fun configureRecyclerView() {
+    private fun configureView() {
         fragment_property_recyclerView.layoutManager = LinearLayoutManager(activity)
 
         val bundle = arguments?.size()
@@ -176,7 +170,7 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
             query?.let { Action.GetPropertyBySearch(it, args) }?.let { actions.onNext(it) }
 
             btnAddNewProperty.visibility = View.GONE
-        } else{
+        } else {
             actions.onNext(Action.GetAllProperty())
         }
     }

@@ -69,7 +69,7 @@ class FragmentSurvey1 : Fragment() {
                 val type = edtType.text.toString()
                 val address = edtAddress.text.toString()
                 val price = edtPrice.text.toString().toInt()
-                val surface = edtSurface.text.toString()
+                val surface = edtSurface.text.toString().toInt()
                 val description = edtDescription.text.toString()
                 val agent = edtAgent.text.toString()
 
@@ -77,7 +77,7 @@ class FragmentSurvey1 : Fragment() {
                 bundle.putString(TYPE, type)
                 bundle.putString(ADDRESS, address)
                 bundle.putInt(PRICE, price)
-                bundle.putString(SURFACE, surface)
+                bundle.putInt(SURFACE, surface)
                 bundle.putString(DESCRIPTION, description)
                 bundle.putString(AGENT, agent)
                 bundle.putString(DATE, entryDate)

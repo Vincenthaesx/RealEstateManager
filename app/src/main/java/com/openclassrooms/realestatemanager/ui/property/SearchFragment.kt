@@ -2,25 +2,40 @@ package com.openclassrooms.realestatemanager.ui.property
 
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
-import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.TextView
-import androidx.fragment.app.Fragment
+import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
+import com.openclassrooms.realestatemanager.ui.base.getViewModel
 import com.openclassrooms.realestatemanager.utils.toFRDate
 import kotlinx.android.synthetic.main.fragment_search.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class SearchFragment : Fragment() {
+class SearchFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_search, container, false)
+    private var query = "Select * FROM Property"
+    private var args = arrayListOf<Any>()
+
+    override fun render(ui: ActionUiModel) {
+        when (ui) {
+            is ActionUiModel.GetPropertyBySearchModel -> {
+                if (ui.listProperty.isEmpty()) {
+                    Toast.makeText(context, "Result not found !", Toast.LENGTH_LONG).show()
+                } else {
+                    launchListFragment(query, args)
+                }
+            }
+        }
     }
+
+    override fun translator(): PropertyTranslator = requireActivity().getViewModel()
+
+    override fun getLayout() = R.layout.fragment_search
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,7 +67,7 @@ class SearchFragment : Fragment() {
         val mMonth = calendar.get(Calendar.MONTH)
         val mDay = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val datePickerDialog = DatePickerDialog(this.context, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+        val datePickerDialog = DatePickerDialog(this.context, DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
             mView.setText(sdf.format(Date(year - 1900, monthOfYear, dayOfMonth)), TextView.BufferType.EDITABLE)
 
         }, mYear, mMonth, mDay)
@@ -64,14 +79,19 @@ class SearchFragment : Fragment() {
         val estateStatute = search_fragment_statute.text.toString()
         val estatePriceMin = search_fragment_price_min.text.toString().toDoubleOrNull()
         val estatePriceMax = search_fragment_price_max.text.toString().toDoubleOrNull()
+
         val estateSurfaceMin = search_fragment_surface_min.text.toString().toIntOrNull()
         val estateSurfaceMax = search_fragment_surface_max.text.toString().toIntOrNull()
+
         val estateBedroomMin = search_fragment_bedrooms_min.text.toString().toIntOrNull()
         val estateBedroomMax = search_fragment_bedrooms_max.text.toString().toIntOrNull()
+
         val estateRoomMin = search_fragment_room_min.text.toString().toIntOrNull()
         val estateRoomMax = search_fragment_room_max.text.toString().toIntOrNull()
+
         val estateBathroomMin = search_fragment_bathrooms_min.text.toString().toIntOrNull()
-        val estateBathroomMax = search_bathrooms_room_max.text.toString().toIntOrNull()
+        val estateBathroomMax = search_fragment_bathrooms_max.text.toString().toIntOrNull()
+
         val estateFromDate = try {
             search_fragment_from_date.text.toString().toFRDate()
         } catch (e: Exception) {
@@ -84,8 +104,8 @@ class SearchFragment : Fragment() {
         }
         val estatePhoto = search_fragment_media_min.text.toString().toIntOrNull() ?: 0
 
-        var query = "Select * FROM Property"
-        val args = arrayListOf<Any>()
+        query = "Select * FROM Property"
+        args = arrayListOf<Any>()
         var conditions = false
 
         if (!(estateType == "" || estateType == "ALL")) {
@@ -138,25 +158,25 @@ class SearchFragment : Fragment() {
 
         if (estateRoomMin != null) {
             query += if (conditions) " AND " else " WHERE "; conditions = true
-            query += "roomsCount >= :$estateBedroomMin"
+            query += "roomsCount >= :$estateRoomMin"
             args.add(estateRoomMin)
         }
 
         if (estateRoomMax != null) {
             query += if (conditions) " AND " else " WHERE "; conditions = true
-            query += "roomsCount <= :$estateBedroomMax"
+            query += "roomsCount <= :$estateRoomMax"
             args.add(estateRoomMax)
         }
 
         if (estateBathroomMin != null) {
             query += if (conditions) " AND " else " WHERE "; conditions = true
-            query += "bathroomsCount >= :$estateBedroomMin"
+            query += "bathroomsCount >= :$estateBathroomMin"
             args.add(estateBathroomMin)
         }
 
         if (estateBathroomMax != null) {
             query += if (conditions) " AND " else " WHERE "; conditions = true
-            query += "bathroomsCount <= :$estateBedroomMax"
+            query += "bathroomsCount <= :$estateBathroomMax"
             args.add(estateBathroomMax)
         }
 
@@ -175,8 +195,7 @@ class SearchFragment : Fragment() {
         query += if (conditions) " AND pictureList >= ?" else " WHERE pictureList >= ?"
         args.add(estatePhoto)
 
-        launchListFragment(query, args)
-
+        actions.onNext(Action.GetPropertyBySearch(query, args))
     }
 
     private fun launchListFragment(query: String, args: ArrayList<Any>) {

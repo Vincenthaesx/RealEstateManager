@@ -9,6 +9,7 @@ import android.location.LocationListener
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -20,8 +21,10 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.RealEstateManagerApplication
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
+import com.openclassrooms.realestatemanager.utils.Utils
 import kotlinx.android.synthetic.main.fragment_map.*
 
 class MapFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>(), LocationListener, OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
@@ -54,8 +57,12 @@ class MapFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>(),
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         actions.onNext(Action.GetAllProperty())
 
-        val supportMapFragment = childFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment?
-        supportMapFragment?.getMapAsync(this)
+        if (Utils.isInternetAvailable(RealEstateManagerApplication.applicationContext())){
+            val supportMapFragment = childFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment?
+            supportMapFragment?.getMapAsync(this)
+        }else{
+            Toast.makeText(context,"Connexion error",Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {

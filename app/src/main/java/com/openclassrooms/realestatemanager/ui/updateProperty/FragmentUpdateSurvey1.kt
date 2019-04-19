@@ -29,7 +29,7 @@ class FragmentUpdateSurvey1 : BaseUiFragment<Action, ActionUiModel, UpdateProper
 
                 edtType.setText(ui.property.type)
                 edtDescription.setText(ui.property.description)
-                edtSurface.setText(ui.property.surface)
+                edtSurface.setText(ui.property.surface.toString())
                 edtAddress.setText(ui.property.address)
                 edtPrice.setText(ui.property.price.toString())
 

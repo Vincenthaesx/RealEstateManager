@@ -13,7 +13,7 @@ data class Property(
         var type: String,                             // Type (apartment, loft, mansion, etc...)
         var address: String,                          // Full address of the property
         var price: Int,                               // Price (in US Dollars)
-        var surface: String,                          // Surface (in square meters)
+        var surface: Int,                          // Surface (in square meters)
         var roomsCount: Int,                          // Rooms count
         var bathroomsCount: Int,                      // Bathrooms count
         var bedroomsCount: Int,                       // Bedrooms count

@@ -58,7 +58,7 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
 
                 descriptionDetail.text = ui.property.description
 
-                surface.text = ui.property.surface
+                surface.text = ("${ui.property.surface} m²")
 
                 numberOfRoom.text = ui.property.roomsCount.toString()
 
