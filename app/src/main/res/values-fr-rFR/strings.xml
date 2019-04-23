@@ -56,7 +56,7 @@
     <string name="click_on_picture_for_add_a_new_description">Cliquez sur l\'image pour ajouter une nouvelle description</string>
     <string name="messageForUpdatePicture">Cliquez sur l\'image pour changer votre description</string>
     <string name="access_map">Carte</string>
-    <string name="sold">Vendu à : </string>
+    <string name="sold">Vendu le :</string>
     <string name="list">Liste</string>
     <string name="map">Carte</string>
     <string name="permissions">Permission refusée</string>

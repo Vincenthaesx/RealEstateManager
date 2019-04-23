@@ -43,13 +43,6 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdateProper
                 pictureList.addAll(ui.property.pictureList)
                 listDescriptionImage.addAll(ui.property.descriptionPictureList)
 
-                if (ui.property.status == "Available") {
-                    val text = ui.property.saleDate
-                    val myFormat = "dd-MM-yyyy" // mention the format you need
-                    val sdf = SimpleDateFormat(myFormat, Locale.US)
-                    txtNumberDateUpdate.text = sdf.format(text?.time)
-                }
-
                 setupAdapter()
 
                 edtPointOfInterest.setText(ui.property.PointOfInterest)
