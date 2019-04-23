@@ -5,7 +5,7 @@ import android.view.View
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
-import kotlinx.android.synthetic.main.fragment_simulator.*
+import kotlinx.android.synthetic.main.row_simulator.*
 
 class SimulatorFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>() {
 
@@ -28,8 +28,8 @@ class SimulatorFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslat
                     bring = edtApport.text.toString().toInt()
 
 
-                    val total = ((priceProperty - bring) + ((2*priceProperty)/100)).toFloat()
-                    val priceByMouth = ((priceProperty - bring) + ((2*priceProperty)/100)) / (12 * duration).toFloat()
+                    val total = ((priceProperty - bring) + ((2 * priceProperty) / 100)).toFloat()
+                    val priceByMouth = ((priceProperty - bring) + ((2 * priceProperty) / 100)) / (12 * duration).toFloat()
 
                     constraintResult.visibility = View.VISIBLE
 
