@@ -171,15 +171,15 @@
     <string name="overlay_image_title">Title</string>
     <string name="overlay_image_desc">Description</string>
     <string name="overlay_image_details_saved">Image details saved</string>
+    <string name="input">Please enter all the input fields</string>
+    <string name="camera">Take picture with camera</string>
 
     <string name="overlay_image_title_error">You must provide a title</string>
     <string name="overlay_image_desc_error">You must provide a description</string>
     <string name="search_from_date_search">Search from date</string>
-    <string name="input">Please enter all the input fields</string>
     <string name="descriptionpicture">Please enter the description of picture :</string>
     <string name="locationPicture">Picture location</string>
     <string name="phoneStorage">On phone storage</string>
-    <string name="camera">Take picture with camera</string>
     <string name="echec">Echec request !</string>
     <string name="newProperty">A new property is added</string>
 

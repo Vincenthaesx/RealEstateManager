@@ -90,7 +90,7 @@ class FragmentSurvey1 : Fragment() {
                         ?.commit()
 
             } else {
-                Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, getString(R.string.input), Toast.LENGTH_LONG).show()
             }
 
         }

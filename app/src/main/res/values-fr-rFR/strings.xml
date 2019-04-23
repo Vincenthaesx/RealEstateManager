@@ -1,0 +1,183 @@
+<resources>
+    <string name="app_name">Real Estate Manager</string>
+
+    <string name="available">Disponible</string>
+    <string name="unavailable">Indisponible</string>
+    <string name="property_placeholder">Appuyez sur une propriété dans la liste pour afficher ses détails ici.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Bonjour fragment vierge</string>
+    <string name="description">Une petite description pour essayer le detail fragment, et voir si tout fonctionne correctement sans poser de probléme, cette application servira a afficher une liste de maison a vendre.</string>
+    <string name="surface">Surface</string>
+    <string name="_750_sq_m">750 sq m</string>
+    <string name="number_of_rooms">Nombre de chambres</string>
+    <string name="_8">8</string>
+    <string name="number_of_bathrooms">Nombre de salles de bain</string>
+    <string name="_2">2</string>
+    <string name="number_of_bedrooms">Nombre de chambres</string>
+    <string name="_4">4</string>
+    <string name="location">Emplacement</string>
+    <string name="locationTest">740 Park avenue Apt 6/7A New York NY 10021 United States</string>
+    <string name="manhattan">Manhattan</string>
+    <string name="flat">Appartement</string>
+    <string name="_17_870_000">$17,870,000</string>
+    <string name="media">Media</string>
+    <string name="descriptionTitle">Description</string>
+    <string name="addnewproperty">addNewProperty</string>
+    <string name="editproperty">editProperty</string>
+    <string name="searchproperty">searchProperty</string>
+    <string name="type_of_property">Type de propriété :</string>
+    <string name="choose_a_property_type">choisissez un type de propriétée</string>
+    <string name="address_of_the_property">Adresse de la propriété :</string>
+    <string name="choose_a_property_address">choisissez une adresse de propriété</string>
+    <string name="price_of_property">Prix ​​de la propriété :</string>
+    <string name="choose_price_for_property">choisissez le prix de la propriété</string>
+    <string name="surface_of_property">Surface de la propriété :</string>
+    <string name="choose_surface_of_property">choisir la surface de la propriété</string>
+    <string name="numberOfRooms">Pièces :</string>
+    <string name="choose_number_of_rooms">choisissez le nombre de pièces</string>
+    <string name="numberOfBathrooms">Salle de bain :</string>
+    <string name="choose_number_of_bathrooms">choisissez le nombre de salles de bain</string>
+    <string name="NumberOfBedrooms">Chambres :</string>
+    <string name="choose_number_of_bedrooms">choisissez le nombre de chambres</string>
+    <string name="Description">Description :</string>
+    <string name="describe_the_property">Décrivez la propriété</string>
+    <string name="select_a_picture_for_property">Sélectionnez une image pour la propriété :</string>
+    <string name="status_of_property">Statut de la propriété :</string>
+    <string name="sold_not_sold">vendu / non vendu</string>
+    <string name="not_sold_sold">non vendu / vendu</string>
+    <string name="entry_date">Date d\'entrée :</string>
+    <string name="agent">Agent :</string>
+    <string name="enter_your_name">entrez votre nom</string>
+    <string name="jj_mm_yyyy">JJ/MM/YYYY</string>
+    <string name="label_date">Date</string>
+    <string name="save">ENREGISTRER</string>
+    <string name="next">SUIVANT</string>
+    <string name="click_on_picture_for_add_a_new_description">Cliquez sur l\'image pour ajouter une nouvelle description</string>
+    <string name="messageForUpdatePicture">Cliquez sur l\'image pour changer votre description</string>
+    <string name="access_map">Carte</string>
+    <string name="sold">Vendu à : </string>
+    <string name="list">Liste</string>
+    <string name="map">Carte</string>
+    <string name="permissions">Permission refusée</string>
+    <string name="agentTitle">Agent</string>
+    <string name="points_of_interest">Points d\'interêts :</string>
+    <string name="point_of_interest">Point d\'intérêt</string>
+    <string name="parc_piscine_disneyland_cin_ma_restaurants">parc, piscine, disneyland, cinéma, restaurants</string>
+    <string name="vincent">Vincent</string>
+    <string name="_120_000">120 000$</string>
+    <string name="price">Prix</string>
+    <string name="_28_03_2018">28/03/2018</string>
+    <string name="entry_date_property">Date d\'entrée</string>
+    <string name="_130_000">130 000$</string>
+    <string name="loan_rate">Taux de prêt :</string>
+    <string name="simulator">Simulateur</string>
+    <string name="purcent">2%</string>
+    <string name="duration">Durée :</string>
+    <string name="bring">Apport :</string>
+    <string name="simulate">Simuler</string>
+    <string name="total">Total :</string>
+    <string name="_450">450</string>
+    <string name="price_by_mouth">Prix ​​par mois :</string>
+    <string name="_200_000">200 000</string>
+    <string name="app_label">searchable</string>
+    <string name="search_hint">chercher</string>
+    <string name="search_statute">Statut de propriété</string>
+    <string name="search_price_min">Prix min</string>
+    <string name="search_price_max">Prix max</string>
+    <string name="search_surface_min">Surface min</string>
+    <string name="search_surface_max">Surface max</string>
+
+    <string name="search_bedrooms_min">Chambre min</string>
+    <string name="search_bedrooms_max">Chambre max</string>
+
+    <string name="search_rooms_min">Pièce min</string>
+    <string name="search_rooms_max">Pièce max</string>
+
+    <string name="search_bathrooms_min">Salle de bain min</string>
+    <string name="search_bathrooms_max">Salle de bain max</string>
+
+    <string name="search_from_date">A partir de</string>
+    <string name="search_to_date">Jusqu\'a</string>
+    <string name="search_media_min">Photo min</string>
+    <string name="search_empty_result">Il n\'y a pas de propriète correspondant à votre recherche</string>
+    <string name="activity_add_estate_sold_checkbox">Cette propriété est vendu?</string>
+    <string name="activity_add_estate_sold_date">Date de vente</string>
+    <string name="activity_add_estate_type_hint">Type de propriété</string>
+    <string name="activity_add_estate_price_hint">Prix de propriété</string>
+    <string name="activity_add_estate_surface_hint">Surface de propriété</string>
+    <string name="activity_add_estate_room_number_hint">Nombre de pièces</string>
+    <string name="activity_add_estate_bathroom_number_hint">Nombre de salle de bain</string>
+    <string name="activity_add_estate_bedroom_number_hint">Nombre de chambre</string>
+    <string name="activity_add_estate_desc_hint">Description</string>
+    <string name="activity_add_estate_date_hint">Date d\'entrée sur le marché immobilier</string>
+    <string name="activity_add_estate_address_hint">Adresse</string>
+    <string name="activity_add_estate_add_address_hint">Additional address</string>
+    <string name="activity_add_estate_sector_address_hint">Secteur</string>
+    <string name="activity_add_estate_city_address_hint">Ville</string>
+    <string name="activity_add_estate_zip_address_hint">Zip Code</string>
+    <string name="activity_add_estate_country_address_hint">Etat</string>
+
+    <string name="activity_add_estate_choose_pic">Choisissez une photo</string>
+    <string name="activity_add_estate_take_pic">Prendre une photo</string>
+    <string name="activity_add_estate_save">sauvegarder</string>
+
+    <string name="activity_add_title_estate">Informations sur la propriété</string>
+    <string name="activity_add_title_address">Adresse</string>
+    <string name="activity_add_title_nearby">Points d\'intérêt à proximité</string>
+    <string name="activity_add_title_media">Media</string>
+
+    <string name="activity_add_estate_saved">Propiété enregistré avec succès dans la base de données</string>
+    <string name="activity_add_estate_save_error">Vous devez fournir le titre et la description de chaque image avant de sauvegarder la propriété.</string>
+
+    <string-array name="search_type_array">
+        <item>@string/activity_add_estate_flat</item>
+        <item>@string/activity_add_estate_house</item>
+        <item>@string/activity_add_estate_duplex</item>
+        <item>@string/activity_add_estate_penthouse</item>
+        <item>@string/search_type_all</item>
+    </string-array>
+
+    <string-array name="property_type_array">
+        <item>@string/activity_add_estate_flat</item>
+        <item>@string/activity_add_estate_house</item>
+        <item>@string/activity_add_estate_duplex</item>
+        <item>@string/activity_add_estate_penthouse</item>
+    </string-array>
+
+    <string name="search_type_all">ALL</string>
+
+    <string-array name="search_statute_array">
+        <item>@string/activity_add_estate_available</item>
+        <item>@string/activity_add_estate_sold</item>
+        <item>@string/search_statute_all</item>
+    </string-array>
+
+    <string name="search_statute_all">ALL</string>
+    <string name="activity_add_estate_available">Disponible</string>
+    <string name="activity_add_estate_sold">Vendu</string>
+
+    <string name="activity_add_estate_flat">Appartement</string>
+    <string name="activity_add_estate_house">Maison</string>
+    <string name="activity_add_estate_duplex">Duplex</string>
+    <string name="activity_add_estate_penthouse">Penthouse</string>
+
+    <!-- OVERLAY -->
+    <string name="overlay_image_title">Titre</string>
+    <string name="overlay_image_desc">Description</string>
+    <string name="overlay_image_details_saved">Détails de l\'image sauvegardés</string>
+    <string name="input">Veuillez entrer tous les champs de saisie</string>
+
+    <string name="overlay_image_title_error">Vous devez fournir un titre</string>
+    <string name="overlay_image_desc_error">Vous devez fournir une description</string>
+    <string name="search_from_date_search">Rechercher à partir de la date</string>
+    <string name="descriptionpicture">S\'il vous plaît entrer la description de l\'image :</string>
+    <string name="locationPicture">Emplacement de l\'image</string>
+    <string name="phoneStorage">Sur le téléphone</string>
+    <string name="camera">Prendre une photo avec l\'appareil photo</string>
+    <string name="echec">Echec request !</string>
+    <string name="newProperty">Une nouvelle propriété est ajoutée</string>
+
+    <style name="api_key">AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM</style>
+
+</resources>

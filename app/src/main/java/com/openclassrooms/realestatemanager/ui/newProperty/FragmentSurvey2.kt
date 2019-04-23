@@ -121,8 +121,8 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
     private fun takePicture() {
         imgButtonSelect.setOnClickListener {
             val builder = context?.let { it1 -> AlertDialog.Builder(it1) }
-            builder?.setTitle("Picture location")
-            builder?.setItems(arrayOf("On phone storage", "Take picture with camera"), (DialogInterface.OnClickListener { _, i ->
+            builder?.setTitle(getString(R.string.locationPicture))
+            builder?.setItems(arrayOf(getString(R.string.phoneStorage), getString(R.string.camera)), (DialogInterface.OnClickListener { _, i ->
                 when (i) {
                     // Phone
                     0 -> {
@@ -171,7 +171,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
             pictureList.add(storage)
             setupAdapter()
         } else {
-            Toast.makeText(activity, "Echec request !", Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, getString(R.string.echec), Toast.LENGTH_LONG).show()
         }
 
         if (pictureList.isNotEmpty()) {
@@ -212,9 +212,9 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
         val inflater = this.layoutInflater
         val dialogView = inflater.inflate(R.layout.alert_label_edit_text, null)
         dialogBuilder?.setView(dialogView)
-        dialogBuilder?.setTitle("Please enter the description of picture :")
+        dialogBuilder?.setTitle(getString(R.string.descriptionpicture))
 
-        dialogBuilder?.setPositiveButton("Yes") { _, _ ->
+        dialogBuilder?.setPositiveButton("Oui") { _, _ ->
 
             if (listDescriptionImage.isEmpty()) {
                 listDescriptionImage.add(dialogView.edtRecyclerViewImage.text.toString())
@@ -227,7 +227,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
             }
             recyclerViewNewProperty.adapter?.notifyItemChanged(position)
         }
-        dialogBuilder?.setNegativeButton("No") { _, _ ->
+        dialogBuilder?.setNegativeButton("Non") { _, _ ->
         }
 
         val alertDialog = dialogBuilder?.create()
@@ -244,19 +244,19 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
         if (!edtRoomCount.text.isNullOrEmpty()) {
             roomsCount = edtRoomCount.text.toString().toInt()
         } else {
-            Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, R.string.input, Toast.LENGTH_SHORT).show()
         }
 
         if (!edtBedroomsCount.text.isNullOrEmpty()) {
             bedroomsCount = edtBedroomsCount.text.toString().toInt()
         } else {
-            Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, R.string.input, Toast.LENGTH_SHORT).show()
         }
 
         if (!edtBathroomsCount.text.isNullOrEmpty()) {
             bathroomsCount = edtBathroomsCount.text.toString().toInt()
         } else {
-            Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, R.string.input, Toast.LENGTH_SHORT).show()
         }
 
         if (!edtPointOfInterest.text.isNullOrEmpty()) {
@@ -273,7 +273,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
         } else {
-            Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, R.string.input, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -315,13 +315,13 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
 
             builder = Notification.Builder(context, NOTIFICATION_CHANNEL_ID)
                     .setSmallIcon(R.drawable.icon_globe)
-                    .setContentText("A new property is added")
+                    .setContentText(getString(R.string.newProperty))
                     .setAutoCancel(true)
                     .setContentIntent(pendingIntent)
         } else {
             builder = Notification.Builder(context)
                     .setSmallIcon(R.drawable.icon_globe)
-                    .setContentText("A new property is added")
+                    .setContentText(getString(R.string.newProperty))
                     .setAutoCancel(true)
                     .setContentIntent(pendingIntent)
         }
