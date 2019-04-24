@@ -1,4 +1,4 @@
-package com.openclassrooms.realestatemanager.ui.property
+package com.openclassrooms.realestatemanager.ui.map
 
 import android.content.Context
 import android.content.pm.PackageManager
@@ -24,6 +24,10 @@ import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.RealEstateManagerApplication
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
+import com.openclassrooms.realestatemanager.ui.property.Action
+import com.openclassrooms.realestatemanager.ui.property.ActionUiModel
+import com.openclassrooms.realestatemanager.ui.property.PropertyDetailFragment
+import com.openclassrooms.realestatemanager.ui.property.PropertyTranslator
 import com.openclassrooms.realestatemanager.utils.Utils
 import kotlinx.android.synthetic.main.fragment_map.*
 
@@ -148,7 +152,7 @@ class MapFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>(),
         propertyDetailFragment.arguments = bundle
 
         fragmentManager?.beginTransaction()
-                ?.replace(R.id.activity_main_frame_property, propertyDetailFragment)
+                ?.replace(R.id.frameLayout_map, propertyDetailFragment)
                 ?.addToBackStack(null)
                 ?.commit()
     }

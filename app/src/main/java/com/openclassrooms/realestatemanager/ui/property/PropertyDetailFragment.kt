@@ -95,10 +95,21 @@ class PropertyDetailFragment : BaseUiFragment<Action, ActionUiModel, PropertyTra
                     bundle.putInt(ID_SIMULATOR, idProperty)
                     simulatorFragment.arguments = bundle
 
-                    fragmentManager?.beginTransaction()
-                            ?.replace(R.id.activity_main_frame_property, simulatorFragment)
-                            ?.addToBackStack(null)
-                            ?.commit()
+                    when {
+                        fragmentManager?.findFragmentById(R.id.frameLayout_search) != null -> fragmentManager?.beginTransaction()
+                                ?.replace(R.id.frameLayout_search, simulatorFragment)
+                                ?.addToBackStack(null)
+                                ?.commit()
+                        fragmentManager?.findFragmentById(R.id.frameLayout_map) != null -> fragmentManager?.beginTransaction()
+                                ?.replace(R.id.frameLayout_map, simulatorFragment)
+                                ?.addToBackStack(null)
+                                ?.commit()
+                        else -> fragmentManager?.beginTransaction()
+                                ?.replace(R.id.activity_main_frame_property, simulatorFragment)
+                                ?.addToBackStack(null)
+                                ?.commit()
+                    }
+
                 }
 
                 constraintPropertyDetail.visibility = View.VISIBLE

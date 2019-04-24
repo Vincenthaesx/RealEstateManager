@@ -1,5 +1,7 @@
 package com.openclassrooms.realestatemanager.utils
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -20,6 +22,11 @@ fun Any.log() {
 
 fun Throwable.log() {
     Logger.e(this, this.message ?: "")
+}
+
+inline fun <reified Activity : AppCompatActivity> Context.openActivity(
+        intent: Intent = Intent(this, Activity::class.java)) {
+    this.startActivity(intent)
 }
 
 inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) {

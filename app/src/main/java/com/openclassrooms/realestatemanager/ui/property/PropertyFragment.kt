@@ -93,29 +93,16 @@ class PropertyFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslato
                     }
 
                     itemView.setOnClickListener {
-                        if (resources.getBoolean(R.bool.isTab)) {
-                            propertyDetailFragment = PropertyDetailFragment()
+                        propertyDetailFragment = PropertyDetailFragment()
 
-                            val bundle = Bundle()
-                            bundle.putInt("id", property.pid)
-                            propertyDetailFragment.arguments = bundle
+                        val bundle = Bundle()
+                        bundle.putInt("id", property.pid)
+                        propertyDetailFragment.arguments = bundle
 
-                            fragmentManager?.beginTransaction()
-                                    ?.replace(R.id.activity_main_frame_propertyDetail, propertyDetailFragment)
-                                    ?.commit()
-
-                        } else {
-                            propertyDetailFragment = PropertyDetailFragment()
-
-                            val bundle = Bundle()
-                            bundle.putInt("id", property.pid)
-                            propertyDetailFragment.arguments = bundle
-
-                            fragmentManager?.beginTransaction()
-                                    ?.replace(R.id.activity_main_frame_property, propertyDetailFragment)
-                                    ?.addToBackStack(null)
-                                    ?.commit()
-                        }
+                        fragmentManager?.beginTransaction()
+                                ?.replace(R.id.frameLayout_search, propertyDetailFragment)
+                                ?.addToBackStack(null)
+                                ?.commit()
                     }
                 }
             }

@@ -25,12 +25,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ui.search.SearchTransactionActivity"
+            android:label="@string/search"/>
+        <activity
+            android:name=".ui.map.MapTransactionActivity"
+            android:label="@string/map" />
         <activity
             android:name=".ui.updateProperty.UpdateProperty"
-            android:label="Update property" />
+            android:label="@string/updateProperty" />
         <activity
             android:name=".ui.newProperty.NewProperty"
-            android:label="Add a new property" />
+            android:label="@string/addNewProperty" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -53,7 +58,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

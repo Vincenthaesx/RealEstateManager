@@ -13,10 +13,13 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import com.google.android.material.navigation.NavigationView
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.ui.property.MapFragment
+import com.openclassrooms.realestatemanager.ui.map.MapFragment
+import com.openclassrooms.realestatemanager.ui.map.MapTransactionActivity
 import com.openclassrooms.realestatemanager.ui.property.PropertyFragment
-import com.openclassrooms.realestatemanager.ui.property.SearchFragment
+import com.openclassrooms.realestatemanager.ui.search.SearchFragment
+import com.openclassrooms.realestatemanager.ui.search.SearchTransactionActivity
 import com.openclassrooms.realestatemanager.utils.addFragment
+import com.openclassrooms.realestatemanager.utils.openActivity
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -82,10 +85,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.buttonSearch -> {
-                supportFragmentManager.beginTransaction()
-                        .replace(R.id.activity_main_frame_property, searchFragment)
-                        .addToBackStack(null)
-                        .commit()
+               openActivity<SearchTransactionActivity>()
             }
         }
         return true
@@ -136,15 +136,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                         && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
 
-                    if (resources.getBoolean(R.bool.isTab)) {
-                        supportFragmentManager.beginTransaction()
-                                .replace(R.id.activity_main_frame_propertyDetail, mapFragment)
-                                .commit()
-                    } else {
-                        supportFragmentManager.beginTransaction()
-                                .replace(R.id.activity_main_frame_property, mapFragment)
-                                .commit()
-                    }
+                    openActivity<MapTransactionActivity>()
 
                 } else {
                     Toast.makeText(this, getString(R.string.permissions), Toast.LENGTH_SHORT).show()

@@ -1,4 +1,4 @@
-package com.openclassrooms.realestatemanager.ui.property
+package com.openclassrooms.realestatemanager.ui.search
 
 import android.app.DatePickerDialog
 import android.os.Bundle
@@ -11,6 +11,10 @@ import com.google.android.material.textfield.TextInputEditText
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.base.BaseUiFragment
 import com.openclassrooms.realestatemanager.ui.base.getViewModel
+import com.openclassrooms.realestatemanager.ui.property.Action
+import com.openclassrooms.realestatemanager.ui.property.ActionUiModel
+import com.openclassrooms.realestatemanager.ui.property.PropertyFragment
+import com.openclassrooms.realestatemanager.ui.property.PropertyTranslator
 import com.openclassrooms.realestatemanager.utils.toFRDate
 import kotlinx.android.synthetic.main.fragment_search.*
 import java.text.SimpleDateFormat
@@ -206,7 +210,7 @@ class SearchFragment : BaseUiFragment<Action, ActionUiModel, PropertyTranslator>
         propertyFragment.arguments = bundle
 
         fragmentManager?.beginTransaction()
-                ?.replace(R.id.activity_main_frame_property, propertyFragment)
+                ?.replace(R.id.frameLayout_search, propertyFragment)
                 ?.addToBackStack(null)
                 ?.commit()
     }

@@ -182,6 +182,9 @@
     <string name="phoneStorage">On phone storage</string>
     <string name="echec">Echec request !</string>
     <string name="newProperty">A new property is added</string>
+    <string name="search">Search</string>
+    <string name="updateProperty">Update property</string>
+    <string name="addNewProperty">Add a new property</string>
 
     <style name="api_key">AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM</style>
 
