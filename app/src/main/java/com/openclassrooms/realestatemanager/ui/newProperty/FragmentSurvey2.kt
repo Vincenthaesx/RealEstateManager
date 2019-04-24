@@ -1,18 +1,11 @@
 package com.openclassrooms.realestatemanager.ui.newProperty
 
 import android.Manifest
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
@@ -45,7 +38,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
     override fun render(ui: ActionUiModel) {
         when (ui) {
             is ActionUiModel.AddNewPropertyModel -> {
-                launchNotification()
+                Toast.makeText(context, R.string.newProperty, Toast.LENGTH_LONG).show()
             }
             is ActionUiModel.Error -> {
                 ui.message?.log()
@@ -297,40 +290,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
         recyclerViewNewProperty.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
     }
 
-    private fun launchNotification() {
-        lateinit var notificationChannel: NotificationChannel
-        lateinit var builder: Notification.Builder
-
-        val notificationManager: NotificationManager = activity?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-        val intent = Intent(context, MainActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationChannel = NotificationChannel(NOTIFICATION_CHANNEL_ID, NOTIFICATION_CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH)
-            notificationChannel.enableLights(true)
-            notificationChannel.lightColor = Color.GREEN
-            notificationChannel.enableVibration(false)
-            notificationManager.createNotificationChannel(notificationChannel)
-
-            builder = Notification.Builder(context, NOTIFICATION_CHANNEL_ID)
-                    .setSmallIcon(R.drawable.icon_globe)
-                    .setContentText(getString(R.string.newProperty))
-                    .setAutoCancel(true)
-                    .setContentIntent(pendingIntent)
-        } else {
-            builder = Notification.Builder(context)
-                    .setSmallIcon(R.drawable.icon_globe)
-                    .setContentText(getString(R.string.newProperty))
-                    .setAutoCancel(true)
-                    .setContentIntent(pendingIntent)
-        }
-        notificationManager.notify(1234, builder.build())
-    }
-
     companion object {
-        private const val NOTIFICATION_CHANNEL_ID = "5000"
-        private const val NOTIFICATION_CHANNEL_NAME = "RealEstateManager"
         private const val REQUEST_IMAGE_CAPTURE = 0
         private const val REQUEST_READ_EXTERNAL_STORAGE = 7
         private const val REQUEST_IMAGE = 9
