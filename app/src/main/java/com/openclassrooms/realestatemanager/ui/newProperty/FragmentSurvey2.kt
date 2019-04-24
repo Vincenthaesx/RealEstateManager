@@ -214,7 +214,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
         dialogBuilder?.setView(dialogView)
         dialogBuilder?.setTitle(getString(R.string.descriptionpicture))
 
-        dialogBuilder?.setPositiveButton("Oui") { _, _ ->
+        dialogBuilder?.setPositiveButton(getString(R.string.yes)) { _, _ ->
 
             if (listDescriptionImage.isEmpty()) {
                 listDescriptionImage.add(dialogView.edtRecyclerViewImage.text.toString())
@@ -227,7 +227,7 @@ class FragmentSurvey2 : BaseUiFragment<Action, ActionUiModel, NewPropertyTransla
             }
             recyclerViewNewProperty.adapter?.notifyItemChanged(position)
         }
-        dialogBuilder?.setNegativeButton("Non") { _, _ ->
+        dialogBuilder?.setNegativeButton(getString(R.string.no)) { _, _ ->
         }
 
         val alertDialog = dialogBuilder?.create()

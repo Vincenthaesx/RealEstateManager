@@ -13,10 +13,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import com.google.android.material.navigation.NavigationView
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.ui.map.MapFragment
 import com.openclassrooms.realestatemanager.ui.map.MapTransactionActivity
 import com.openclassrooms.realestatemanager.ui.property.PropertyFragment
-import com.openclassrooms.realestatemanager.ui.search.SearchFragment
 import com.openclassrooms.realestatemanager.ui.search.SearchTransactionActivity
 import com.openclassrooms.realestatemanager.utils.addFragment
 import com.openclassrooms.realestatemanager.utils.openActivity
@@ -30,8 +28,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private var propertyFragment: PropertyFragment = PropertyFragment()
-    private var searchFragment: SearchFragment = SearchFragment()
-    private var mapFragment: MapFragment = MapFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,7 +81,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.buttonSearch -> {
-               openActivity<SearchTransactionActivity>()
+                openActivity<SearchTransactionActivity>()
             }
         }
         return true

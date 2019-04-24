@@ -118,7 +118,7 @@ class FragmentUpdateSurvey1 : BaseUiFragment<Action, ActionUiModel, UpdateProper
                         ?.addToBackStack(null)
                         ?.commit()
             } else {
-                Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, R.string.input, Toast.LENGTH_LONG).show()
             }
 
         }

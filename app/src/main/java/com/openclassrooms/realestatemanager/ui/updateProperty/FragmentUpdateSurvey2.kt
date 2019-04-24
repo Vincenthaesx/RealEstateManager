@@ -156,8 +156,8 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdateProper
     private fun takePicture() {
         imgButtonSelect.setOnClickListener {
             val builder = context?.let { it1 -> AlertDialog.Builder(it1) }
-            builder?.setTitle("Picture location")
-            builder?.setItems(arrayOf("On phone storage", "Take picture with camera"), (DialogInterface.OnClickListener { _, i ->
+            builder?.setTitle(R.string.locationPicture)
+            builder?.setItems(arrayOf(getString(R.string.phoneStorage), getString(R.string.camera)), (DialogInterface.OnClickListener { _, i ->
                 when (i) {
                     // Phone
                     0 -> {
@@ -244,9 +244,9 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdateProper
         val inflater = this.layoutInflater
         val dialogView = inflater.inflate(R.layout.alert_label_edit_text, null)
         dialogBuilder?.setView(dialogView)
-        dialogBuilder?.setTitle("Please enter the description of picture :")
+        dialogBuilder?.setTitle(getString(R.string.descriptionpicture))
 
-        dialogBuilder?.setPositiveButton("Yes") { _, _ ->
+        dialogBuilder?.setPositiveButton(getString(R.string.yes)) { _, _ ->
 
             if (listDescriptionImage.isEmpty()) {
                 listDescriptionImage.add(dialogView.edtRecyclerViewImage.text.toString())
@@ -259,7 +259,7 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdateProper
             }
             recyclerViewNewProperty.adapter?.notifyItemChanged(position)
         }
-        dialogBuilder?.setNegativeButton("No") { _, _ ->
+        dialogBuilder?.setNegativeButton(getString(R.string.no)) { _, _ ->
         }
 
         val alertDialog = dialogBuilder?.create()
@@ -277,25 +277,25 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdateProper
         if (!edtRoomCount.text.isNullOrEmpty()) {
             roomsCount = edtRoomCount.text.toString().toInt()
         } else {
-            Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, R.string.input, Toast.LENGTH_SHORT).show()
         }
 
         if (!edtBedroomsCount.text.isNullOrEmpty()) {
             bedroomsCount = edtBedroomsCount.text.toString().toInt()
         } else {
-            Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, R.string.input, Toast.LENGTH_SHORT).show()
         }
 
         if (!edtBathroomsCount.text.isNullOrEmpty()) {
             bathroomsCount = edtBathroomsCount.text.toString().toInt()
         } else {
-            Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, R.string.input, Toast.LENGTH_SHORT).show()
         }
 
         if (!edtPointOfInterest.text.isNullOrEmpty()) {
             pointOfInterest = edtPointOfInterest.text.toString()
         } else {
-            Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, R.string.input, Toast.LENGTH_SHORT).show()
         }
         var status = "Available"
 
@@ -310,7 +310,7 @@ class FragmentUpdateSurvey2 : BaseUiFragment<Action, ActionUiModel, UpdateProper
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
         } else {
-            Toast.makeText(activity, "Please enter all the input fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, R.string.input, Toast.LENGTH_SHORT).show()
         }
     }
 
