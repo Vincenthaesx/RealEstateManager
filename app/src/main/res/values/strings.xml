@@ -187,6 +187,7 @@
     <string name="addNewProperty">Add a new property</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="enter_your_description">enter your description</string>
 
     <style name="api_key">AIzaSyCPwec8XpQW3rbXeT9-1b15ibSiGLcrlPM</style>
 
