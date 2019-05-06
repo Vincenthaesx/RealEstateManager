@@ -154,8 +154,8 @@
     </string-array>
 
     <string name="search_statute_all">ALL</string>
-    <string name="activity_add_estate_available">Disponible</string>
-    <string name="activity_add_estate_sold">Vendu</string>
+    <string name="activity_add_estate_available">Available</string>
+    <string name="activity_add_estate_sold">Sold</string>
 
     <string name="activity_add_estate_flat">Appartement</string>
     <string name="activity_add_estate_house">Maison</string>
